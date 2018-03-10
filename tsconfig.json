@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": [ "es2015" ],
+    "sourceMap": true,
+    "outDir": "./deploy",
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

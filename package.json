@@ -1,0 +1,12 @@
+{
+  "name": "ku-bot-ts",
+  "version": "0.0.0",
+  "description": "kuBot",
+  "main": "deploy/bot.js",
+  "author": {
+    "name": "jpb"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.87"
+  }
+}
