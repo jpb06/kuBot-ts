@@ -8,5 +8,12 @@
   },
   "devDependencies": {
     "@types/node": "^6.0.87"
+  },
+  "dependencies": {
+    "bufferutil": "^3.0.3",
+    "discord.js": "^11.3.2",
+    "moment": "^2.21.0",
+    "mongodb": "^3.0.4",
+    "node-schedule": "^1.3.0"
   }
 }
