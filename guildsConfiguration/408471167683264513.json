@@ -115,6 +115,6 @@
         "acknowledged": "Muy bien",
         "mainChannel": "bot",
         "adminChannel": "council-chamber",
-        "emergencyChannel": "bot"
+        "emergencyChannel": "emergency-channel"
     }
 }
