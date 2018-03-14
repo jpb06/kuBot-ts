@@ -11,7 +11,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6db0e2f6-df00-474e-93ff-b9391ff233cd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>deploy\bot.js</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -34,14 +35,73 @@
   <ItemGroup>
     <TypeScriptCompile Include="sources\bot.ts" />
     <Content Include=".gitignore" />
+    <Content Include="guildsConfiguration\350303355014479874.json" />
+    <Content Include="guildsConfiguration\408471167683264513.json" />
+    <Content Include="guildsConfiguration\93043962100580352.json" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="sources\dal\mongodb\types\online.player.type.ts">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="tsconfig.json" />
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\dal.generic.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\business\activity.cache.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\business\guilds.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\business\last.fetch.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\fetched\online.players.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\watchlists\faction.watch.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\watchlists\player.watch.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\stores\watchlists\region.watch.store.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\types\activity.cache.item.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\types\faction.watch.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\types\guild.activity.cache.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\types\guild.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\types\last.fetch.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\types\player.watch.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\dal\mongodb\types\region.watch.type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="deploy\" />
+    <Folder Include="guildsConfiguration\" />
     <Folder Include="sources\" />
+    <Folder Include="sources\dal\" />
+    <Folder Include="sources\dal\mongodb\" />
+    <Folder Include="sources\dal\mongodb\stores\business\" />
+    <Folder Include="sources\dal\mongodb\stores\fetched\" />
+    <Folder Include="sources\dal\mongodb\stores\watchlists\" />
+    <Folder Include="sources\dal\mongodb\types\" />
+    <Folder Include="sources\dal\mongodb\stores\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
