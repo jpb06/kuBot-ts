@@ -2,7 +2,7 @@
 import { RegionWatch } from './../../types/region.watch.type';
 
 export abstract class RegionWatchStore {
-    public static storeName = 'factionswatch';
+    public static storeName = 'regionswatch';
 
     public static async Set(guildId: string, watchedRegions: Array<RegionWatch>): Promise<boolean> {
         let result = await GenericStore.clearAndCreateMany(

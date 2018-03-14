@@ -2,7 +2,7 @@
 import { PlayerWatch } from './../../types/player.watch.type';
 
 export abstract class PlayerWatchStore {
-    public static storeName = 'factionswatch';
+    public static storeName = 'playerswatch';
 
     public static async Set(name: string, watchedPlayer: PlayerWatch): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
