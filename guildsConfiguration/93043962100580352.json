@@ -71,7 +71,9 @@
             "identifier": "corsairs",
             "name": "Corsairs",
             "tags": [
-                "C::"
+                "C::",
+                "[TBH]",
+                "CNS-"
             ],
             "alwaysDisplay": false
         },
