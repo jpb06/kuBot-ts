@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { OnlinePlayer } from './../../types/online.player.type';
+import { OnlinePlayer } from './../../types/external/online.player.type';
 
 export abstract class OnlinePlayersStore {
     public static storeName = "onlineplayers";

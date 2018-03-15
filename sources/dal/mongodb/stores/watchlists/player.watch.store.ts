@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { PlayerWatch } from './../../types/player.watch.type';
+import { PlayerWatch } from './../../types/watch/player.watch.type';
 
 export abstract class PlayerWatchStore {
     public static storeName = 'playerswatch';

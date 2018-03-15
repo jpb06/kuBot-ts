@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { Guild } from './../../types/guild.type';
+import { Guild } from './../../types/business/guild.type';
 
 export abstract class GuildsStore {
     public static storeName = 'guilds';
@@ -8,16 +8,7 @@ export abstract class GuildsStore {
         let result = await GenericStore.createOrUpdate(
             GuildsStore.storeName,
             { guildId: guildSettings.guildId },
-            {
-                guildId: guildSettings.guildId,
-                messagesImage: guildSettings.messagesImage,
-                messagesFooterName: guildSettings.messagesFooterName,
-                scanMainRegionName: guildSettings.scanMainRegionName,
-                mainChannel: guildSettings.mainChannel,
-                adminChannel: guildSettings.adminChannel,
-                emergencyChannel: guildSettings.emergencyChannel,
-                acknowledged: guildSettings.acknowledged
-            }
+            guildSettings
         );
 
         return result;

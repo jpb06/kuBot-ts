@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { FactionWatch } from './../../types/faction.watch.type';
+import { FactionWatch } from './../../types/watch/faction.watch.type';
 
 export abstract class FactionWatchStore {
     public static storeName = 'factionswatch';
