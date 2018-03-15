@@ -1,0 +1,162 @@
+{
+    "factions": [
+        {
+            "identifier": "ln",
+            "name": "Liberty Navy",
+            "tags": [
+                "[LN]",
+                "LNS-",
+                "5th|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "harmony",
+            "name": "Battlegroup Harmony",
+            "tags": [
+                "H|-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "lanehackers",
+            "name": "Lane Hackers",
+            "tags": [
+                "LH~"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "dss",
+            "name": "Deep Space Solutions",
+            "tags": [
+                "|=DSS=|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "order",
+            "name": "The Order",
+            "tags": [
+                "Order|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "hellfire",
+            "name": "Hellfire Legion",
+            "tags": [
+                "[HF]"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "ic",
+            "name": "Interspace Commerce",
+            "tags": [
+                "IC|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "grn",
+            "name": "Gallic Royal Navy",
+            "tags": [
+                "MRG|",
+                "RNS-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "ageira",
+            "name": "Ageira Innovations",
+            "tags": [
+                "Ageira~"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "lr",
+            "name": "Liberty Rogues",
+            "tags": [
+                "LR-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "lpi",
+            "name": "Liberty Police Incorporated",
+            "tags": [
+                "LPI-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "lsf",
+            "name": "Liberty Security Force",
+            "tags": [
+                "=LSF="
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+    "regions": [
+        {
+            "identifier": "liberty",
+            "name": "Liberty",
+            "systems": [
+                "Alberta",
+                "Colorado",
+                "Alaska",
+                "Ontario",
+                "New York",
+                "Virginia",
+                "New Hampshire",
+                "California",
+                "Pennsylvania",
+                "Texas",
+                "Puerto Rico",
+                "Kansas"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "kusariborder",
+            "name": "Kusari border",
+            "systems": [
+                "Kepler",
+                "Galileo"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "bretoniaborder",
+            "name": "Bretonia Border",
+            "systems": [
+                "Vespucci",
+                "Magellan",
+                "Cortez",
+                "Inverness"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "rheinlandborder",
+            "name": "Rheinland border",
+            "systems": [
+                "Bering",
+                "Hudson"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+    "guildSettings": {
+        "messagesImage": "https://i.imgur.com/Oa566E7.png",
+        "messagesFooterName": "Liberty Navy Admiralty",
+        "scanMainRegionName": "House Liberty",
+        "acknowledged": "Aye aye!",
+        "mainChannel": "kubot",
+        "adminChannel": "kubotadmin",
+        "emergencyChannel": "kubot"
+    }
+}
