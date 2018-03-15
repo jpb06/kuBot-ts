@@ -1,10 +1,10 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { PlayerWatch } from './../../types/watch/player.watch.type';
+import { WatchedPlayer } from './../../types/watch/watched.player.type';
 
 export abstract class PlayerWatchStore {
     public static storeName = 'playerswatch';
 
-    public static async Set(name: string, watchedPlayer: PlayerWatch): Promise<boolean> {
+    public static async Set(name: string, watchedPlayer: WatchedPlayer): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
             PlayerWatchStore.storeName,
             { name: name },
@@ -14,17 +14,17 @@ export abstract class PlayerWatchStore {
         return result;
     }
 
-    public static async GetAll(): Promise<Array<PlayerWatch>> {
-        let result = await GenericStore.getAll(PlayerWatchStore.storeName) as Array<PlayerWatch>;
+    public static async GetAll(): Promise<Array<WatchedPlayer>> {
+        let result = await GenericStore.getAll(PlayerWatchStore.storeName) as Array<WatchedPlayer>;
 
         return result;
     }
 
-    public static async Get(guildId: string): Promise<Array<PlayerWatch>> {
+    public static async Get(guildId: string): Promise<Array<WatchedPlayer>> {
         let result = await GenericStore.getBy(
             PlayerWatchStore.storeName,
             { guildId: guildId }
-        ) as Array<PlayerWatch>;
+        ) as Array<WatchedPlayer>;
 
         return result;
     }
