@@ -289,3 +289,4 @@ __pycache__/
 
 # Custom
 deploy/
+sources/configuration/private.config.local.ts
