@@ -3,8 +3,8 @@
 export abstract class GenericStore {
 
     public static async createOrUpdate(collectionName: string, term: object, value: object): Promise<boolean> {
-        const client = await MongoClient.connect(process.env.mongodbUrl);
-        let db = client.db(process.env.mongodbBase);
+        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
+        let db = client.db(process.env.kuBotConfig.mongodbBase);
 
         try {
             let collection = db.collection(collectionName);
@@ -18,8 +18,8 @@ export abstract class GenericStore {
     }
 
     public static async clearAndCreateMany(collectionName: string, term: object, values: Array<object>): Promise<boolean> {
-        const client = await MongoClient.connect(process.env.mongodbUrl);
-        let db = client.db(process.env.mongodbBase);
+        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
+        let db = client.db(process.env.kuBotConfig.mongodbBase);
 
         try {
             let collection = db.collection(collectionName);
@@ -38,8 +38,8 @@ export abstract class GenericStore {
     }
 
     public static async getAll(collectionName: string) : Promise<Array<object>> {
-        const client = await MongoClient.connect(process.env.mongodbUrl);
-        let db = client.db(process.env.mongodbBase);
+        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
+        let db = client.db(process.env.kuBotConfig.mongodbBase);
 
         try {
             let collection = db.collection(collectionName);
@@ -52,8 +52,8 @@ export abstract class GenericStore {
     }
 
     public static async getBy(collectionName: string, term: object): Promise<Array<object>> {
-        const client = await MongoClient.connect(process.env.mongodbUrl);
-        let db = client.db(process.env.mongodbBase);
+        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
+        let db = client.db(process.env.kuBotConfig.mongodbBase);
 
         try {
             let collection = db.collection(collectionName);
