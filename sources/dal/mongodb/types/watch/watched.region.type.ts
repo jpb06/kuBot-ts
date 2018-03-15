@@ -1,14 +1,12 @@
-﻿export interface RegionWatch {
+﻿export interface WatchedRegion {
     guildId: string,
-    identifier: string,
     name: string,
     systems: Array<string>,
     alwaysDisplay: boolean
 }
 
-export function isRegionWatch(obj: any): obj is RegionWatch {
+export function isWatchedRegion(obj: any): obj is WatchedRegion {
     if (typeof obj.guildId !== "string" ||
-        typeof obj.identifier !== "string" ||
         typeof obj.name !== "string" ||
         typeof obj.alwaysDisplay !== "boolean" ||
         !Array.isArray(obj.systems)) {

@@ -1,14 +1,12 @@
-﻿export interface FactionWatch {
+﻿export interface WatchedFaction {
     guildId: string,
-    identifier: string,
     name: string,
     tags: Array<string>,
     alwaysDisplay: boolean
 }
 
-export function isFactionWatch(obj: any): obj is FactionWatch {
+export function isWatchedFaction(obj: any): obj is WatchedFaction {
     if (typeof obj.guildId !== "string" ||
-        typeof obj.identifier !== "string" ||
         typeof obj.name !== "string" ||
         typeof obj.alwaysDisplay !== "boolean" ||
         !Array.isArray(obj.tags)) {
