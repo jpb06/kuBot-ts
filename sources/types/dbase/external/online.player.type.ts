@@ -1,8 +1,8 @@
 ﻿export interface OnlinePlayer {
     Time: string;
-    Name: number;
-    System: number;
-    Region: number;
+    Name: string;
+    System: string;
+    Region: string;
     Ping: number;
 }
 
