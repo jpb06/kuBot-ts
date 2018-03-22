@@ -1,10 +1,10 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { WatchedRegion } from './../../types/watch/watched.region.type';
+import { WatchedRegion } from './../../../../types/dbase/watch/watched.region.type';
 
 export abstract class RegionWatchStore {
     public static storeName = 'regionswatch';
 
-    public static async Set(guildId: string, watchedRegions: Array<WatchedRegion>): Promise<boolean> {
+    public static async set(guildId: string, watchedRegions: Array<WatchedRegion>): Promise<boolean> {
         let result = await GenericStore.clearAndCreateMany(
             RegionWatchStore.storeName,
             { guildId: guildId },
@@ -14,13 +14,13 @@ export abstract class RegionWatchStore {
         return result;
     }
 
-    public static async GetAll(): Promise<Array<WatchedRegion>> {
+    public static async getAll(): Promise<Array<WatchedRegion>> {
         let result = await GenericStore.getAll(RegionWatchStore.storeName) as Array<WatchedRegion>;
 
         return result;
     }
 
-    public static async Get(guildId: string): Promise<Array<WatchedRegion>> {
+    public static async get(guildId: string): Promise<Array<WatchedRegion>> {
         let result = await GenericStore.getBy(
             RegionWatchStore.storeName,
             { guildId: guildId }
