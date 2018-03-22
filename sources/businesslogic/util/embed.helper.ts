@@ -20,8 +20,10 @@ export class EmbedHelper {
         this.authorName = authorName;
         this.authorAvatarUrl = authorAvatarUrl;
     }
-
-    generateGeneric () {
+    /* ---------------------------------------------------------------------------------------------------------------
+       Generic
+       ---------------------------------------------------------------------------------------------------------------*/
+    private generateGeneric () {
         let embed = new RichEmbed()
             .setThumbnail(this.guildSettings.messagesImage)
             .setTimestamp(new Date())
@@ -30,7 +32,18 @@ export class EmbedHelper {
         return embed;
     }
 
-    error(channel: TextChannel) {
+    public sendValidationError (usage, errors) {
+        this.channel.send({
+                embed: this.generateGeneric()
+                    .setColor(10684167)
+                    .setAuthor(this.authorName, this.authorAvatarUrl)
+                    .setTitle('Invalid request')
+                    .setDescription(usage)
+                    .addField('Errors', errors)
+            });
+    }
+
+    public error(channel: TextChannel) {
         channel.send({
             embed: new RichEmbed()
             .setThumbnail('https://i.imgur.com/5L7T68j.png')
@@ -41,8 +54,10 @@ export class EmbedHelper {
             .setDescription('An error occurred while processing your request')
         });
     }
-
-    sendScanResponse(
+    /* ---------------------------------------------------------------------------------------------------------------
+       Scan command
+       ---------------------------------------------------------------------------------------------------------------*/
+    public sendScanResponse(
         playersCount: number,
         factions: ScanResultElement[],
         regions: ScanResultElement[]
@@ -78,6 +93,84 @@ export class EmbedHelper {
 
         this.channel.send({
             embed: embed
+        });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+       Quote command
+       ---------------------------------------------------------------------------------------------------------------*/
+    public generateQuote(
+        user: string,
+        quoteSendDate: Date,
+        quoteAuthor: string,
+        quoteContent: string
+    ) {
+        let embed = new RichEmbed()
+            .setTimestamp(quoteSendDate)
+            .setFooter(`Quote requested by ${user}`, 'https://i.imgur.com/5L7T68j.png')
+            .setColor(0x2e9c3f)
+            .addField(`${quoteAuthor} wrote:`, quoteContent);
+
+        return embed;
+    }
+
+    sendQuote(
+        user: string,
+        quoteSendDate: Date,
+        quoteAuthor: string,
+        quoteContent: string
+    ) {
+        this.channel.send({
+            embed: this.generateQuote(user, quoteSendDate, quoteAuthor, quoteContent)
+        });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+       QuoteText command
+       ---------------------------------------------------------------------------------------------------------------*/
+    generateQuoteText(
+        user: string,
+        quoteContent: string
+    ) {
+        let embed = new RichEmbed()
+            .setTimestamp(new Date())
+            .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+            .setColor(0x2e9c3f)
+            .addField(`${user} is quoting this text:`, quoteContent);
+
+        return embed;
+    }
+
+    sendQuoteText(
+        user: string,
+        quoteContent: string
+    ) {
+        this.channel.send({
+            embed: this.generateQuoteText(user, quoteContent)
+        });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+       Embed command
+       ---------------------------------------------------------------------------------------------------------------*/
+    generateEmbed(
+        user: string,
+        title: string,
+        content: string
+    ) {
+        let embed = new RichEmbed()
+            .setTimestamp(new Date())
+            .setFooter(`${user}`, 'https://i.imgur.com/5L7T68j.png')
+            .setColor(0x2e9c3f)
+            .addField(title, content);
+
+        return embed;
+    }
+
+    sendEmbed(
+        user: string,
+        title: string,
+        content: string
+    ) {
+        this.channel.send({
+            embed: this.generateEmbed(user, title, content)
         });
     }
 }
