@@ -113,7 +113,7 @@ export class EmbedHelper {
         return embed;
     }
 
-    sendQuote(
+    public sendQuote(
         user: string,
         quoteSendDate: Date,
         quoteAuthor: string,
@@ -126,7 +126,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        QuoteText command
        ---------------------------------------------------------------------------------------------------------------*/
-    generateQuoteText(
+    public generateQuoteText(
         user: string,
         quoteContent: string
     ) {
@@ -139,7 +139,7 @@ export class EmbedHelper {
         return embed;
     }
 
-    sendQuoteText(
+    public sendQuoteText(
         user: string,
         quoteContent: string
     ) {
@@ -150,7 +150,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Embed command
        ---------------------------------------------------------------------------------------------------------------*/
-    generateEmbed(
+    public generateEmbed(
         user: string,
         title: string,
         content: string
@@ -164,13 +164,35 @@ export class EmbedHelper {
         return embed;
     }
 
-    sendEmbed(
+    public sendEmbed(
         user: string,
         title: string,
         content: string
     ) {
         this.channel.send({
             embed: this.generateEmbed(user, title, content)
+        });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+        Watch command
+       ---------------------------------------------------------------------------------------------------------------*/
+    public sendFactionPlayerWatchError(name, factions) {
+        this.channel.send({
+            embed: this.generateGeneric()
+                .setColor(10684167)
+                .setAuthor(this.authorName, this.authorAvatarUrl)
+                .setTitle('Error')
+                .setDescription(`${name} is already under watch for belonging to the following faction(s) :\n\n${factions}`)
+        });
+    }
+
+    public sendWatchResponse(name) {
+        this.channel.send({
+            embed: this.generateGeneric()
+            .setColor(3447003)
+                .setAuthor(this.authorName, this.authorAvatarUrl)
+                .setTitle(`${this.guildSettings.acknowledged}`)
+                .setDescription(`${name} added to the watch list`)
         });
     }
 }
