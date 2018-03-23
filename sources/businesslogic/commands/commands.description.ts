@@ -28,4 +28,15 @@
                 'Example :\n```!embed "Important" "I\'d like to tell you something..."\n' +
                 '!e "This is a great title" "This is the greatest announcement ever"```\n';
     }
+
+    public static WatchUsage() {
+        return 'Command usage :\n' +
+                '```!watch name \'comment\'```\n' +
+                'Where :\n' +
+                '\t**__name__** is the player ingame name.\n' +
+                '\t**__comment__** is a comment related to this player (optional).\n\n' +
+                'Example :\n```!watch Innocent.Bystander \'Cardamine smuggler\'\n' +
+                '!watch Hayagfgdf.Kimiko \"Mean person\"\n' +
+                '!watch Ishikawa.Hideaki```\n';
+    }
 }
