@@ -195,4 +195,19 @@ export class EmbedHelper {
                 .setDescription(`${name} added to the watch list`)
         });
     }
+    /* ---------------------------------------------------------------------------------------------------------------
+       Show command
+      ---------------------------------------------------------------------------------------------------------------*/
+    public sendShowResponse(
+        count: number,
+        description: string,
+        type: string
+    ) {
+        this.channel.send({
+            embed: this.generateGeneric()
+            .setColor(3447003)
+            .setTitle(`**${count} ${type} in watch list**\n\n`)
+            .setDescription(description)
+        });
+    }
 }
