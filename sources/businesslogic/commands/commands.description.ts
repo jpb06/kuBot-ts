@@ -39,4 +39,19 @@
                 '!watch Hayagfgdf.Kimiko \"Mean person\"\n' +
                 '!watch Ishikawa.Hideaki```\n';
     }
+
+    public static ShowUsage() {
+        return 'Command usage :\n' +
+                '```!show term```\n' +
+                'Where **__term__** is either :\n' +
+                '\tplayers (shorthand p), to display watched players list\n' +
+                '\tfactions (shorthand f), to display watched factions list\n' +
+                '\tregions (shorthand r), to display watched regions list\n\n' +
+                'Example :\n```!show players\n' +
+                '!show p\n' +
+                '!show factions\n' +
+                '!show f\n' +
+                '!show regions\n' +
+                '!show r```\n';
+    }
 }
