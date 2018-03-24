@@ -113,6 +113,9 @@
     <TypeScriptCompile Include="sources\front\commands\quote.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\commands\show.command.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\commands\watch.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

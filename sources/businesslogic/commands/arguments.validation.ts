@@ -1,6 +1,6 @@
 ﻿export abstract class ArgumentsValidation {
-    public static CheckQuoteMessageArgs (args) {
-        if(args.length !== 1)
+    public static CheckQuoteMessageArgs(args: string[]) {
+        if (args.length !== 1)
             return 'Expecting one argument\n';
 
         if (!/^\+?(0|[1-9]\d*)$/.test(args[0]))
@@ -9,14 +9,14 @@
         return '';
     }
 
-    public static CheckQuoteTextArgs (args) {
+    public static CheckQuoteTextArgs(args: string) {
         if (args.length === 0)
             return 'Expecting text after the command\n';
 
         return '';
     }
 
-    public static CheckEmbedArgs (args) {
+    public static CheckEmbedArgs(args: string[]) {
         if (args.length !== 2)
             return 'Expecting a title and a message\n';
         if (args[0].length === 0)
@@ -27,7 +27,7 @@
         return '';
     }
 
-    public static CheckWatchArgs(args) {
+    public static CheckWatchArgs(args: string[]) {
         let errors = '';
         let validatedArgs: any = {};
 
@@ -52,5 +52,16 @@
             errors: errors,
             args: validatedArgs
         };
+    }
+
+    public static CheckShowArgs(parameter: string) {
+        let expectedParameter = ['players', 'p', 'factions', 'f', 'regions', 'r'];
+
+        if (!parameter || parameter.length === 0)
+            return 'Expecting one argument\n';
+        if (!expectedParameter.some(el => el === parameter))
+            return 'Illegal parameter\n';
+
+        return '';
     }
 }

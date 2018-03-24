@@ -67,7 +67,7 @@ export abstract class Quoting {
         let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
 
         try {
-            let content = args.split('').reduce((accumulator, currentValue) => {
+            let content: string[] = args.split('').reduce((accumulator, currentValue) => {
                 if (currentValue === '"') {
                     accumulator.quote ^= 1;
                 } else if (!accumulator.quote && currentValue === ' ') {
