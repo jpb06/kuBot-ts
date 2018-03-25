@@ -210,4 +210,32 @@ export class EmbedHelper {
             .setDescription(description)
         });
     }
+    /* ---------------------------------------------------------------------------------------------------------------
+      remove admin command
+     ---------------------------------------------------------------------------------------------------------------*/
+    public sendRemoveResponse(
+        term: string,
+        type: string
+    ) {
+        this.channel.send({
+            embed: this.generateGeneric()
+            .setColor(3447003)
+                .setAuthor(this.authorName, this.authorAvatarUrl)
+                .setTitle(`${this.guildSettings.acknowledged}`)
+            .setDescription(`${term} was removed from ${type} watch list`)
+        });
+    }
+
+    public sendRemovalFailure(
+        term: string,
+        type: string
+    ) {
+        this.channel.send({
+            embed: this.generateGeneric()
+                .setColor(10684167)
+                .setAuthor(this.authorName, this.authorAvatarUrl)
+                .setTitle('Request failure')
+                .setDescription(`${term} isn't defined in ${type} watch list`)
+        });
+    }
 }
