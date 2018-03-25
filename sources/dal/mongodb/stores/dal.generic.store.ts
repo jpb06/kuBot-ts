@@ -64,4 +64,19 @@ export abstract class GenericStore {
             client.close();
         }
     }
+
+    public static async remove(collectionName: string, term: object): Promise<boolean> {
+        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
+        let db = client.db(process.env.kuBotConfig.mongodbBase);
+
+        try {
+            let collection = db.collection(collectionName);
+
+            let result = await collection.deleteOne(term);
+
+            return result.deletedCount === 1;
+        } finally {
+            client.close();
+        }
+    }
 }

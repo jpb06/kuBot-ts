@@ -29,4 +29,11 @@ export abstract class PlayerWatchStore {
         return result;
     }
 
+    public static async remove(guildId: string, name: string): Promise<boolean> {
+        return await GenericStore.remove(
+            PlayerWatchStore.storeName,
+            { guildId: guildId, name: name }
+        );
+    }
+
 }
