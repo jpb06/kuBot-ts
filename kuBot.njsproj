@@ -110,6 +110,9 @@
     <TypeScriptCompile Include="sources\dal\mongodb\stores\watchlists\region.watch.store.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\commands\admin.remove.command.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\commands\quote.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
