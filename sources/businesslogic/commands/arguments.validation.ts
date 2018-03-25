@@ -64,4 +64,15 @@
 
         return '';
     }
+
+    public static CheckAdminRemoveArgs(args: string[]) {
+        let expectedFirstParameter = ['player', 'p'];
+
+        if (args.length !== 2)
+            return 'Expecting two arguments\n';
+        if (!expectedFirstParameter.some(el => el === args[0]))
+            return 'Illegal first parameter\n';
+
+        return '';
+    }
 }

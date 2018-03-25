@@ -54,4 +54,18 @@
                 '!show regions\n' +
                 '!show r```\n';
     }
+
+    public static AdminRemoveUsage() {
+        return 'Command usage :\n' +
+                '```!remove term value```\n' +
+                'Where :\n' +
+                '\t**__term__** is either :\n' +
+                '\t\tplayer (shorthand p), to specify a player deletion\n' +
+                '\t\tfaction (shorthand f), to specify a faction deletion\n\n' +
+                '\t**__value__** is a player name or faction identifier.\n\n' +
+                'Example :\n```!remove player Mean.Pirate\n' +
+                '!remove p Something\n' +
+                '!remove faction blooddragons\n' +
+                '!remove f libertyrogues```\n';
+    }
 }
