@@ -17,10 +17,9 @@ export async function Show(
     args: string,
     message: Message,
     client: Client
-) {
-    let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
-
+): Promise<void> {
     try {
+        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
         let errors = ArgumentsValidation.CheckShowArgs(args);
 
         if (errors.length > 0) {
@@ -76,6 +75,6 @@ export async function Show(
         }
     } catch (error) {
         await ErrorsLogging.save(error);
-        embedHelper.error(message.channel as TextChannel);
+        EmbedHelper.Error(message.channel as TextChannel);
     }
 }

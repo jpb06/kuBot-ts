@@ -56,6 +56,9 @@
     <TypeScriptCompile Include="sources\businesslogic\commands\commands.description.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\businesslogic\data\guild.config.validator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\httprequests\discogc.authentication.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -66,6 +69,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\tasks\fetch.online.players.task.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\businesslogic\tasks\guild.config.initializer.task.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\tasks\watch.transform.task.ts">
@@ -81,6 +87,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\util\files.helper.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\businesslogic\util\promisify.rebinder.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\configuration\pivate.settings.mapping.ts">
@@ -122,6 +131,9 @@
     <TypeScriptCompile Include="sources\front\commands\watch.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\tasks\update.guild.config.task.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\types\businesslogic\watched.element.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -159,6 +171,7 @@
     <Folder Include="sources\" />
     <Folder Include="sources\businesslogic\httprequests\" />
     <Folder Include="sources\businesslogic\commands\" />
+    <Folder Include="sources\businesslogic\data\" />
     <Folder Include="sources\businesslogic\util\" />
     <Folder Include="sources\businesslogic\tasks\" />
     <Folder Include="sources\dal\" />
@@ -167,6 +180,7 @@
     <Folder Include="sources\dal\mongodb\stores\fetched\" />
     <Folder Include="sources\dal\mongodb\stores\watchlists\" />
     <Folder Include="sources\businesslogic\" />
+    <Folder Include="sources\front\tasks\" />
     <Folder Include="sources\types\" />
     <Folder Include="sources\dal\mongodb\stores\" />
     <Folder Include="sources\types\dbase\external\" />

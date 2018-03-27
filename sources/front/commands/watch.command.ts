@@ -16,10 +16,9 @@ export async function Watch(
     args: string[],
     message: Message,
     client: Client
-) {
-    let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
-
+): Promise<void> {
     try {
+        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
         let validation = ArgumentsValidation.CheckWatchArgs(args);
 
         if (validation.errors.length > 0) {
@@ -46,6 +45,6 @@ export async function Watch(
         }
     } catch (error) {
         await ErrorsLogging.save(error);
-        embedHelper.error(message.channel as TextChannel);
+        EmbedHelper.Error(message.channel as TextChannel);
     }
 }

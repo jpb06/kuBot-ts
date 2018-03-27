@@ -1,6 +1,6 @@
 ﻿export abstract class CommandsDescription {
 
-    public static QuoteUsage () {
+    public static QuoteUsage(): string {
         return 'Command usage :\n' +
                 '```!quote identifier\n' +
                 '!q identifier```\n' +
@@ -10,7 +10,7 @@
                 '!q 420988491032428545```\n';
     }
 
-    public static QuoteTextUsage () {
+    public static QuoteTextUsage(): string {
     return 'Command usage :\n' +
             '```!quotetext text\n' +
             '!qt text```\n' +
@@ -19,7 +19,7 @@
             '!qt Let\'s be friends```\n';
     }
 
-    public static EmbedUsage () {
+    public static EmbedUsage(): string {
         return 'Command usage :\n' +
                 '```!embed "title" "content"\n' +
                 '!e "title" "content"```\n' +
@@ -29,7 +29,7 @@
                 '!e "This is a great title" "This is the greatest announcement ever"```\n';
     }
 
-    public static WatchUsage() {
+    public static WatchUsage(): string {
         return 'Command usage :\n' +
                 '```!watch name \'comment\'```\n' +
                 'Where :\n' +
@@ -40,7 +40,7 @@
                 '!watch Ishikawa.Hideaki```\n';
     }
 
-    public static ShowUsage() {
+    public static ShowUsage(): string {
         return 'Command usage :\n' +
                 '```!show term```\n' +
                 'Where **__term__** is either :\n' +
@@ -55,7 +55,7 @@
                 '!show r```\n';
     }
 
-    public static AdminRemoveUsage() {
+    public static AdminRemoveUsage(): string {
         return 'Command usage :\n' +
                 '```!remove term value```\n' +
                 'Where :\n' +

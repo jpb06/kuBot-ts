@@ -4,7 +4,9 @@ import { OnlinePlayer } from './../../../../types/dbase/external/online.player.t
 export abstract class OnlinePlayersStore {
     public static storeName = "onlineplayers";
 
-    public static async set(onlinePlayers: Array<OnlinePlayer>): Promise<boolean> {
+    public static async set(
+        onlinePlayers: Array<OnlinePlayer>
+    ): Promise<boolean> {
         let result = await GenericStore.clearAllAndCreateMany(OnlinePlayersStore.storeName, onlinePlayers);
 
         return result;

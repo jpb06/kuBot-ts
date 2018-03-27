@@ -1,6 +1,6 @@
 ﻿import { PrivateConfig } from './private.config.local'
 
-export function initializeSettings() {
+export function initializeSettings(): void {
     if (!process.env.kuBotConfig) { // case local
         process.env.kuBotConfig.apiKey = PrivateConfig.apiKey;
         process.env.kuBotConfig.botId = PrivateConfig.botId;

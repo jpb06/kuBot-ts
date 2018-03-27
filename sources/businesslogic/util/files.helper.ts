@@ -1,7 +1,10 @@
 ﻿import { get } from 'https';
 import { createWriteStream, unlink } from 'fs';
 
-export function save(url, dest) {
+export function save(
+    url: string,
+    dest: string
+): Promise<{}> {
     return new Promise((resolve, reject) => {
         var file = createWriteStream(dest);
 
@@ -22,7 +25,7 @@ export function save(url, dest) {
 export function append(
     path: string,
     content: string
-) {
+): Promise<{}> {
     return new Promise((resolve, reject) => {
         let stream = createWriteStream(path, { flags: 'a' });
         stream.write(content);
@@ -31,7 +34,9 @@ export function append(
     });
 }
 
-export function remove(path: string) {
+export function remove(
+    path: string
+): void {
     unlink(path, function (err) {
         return new Promise((resolve, reject) => {
             if (err) {
