@@ -1,7 +1,5 @@
 ﻿import * as https from 'https';
 
-import { stringify } from './../util/cookies.helper';
-
 export abstract class RequestOptions {
     public static AuthRequestOptions(): https.RequestOptions {
         const requestOptions: https.RequestOptions = {
@@ -27,10 +25,18 @@ export abstract class RequestOptions {
             path: '/forums/api_interface.php?action=players_online',
             method: 'GET',
             headers: {
-                'Cookie': stringify(cookies)
+                'Cookie': this.Stringify(cookies)
             }
         };
 
         return requestOptions;
+    }
+
+    private static Stringify(
+        cookies: string[]
+    ): string {
+        return cookies.map((cookie) => {
+            return cookie.substring(0, cookie.indexOf(';'));
+        }).join(';');
     }
 }
