@@ -6,7 +6,7 @@ import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
 import * as GuildConfigInitializer from './../../businesslogic/tasks/guild.config.initializer.task';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
-import * as ErrorsLogging from './../../businesslogic/util/errors.logging.helper';
+import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export async function start(
     message: Message,
@@ -20,7 +20,7 @@ export async function start(
 
         return guildsParameters;
     } catch (error) {
-        await ErrorsLogging.save(error);
+        await ErrorsLogging.Save(error);
         EmbedHelper.Error(message.channel as TextChannel);
 
         return guildsParameters;

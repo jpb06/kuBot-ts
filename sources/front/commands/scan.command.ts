@@ -13,7 +13,7 @@ import * as FetchOnlinePlayersTask from './../../businesslogic/tasks/fetch.onlin
 import * as WatchTransformTask from './../../businesslogic/tasks/watch.transform.task';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
-import * as ErrorsLogging from './../../businesslogic/util/errors.logging.helper';
+import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export async function Scan(
     guildSettings: Guild,
@@ -49,7 +49,7 @@ export async function Scan(
         
         embedHelper.sendScanResponse(onlinePlayers.length, factions, regions);
     } catch (error) {
-        await ErrorsLogging.save(error);
+        await ErrorsLogging.Save(error);
         EmbedHelper.Error(message.channel as TextChannel);
     }
 }

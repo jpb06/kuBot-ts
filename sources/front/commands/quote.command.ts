@@ -4,7 +4,7 @@ import { Guild } from './../../types/dbase/business/guild.type';
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
-import * as ErrorsLogging from './../../businesslogic/util/errors.logging.helper';
+import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export abstract class Quoting {
 
@@ -30,7 +30,7 @@ export abstract class Quoting {
                 }
             }
         } catch (error) {
-            await ErrorsLogging.save(error);
+            await ErrorsLogging.Save(error);
             EmbedHelper.Error(message.channel as TextChannel);
         }
     }
@@ -51,7 +51,7 @@ export abstract class Quoting {
                 embedHelper.sendQuoteText(message.author.username, text);
             }
         } catch (error) {
-            await ErrorsLogging.save(error);
+            await ErrorsLogging.Save(error);
             EmbedHelper.Error(message.channel as TextChannel);
         }
     }
@@ -86,7 +86,7 @@ export abstract class Quoting {
                 embedHelper.sendEmbed(message.author.username, content[0], content[1]);
             }
         } catch (error) {
-            await ErrorsLogging.save(error);
+            await ErrorsLogging.Save(error);
             EmbedHelper.Error(message.channel as TextChannel);
         }
     }

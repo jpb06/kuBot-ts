@@ -6,7 +6,7 @@ import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction
 import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
 import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
 
-import * as FileUtil from './../util/files.helper';
+import { FilesHelper } from './../util/files.helper';
 import { GuildConfigurationValidator } from './../data/guild.config.validator';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 
@@ -19,7 +19,7 @@ export async function persist(
     if (fileExtension === 'json') {
         let channel = <TextChannel>message.channel;
 
-        await FileUtil.save(attachment.url, `./dal/guildsconfiguration/${channel.guild.id}.json`);
+        await FilesHelper.Save(attachment.url, `./dal/guildsconfiguration/${channel.guild.id}.json`);
 
         const readFile = promisify(fs.readFile);
         let data = await readFile(`./dal/guildsconfiguration/${channel.guild.id}.json`, 'utf8');

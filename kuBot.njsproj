@@ -59,13 +59,10 @@
     <TypeScriptCompile Include="sources\businesslogic\data\guild.config.validator.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\businesslogic\httprequests\discogc.authentication.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\businesslogic\httprequests\discogc.online.players.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\httprequests\request.options.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\businesslogic\httprequests\discoverygc.requests.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\tasks\fetch.online.players.task.ts">
@@ -75,9 +72,6 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\tasks\watch.transform.task.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\businesslogic\util\cookies.helper.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\util\embed.helper.ts">

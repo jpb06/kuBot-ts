@@ -9,7 +9,7 @@ import { WatchedFaction } from './../../types/dbase/watch/watched.faction.type';
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
-import * as ErrorsLogging from './../../businesslogic/util/errors.logging.helper';
+import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export async function Watch(
     guildSettings: Guild,
@@ -44,7 +44,7 @@ export async function Watch(
             }
         }
     } catch (error) {
-        await ErrorsLogging.save(error);
+        await ErrorsLogging.Save(error);
         EmbedHelper.Error(message.channel as TextChannel);
     }
 }
