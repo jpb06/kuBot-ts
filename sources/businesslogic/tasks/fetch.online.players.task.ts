@@ -5,8 +5,7 @@ import { LastFetch } from './../../types/dbase/business/last.fetch.type';
 import { OnlinePlayersStore } from './../../dal/mongodb/stores/fetched/online.players.store';
 import { OnlinePlayer } from './../../types/dbase/external/online.player.type';
 
-import * as DiscoGCAuthenticationRequest from './../httprequests/discogc.authentication';
-import * as DiscoGCOnlinePlayersRequest from './../httprequests/discogc.online.players';
+import { DiscoveryGCRequests } from './../httprequests/discoverygc.requests';
 
 export async function start(): Promise<OnlinePlayer[]> {
     let lastFetch = await LastFetchStore.get();
@@ -14,8 +13,8 @@ export async function start(): Promise<OnlinePlayer[]> {
 
     // request threshold to discogc = 2 minutes 
     if (!lastFetch || moment(lastFetch.date).add(2, 'm').isBefore(now)) {
-        let cookies = await DiscoGCAuthenticationRequest.send();
-        let data = await DiscoGCOnlinePlayersRequest.send(cookies);
+        let cookies = await DiscoveryGCRequests.Auth();
+        let data = await DiscoveryGCRequests.OnlinePlayers(cookies);
 
         // ??? why escaped quotes
         let cleaned = '';
