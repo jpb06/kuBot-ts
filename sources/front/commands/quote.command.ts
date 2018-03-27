@@ -13,10 +13,9 @@ export abstract class Quoting {
         args: string[],
         message: Message,
         client: Client
-    ) {
-        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
-
+    ): Promise<void> {
         try {
+            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
             let errors = ArgumentsValidation.CheckQuoteMessageArgs(args);
 
             if (errors.length > 0) {
@@ -32,7 +31,7 @@ export abstract class Quoting {
             }
         } catch (error) {
             await ErrorsLogging.save(error);
-            embedHelper.error(message.channel as TextChannel);
+            EmbedHelper.Error(message.channel as TextChannel);
         }
     }
 
@@ -41,10 +40,9 @@ export abstract class Quoting {
         text: string,
         message: Message,
         client: Client
-    ) {
-        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
-
+    ): Promise<void> {
         try {
+            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
             let errors = ArgumentsValidation.CheckQuoteTextArgs(text);
 
             if (errors.length > 0) {
@@ -54,7 +52,7 @@ export abstract class Quoting {
             }
         } catch (error) {
             await ErrorsLogging.save(error);
-            embedHelper.error(message.channel as TextChannel);
+            EmbedHelper.Error(message.channel as TextChannel);
         }
     }
 
@@ -63,10 +61,10 @@ export abstract class Quoting {
         args,
         message: Message,
         client: Client
-    ) {
-        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
-
+    ): Promise<void> {
         try {
+            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
+
             let content: string[] = args.split('').reduce((accumulator, currentValue) => {
                 if (currentValue === '"') {
                     accumulator.quote ^= 1;
@@ -89,7 +87,7 @@ export abstract class Quoting {
             }
         } catch (error) {
             await ErrorsLogging.save(error);
-            embedHelper.error(message.channel as TextChannel);
+            EmbedHelper.Error(message.channel as TextChannel);
         }
     }
 }

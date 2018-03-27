@@ -4,7 +4,9 @@ import { Guild } from './../../../../types/dbase/business/guild.type';
 export abstract class GuildsStore {
     public static storeName = 'guilds';
 
-    public static async set(guildSettings: Guild): Promise<boolean> {
+    public static async set(
+        guildSettings: Guild
+    ): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
             GuildsStore.storeName,
             { guildId: guildSettings.guildId },
@@ -20,7 +22,9 @@ export abstract class GuildsStore {
         return result;
     }
 
-    public static async get(guildId: string): Promise<Guild> {
+    public static async get(
+        guildId: string
+    ): Promise<Guild> {
         let result = await GenericStore.getBy(
             GuildsStore.storeName,
             { guildId: guildId }) as Array<Guild>;

@@ -2,7 +2,9 @@
 
 import { RequestOptions } from './request.options';
 
-export async function send(cookies: string[]) : Promise<string> {
+export async function send(
+    cookies: string[]
+): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         const request = https.request(RequestOptions.OnlinePlayersRequestOptions(cookies), (response) => {
             let buffer : any[] = [];

@@ -1,5 +1,7 @@
 ﻿export abstract class ArgumentsValidation {
-    public static CheckQuoteMessageArgs(args: string[]) {
+    public static CheckQuoteMessageArgs(
+        args: string[]
+    ): string {
         if (args.length !== 1)
             return 'Expecting one argument\n';
 
@@ -9,14 +11,18 @@
         return '';
     }
 
-    public static CheckQuoteTextArgs(args: string) {
+    public static CheckQuoteTextArgs(
+        args: string
+    ): string {
         if (args.length === 0)
             return 'Expecting text after the command\n';
 
         return '';
     }
 
-    public static CheckEmbedArgs(args: string[]) {
+    public static CheckEmbedArgs(
+        args: string[]
+    ): string {
         if (args.length !== 2)
             return 'Expecting a title and a message\n';
         if (args[0].length === 0)
@@ -27,7 +33,9 @@
         return '';
     }
 
-    public static CheckWatchArgs(args: string[]) {
+    public static CheckWatchArgs(
+        args: string[]
+    ): { errors: string, args: any } {
         let errors = '';
         let validatedArgs: any = {};
 
@@ -54,7 +62,9 @@
         };
     }
 
-    public static CheckShowArgs(parameter: string) {
+    public static CheckShowArgs(
+        parameter: string
+    ): string {
         let expectedParameter = ['players', 'p', 'factions', 'f', 'regions', 'r'];
 
         if (!parameter || parameter.length === 0)
@@ -65,7 +75,9 @@
         return '';
     }
 
-    public static CheckAdminRemoveArgs(args: string[]) {
+    public static CheckAdminRemoveArgs(
+        args: string[]
+    ): string {
         let expectedFirstParameter = ['player', 'p'];
 
         if (args.length !== 2)

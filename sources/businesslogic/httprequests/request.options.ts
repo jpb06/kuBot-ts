@@ -3,7 +3,7 @@
 import { stringify } from './../util/cookies.helper';
 
 export abstract class RequestOptions {
-    public static AuthRequestOptions() {
+    public static AuthRequestOptions(): https.RequestOptions {
         const requestOptions: https.RequestOptions = {
             hostname: 'discoverygc.com',
             port: 443,
@@ -18,7 +18,9 @@ export abstract class RequestOptions {
         return requestOptions;
     }
 
-    public static OnlinePlayersRequestOptions(cookies: string[]) {
+    public static OnlinePlayersRequestOptions(
+        cookies: string[]
+    ): https.RequestOptions {
         const requestOptions: https.RequestOptions = {
             hostname: 'discoverygc.com',
             port: 443,

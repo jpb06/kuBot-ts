@@ -4,7 +4,9 @@ import { GuildActivityCache } from './../../../../types/dbase/business/guild.act
 export abstract class ActivityCacheStore {
     public static storeName = 'activitystatuscache';
 
-    public static async set(cache: Array<GuildActivityCache>): Promise<boolean> {
+    public static async set(
+        cache: Array<GuildActivityCache>
+    ): Promise<boolean> {
         let result = await GenericStore.clearAllAndCreateMany(ActivityCacheStore.storeName, cache);
 
         return result;
@@ -16,7 +18,9 @@ export abstract class ActivityCacheStore {
         return result;
     }
 
-    public static async get(guildId: string): Promise<GuildActivityCache> {
+    public static async get(
+        guildId: string
+    ): Promise<GuildActivityCache> {
         let result = await GenericStore.getBy(
             ActivityCacheStore.storeName,
             { guildId: guildId }) as Array<GuildActivityCache>;

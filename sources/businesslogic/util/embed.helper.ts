@@ -23,7 +23,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Generic
        ---------------------------------------------------------------------------------------------------------------*/
-    private generateGeneric () {
+    private generateGeneric(): RichEmbed {
         let embed = new RichEmbed()
             .setThumbnail(this.guildSettings.messagesImage)
             .setTimestamp(new Date())
@@ -32,7 +32,10 @@ export class EmbedHelper {
         return embed;
     }
 
-    public sendValidationError (usage, errors) {
+    public sendValidationError(
+        usage: string,
+        errors: string
+    ) : void  {
         this.channel.send({
                 embed: this.generateGeneric()
                     .setColor(10684167)
@@ -43,7 +46,9 @@ export class EmbedHelper {
             });
     }
 
-    public error(channel: TextChannel) {
+    public static Error(
+        channel: TextChannel
+    ) : void  {
         channel.send({
             embed: new RichEmbed()
             .setThumbnail('https://i.imgur.com/5L7T68j.png')
@@ -61,7 +66,7 @@ export class EmbedHelper {
         playersCount: number,
         factions: ScanResultElement[],
         regions: ScanResultElement[]
-    ) {
+    ) : void {
         let embed = this.generateGeneric()
             .setColor(3447003)
             .setTitle(`**${playersCount} Players online**\n\n`)
@@ -103,7 +108,7 @@ export class EmbedHelper {
         quoteSendDate: Date,
         quoteAuthor: string,
         quoteContent: string
-    ) {
+    ) : RichEmbed {
         let embed = new RichEmbed()
             .setTimestamp(quoteSendDate)
             .setFooter(`Quote requested by ${user}`, 'https://i.imgur.com/5L7T68j.png')
@@ -118,7 +123,7 @@ export class EmbedHelper {
         quoteSendDate: Date,
         quoteAuthor: string,
         quoteContent: string
-    ) {
+    ) : void {
         this.channel.send({
             embed: this.generateQuote(user, quoteSendDate, quoteAuthor, quoteContent)
         });
@@ -129,7 +134,7 @@ export class EmbedHelper {
     public generateQuoteText(
         user: string,
         quoteContent: string
-    ) {
+    ) : RichEmbed {
         let embed = new RichEmbed()
             .setTimestamp(new Date())
             .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
@@ -142,7 +147,7 @@ export class EmbedHelper {
     public sendQuoteText(
         user: string,
         quoteContent: string
-    ) {
+    ) : void {
         this.channel.send({
             embed: this.generateQuoteText(user, quoteContent)
         });
@@ -154,7 +159,7 @@ export class EmbedHelper {
         user: string,
         title: string,
         content: string
-    ) {
+    ) : RichEmbed {
         let embed = new RichEmbed()
             .setTimestamp(new Date())
             .setFooter(`${user}`, 'https://i.imgur.com/5L7T68j.png')
@@ -168,7 +173,7 @@ export class EmbedHelper {
         user: string,
         title: string,
         content: string
-    ) {
+    ) : void {
         this.channel.send({
             embed: this.generateEmbed(user, title, content)
         });
@@ -176,7 +181,10 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
         Watch command
        ---------------------------------------------------------------------------------------------------------------*/
-    public sendFactionPlayerWatchError(name, factions) {
+    public sendFactionPlayerWatchError(
+        name: string,
+        factions: string
+    ) : void {
         this.channel.send({
             embed: this.generateGeneric()
                 .setColor(10684167)
@@ -186,7 +194,9 @@ export class EmbedHelper {
         });
     }
 
-    public sendWatchResponse(name) {
+    public sendWatchResponse(
+        name: string
+    ) : void {
         this.channel.send({
             embed: this.generateGeneric()
             .setColor(3447003)
@@ -202,7 +212,7 @@ export class EmbedHelper {
         count: number,
         description: string,
         type: string
-    ) {
+    ) : void {
         this.channel.send({
             embed: this.generateGeneric()
             .setColor(3447003)
@@ -216,7 +226,7 @@ export class EmbedHelper {
     public sendRemoveResponse(
         term: string,
         type: string
-    ) {
+    ) : void {
         this.channel.send({
             embed: this.generateGeneric()
             .setColor(3447003)
@@ -229,13 +239,44 @@ export class EmbedHelper {
     public sendRemovalFailure(
         term: string,
         type: string
-    ) {
+    ) : void {
         this.channel.send({
             embed: this.generateGeneric()
                 .setColor(10684167)
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle('Request failure')
                 .setDescription(`${term} isn't defined in ${type} watch list`)
+        });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+      guild config file upload
+     ---------------------------------------------------------------------------------------------------------------*/
+    public static SendInvalidGuildConfig(
+        channel: TextChannel,
+        errors: string
+    ) : void {
+        channel.send({
+            embed: new RichEmbed()
+                .setThumbnail('https://i.imgur.com/5L7T68j.png')
+                .setTimestamp(new Date())
+                .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+                .setColor(10684167)
+                .setTitle('Invalid configuration file')
+                .setDescription(errors)
+        });
+    }
+
+    public static SendGuildSettingsInitCompleted(
+        channel: TextChannel
+    ) : void {
+        channel.send({
+            embed: new RichEmbed()
+                .setThumbnail('https://i.imgur.com/5L7T68j.png')
+                .setTimestamp(new Date())
+                .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+                .setColor(3447003)
+                .setTitle('Settings importation completed')
+                .setDescription('kuBot settings for your guild have been validated and saved.')
         });
     }
 }

@@ -5,7 +5,9 @@ export abstract class LastFetchStore {
     public static storeName = 'lastfetch';
     public static target = 'onlineplayers';
 
-    public static async set(value: string): Promise<boolean> {
+    public static async set(
+        value: string
+    ): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
             LastFetchStore.storeName,
             { target: LastFetchStore.target },

@@ -19,10 +19,9 @@ export async function Scan(
     guildSettings: Guild,
     message: Message,
     client: Client
-) {
-    let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
-
+): Promise<void> {
     try {
+        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
         let onlinePlayers = await FetchOnlinePlayersTask.start();
 
         let watchedFactions = await FactionWatchStore.get(message.guild.id);
@@ -51,6 +50,6 @@ export async function Scan(
         embedHelper.sendScanResponse(onlinePlayers.length, factions, regions);
     } catch (error) {
         await ErrorsLogging.save(error);
-        embedHelper.error(message.channel as TextChannel);
+        EmbedHelper.Error(message.channel as TextChannel);
     }
 }

@@ -16,10 +16,9 @@ export async function AdminRemove(
     args: string[],
     message: Message,
     client: Client
-) {
-    let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
-
+): Promise<void> {
     try {
+        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
         let validationErrors = ArgumentsValidation.CheckAdminRemoveArgs(args);
 
         if (validationErrors.length > 0) {
@@ -40,6 +39,6 @@ export async function AdminRemove(
         }
     } catch (error) {
         await ErrorsLogging.save(error);
-        embedHelper.error(message.channel as TextChannel);
+        EmbedHelper.Error(message.channel as TextChannel);
     }
 }
