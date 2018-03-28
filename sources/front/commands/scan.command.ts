@@ -7,49 +7,92 @@ import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.w
 
 import { WatchedFaction } from './../../types/dbase/watch/watched.faction.type';
 import { WatchedRegion } from './../../types/dbase/watch/watched.region.type';
+import { WatchedPlayer } from './../../types/dbase/watch/watched.player.type';
 import { OnlinePlayer } from './../../types/dbase/external/online.player.type';
+import { ScannedFaction } from './../../types/businesslogic/scanned.faction.type';
+import { ScannedRegion } from './../../types/businesslogic/scanned.region.type';
 
 import * as FetchOnlinePlayersTask from './../../businesslogic/tasks/fetch.online.players.task';
-import * as WatchTransformTask from './../../businesslogic/tasks/watch.transform.task';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
-export async function Scan(
-    guildSettings: Guild,
-    message: Message,
-    client: Client
-): Promise<void> {
-    try {
-        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
-        let onlinePlayers = await FetchOnlinePlayersTask.start();
+export abstract class ScanCommand {
+    public static async Process(
+        guildSettings: Guild,
+        message: Message,
+        client: Client
+    ): Promise<void> {
+        try {
+            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
+            let onlinePlayers = await FetchOnlinePlayersTask.start();
 
-        let watchedFactions = await FactionWatchStore.get(message.guild.id);
-        let factions = WatchTransformTask.filter(onlinePlayers, watchedFactions, (watch : WatchedFaction, player : OnlinePlayer) => {
-            return watch.tags.some(tag => player.Name.includes(tag));
+            let watchedFactions = await FactionWatchStore.get(message.guild.id);
+            let watchedRegions = await RegionWatchStore.get(message.guild.id);
+            let watchedPlayers = await PlayerWatchStore.get(message.guild.id);
+
+            let factions = this.GetFactions(watchedFactions, onlinePlayers);
+            let regions = this.GetRegions(watchedFactions, watchedRegions, watchedPlayers, onlinePlayers);
+
+            embedHelper.sendScanResponse(onlinePlayers.length, factions, regions);
+        } catch (error) {
+            await ErrorsLogging.Save(error);
+            EmbedHelper.Error(message.channel as TextChannel);
+        }
+    }
+
+    private static GetFactions(
+        watchedFactions: WatchedFaction[],
+        onlinePlayers: OnlinePlayer[]
+    ): ScannedFaction[] {
+        let factions: ScannedFaction[] = [];
+
+        watchedFactions.forEach(faction => {
+            let factionPlayers = onlinePlayers.filter(player => faction.tags.some(tag => player.Name.includes(tag)));
+
+            factions.push({
+                name: faction.name,
+                playersCount: factionPlayers.length
+            });
         });
 
-        let watchedRegions = await RegionWatchStore.get(message.guild.id);
-        let regions = WatchTransformTask.filter(onlinePlayers, watchedRegions, (watch: WatchedRegion, player: OnlinePlayer) => {
-            return watch.systems.some(system => player.System === system);
-        });
+        return factions;
+    } 
 
-        let watchedPlayers = await PlayerWatchStore.get(message.guild.id);
+    private static GetRegions(
+        watchedFactions: WatchedFaction[],
+        watchedRegions: WatchedRegion[],
+        watchedPlayers: WatchedPlayer[],
+        onlinePlayers: OnlinePlayer[]
+    ): ScannedRegion[] {
+        let regions: ScannedRegion[] = [];
 
-        regions.forEach(region => {
-            let localPlayersWatch = watchedPlayers.filter(watchedPlayer => region.players.some(localPlayer => localPlayer.name === watchedPlayer.name));
+        watchedRegions.forEach(region => {
 
-            watchedFactions.forEach(faction => {
-                let factionPlayers = region.players.filter(localPlayer => faction.tags.some(tag => localPlayer.name.includes(tag)));                
-                localPlayersWatch.push(...factionPlayers);
+            let regionPlayers = onlinePlayers.filter(player => region.systems.some(system => player.System === system));
+            let regionwatchedPlayers: WatchedPlayer[] = [];
+
+            watchedFactions.forEach(watchedFaction => {
+                regionwatchedPlayers = onlinePlayers
+                    .filter(player => watchedFaction.tags.some(tag => player.Name.includes(tag)))
+                    .map(player => {
+                        return {
+                            guildId: watchedFaction.guildId,
+                            name: player.Name,
+                            comment: watchedFaction.name
+                        }
+                    });
             });
 
-            region.players = localPlayersWatch;
+            regionwatchedPlayers.push(...watchedPlayers);
+
+            regions.push({
+                name: region.name,
+                watchedPlayers: regionwatchedPlayers,
+                playersCount: regionPlayers.length
+            });
         });
-        
-        embedHelper.sendScanResponse(onlinePlayers.length, factions, regions);
-    } catch (error) {
-        await ErrorsLogging.Save(error);
-        EmbedHelper.Error(message.channel as TextChannel);
+
+        return regions;
     }
 }

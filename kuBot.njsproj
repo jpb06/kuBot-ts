@@ -71,9 +71,6 @@
     <TypeScriptCompile Include="sources\businesslogic\tasks\guild.config.initializer.task.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\businesslogic\tasks\watch.transform.task.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\util\embed.helper.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -128,10 +125,10 @@
     <TypeScriptCompile Include="sources\front\tasks\update.guild.config.task.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\businesslogic\watched.element.type.ts">
+    <TypeScriptCompile Include="sources\types\businesslogic\scanned.faction.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\businesslogic\scan.result.element.type.ts">
+    <TypeScriptCompile Include="sources\types\businesslogic\scanned.region.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\types\dbase\business\activity.cache.item.type.ts">

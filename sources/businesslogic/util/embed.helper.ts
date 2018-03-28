@@ -1,7 +1,8 @@
 ﻿import { RichEmbed, TextChannel } from 'discord.js';
 
 import { Guild } from './../../types/dbase/business/guild.type';
-import { ScanResultElement } from './../../types/businesslogic/scan.result.element.type';
+import { ScannedFaction } from './../../types/businesslogic/scanned.faction.type';
+import { ScannedRegion } from './../../types/businesslogic/scanned.region.type';
 
 export class EmbedHelper {
     channel: TextChannel;
@@ -64,8 +65,8 @@ export class EmbedHelper {
        ---------------------------------------------------------------------------------------------------------------*/
     public sendScanResponse(
         playersCount: number,
-        factions: ScanResultElement[],
-        regions: ScanResultElement[]
+        factions: ScannedFaction[],
+        regions: ScannedRegion[]
     ) : void {
         let embed = this.generateGeneric()
             .setColor(3447003)
@@ -74,16 +75,16 @@ export class EmbedHelper {
 
         let factionsDescription = '';
         factions.forEach(faction => {
-            factionsDescription += `**${faction.name}** : ${faction.count}\n`;
+            factionsDescription += `**${faction.name}** : ${faction.playersCount}\n`;
         });
 
         embed.addField('Factions', factionsDescription);
 
         regions.forEach(region => {
             let watch = '~';
-            if (region.players.length > 0) {
+            if (region.watchedPlayers.length > 0) {
                 watch = '';
-                region.players.forEach(player => {
+                region.watchedPlayers.forEach(player => {
                     watch += `${player.name}`;
 
                     if (player.comment)
@@ -93,7 +94,7 @@ export class EmbedHelper {
                 });
             }
 
-            embed.addField(`**${region.name}** : ${region.count} players`, watch);
+            embed.addField(`**${region.name}** : ${region.playersCount} players`, watch);
         });
 
         this.channel.send({
