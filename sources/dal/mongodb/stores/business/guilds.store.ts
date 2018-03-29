@@ -1,11 +1,11 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { Guild } from './../../../../types/dbase/business/guild.type';
+import { GuildConfiguration } from './../../../../types/dbase/business/guild.configuration.type';
 
 export abstract class GuildsStore {
     public static storeName = 'guilds';
 
     public static async set(
-        guildSettings: Guild
+        guildSettings: GuildConfiguration
     ): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
             GuildsStore.storeName,
@@ -16,18 +16,18 @@ export abstract class GuildsStore {
         return result;
     }
 
-    public static async getAll(): Promise<Array<Guild>> {
-        let result = await GenericStore.getAll(GuildsStore.storeName) as Array<Guild>;
+    public static async getAll(): Promise<Array<GuildConfiguration>> {
+        let result = await GenericStore.getAll(GuildsStore.storeName) as Array<GuildConfiguration>;
 
         return result;
     }
 
     public static async get(
         guildId: string
-    ): Promise<Guild> {
+    ): Promise<GuildConfiguration> {
         let result = await GenericStore.getBy(
             GuildsStore.storeName,
-            { guildId: guildId }) as Array<Guild>;
+            { guildId: guildId }) as Array<GuildConfiguration>;
 
         return result[0];
     }

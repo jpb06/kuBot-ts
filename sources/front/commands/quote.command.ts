@@ -1,5 +1,5 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { Guild } from './../../types/dbase/business/guild.type';
+import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
 
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
@@ -9,7 +9,7 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 export abstract class Quoting {
 
     public async processMessage(
-        guildSettings: Guild,
+        guildSettings: GuildConfiguration,
         args: string[],
         message: Message,
         client: Client
@@ -36,7 +36,7 @@ export abstract class Quoting {
     }
 
     public async processText(
-        guildSettings: Guild,
+        guildSettings: GuildConfiguration,
         text: string,
         message: Message,
         client: Client
@@ -57,7 +57,7 @@ export abstract class Quoting {
     }
 
     public async processEmbed(
-        guildSettings: Guild,
+        guildSettings: GuildConfiguration,
         args,
         message: Message,
         client: Client

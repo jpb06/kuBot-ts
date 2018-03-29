@@ -1,5 +1,5 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { Guild } from './../../types/dbase/business/guild.type';
+import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
 
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
@@ -13,7 +13,7 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 export abstract class ShowCommand {
 
     public static async Process(
-        guildSettings: Guild,
+        guildSettings: GuildConfiguration,
         args: string,
         message: Message,
         client: Client

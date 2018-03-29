@@ -1,18 +1,18 @@
 ﻿import { RichEmbed, TextChannel } from 'discord.js';
 
-import { Guild } from './../../types/dbase/business/guild.type';
+import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
 import { ScannedFaction } from './../../types/businesslogic/scanned.faction.type';
 import { ScannedRegion } from './../../types/businesslogic/scanned.region.type';
 
 export class EmbedHelper {
     channel: TextChannel;
-    guildSettings: Guild;
+    guildSettings: GuildConfiguration;
     authorName: string;
     authorAvatarUrl: string;
 
     constructor(
         channel: TextChannel,
-        guildSettings: Guild,
+        guildSettings: GuildConfiguration,
         authorName: string = '',
         authorAvatarUrl: string = ''
     ) {
