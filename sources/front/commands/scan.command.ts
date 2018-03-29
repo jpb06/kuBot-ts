@@ -1,5 +1,5 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { Guild } from './../../types/dbase/business/guild.type';
+import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
 
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
@@ -12,20 +12,20 @@ import { OnlinePlayer } from './../../types/dbase/external/online.player.type';
 import { ScannedFaction } from './../../types/businesslogic/scanned.faction.type';
 import { ScannedRegion } from './../../types/businesslogic/scanned.region.type';
 
-import * as FetchOnlinePlayersTask from './../../businesslogic/tasks/fetch.online.players.task';
+import { OnlinePlayersService } from './../../businesslogic/services/online.players.service';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export abstract class ScanCommand {
     public static async Process(
-        guildSettings: Guild,
+        guildSettings: GuildConfiguration,
         message: Message,
         client: Client
     ): Promise<void> {
         try {
             let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
-            let onlinePlayers = await FetchOnlinePlayersTask.start();
+            let onlinePlayers = await OnlinePlayersService.GetList();
 
             let watchedFactions = await FactionWatchStore.get(message.guild.id);
             let watchedRegions = await RegionWatchStore.get(message.guild.id);
