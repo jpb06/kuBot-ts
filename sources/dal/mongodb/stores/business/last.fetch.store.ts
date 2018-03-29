@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { LastFetch } from './../../../../types/dbase/business/last.fetch.type';
+import { LastFetch } from './../../../../types/dbase/persisted.types';
 
 export abstract class LastFetchStore {
     public static storeName = 'lastfetch';

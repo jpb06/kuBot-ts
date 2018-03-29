@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { WatchedPlayer } from './../../../../types/dbase/watch/watched.player.type';
+import { WatchedPlayer } from './../../../../types/dbase/persisted.types';
 
 export abstract class PlayerWatchStore {
     public static storeName = 'playerswatch';

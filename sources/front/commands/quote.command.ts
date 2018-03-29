@@ -1,6 +1,6 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
 
+import { GuildConfiguration } from './../../types/dbase/persisted.types';
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';

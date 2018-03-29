@@ -1,5 +1,5 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
+import { GuildConfiguration } from './../../types/dbase/persisted.types';
 
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
