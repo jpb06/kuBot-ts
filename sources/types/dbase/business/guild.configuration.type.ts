@@ -1,4 +1,4 @@
-﻿export interface Guild {
+﻿export interface GuildConfiguration {
     guildId: string;
     messagesImage: string;
     messagesFooterName: string;
@@ -9,7 +9,7 @@
     acknowledged: string;
 }
 
-export function isGuild(obj: any): obj is Guild {
+export function isGuildConfiguration(obj: any): obj is GuildConfiguration {
     return (
         typeof obj.guildId === "string" &&
         typeof obj.messagesImage === "string" &&
