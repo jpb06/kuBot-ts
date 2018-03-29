@@ -65,10 +65,10 @@
     <TypeScriptCompile Include="sources\businesslogic\httprequests\discoverygc.requests.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\businesslogic\tasks\fetch.online.players.task.ts">
+    <TypeScriptCompile Include="sources\businesslogic\services\online.players.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\businesslogic\tasks\guild.config.initializer.task.ts">
+    <TypeScriptCompile Include="sources\businesslogic\services\guild.config.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\util\embed.helper.ts">
@@ -122,7 +122,10 @@
     <TypeScriptCompile Include="sources\front\commands\watch.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\front\tasks\update.guild.config.task.ts">
+    <TypeScriptCompile Include="sources\front\tasks\guilds.config.tasks.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\types\businesslogic\mapped.guild.configuration.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\types\businesslogic\scanned.faction.type.ts">
@@ -140,7 +143,7 @@
     <TypeScriptCompile Include="sources\types\dbase\business\guild.activity.cache.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\business\guild.type.ts">
+    <TypeScriptCompile Include="sources\types\dbase\business\guild.configuration.type.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\types\dbase\business\last.fetch.type.ts">
@@ -164,7 +167,7 @@
     <Folder Include="sources\businesslogic\commands\" />
     <Folder Include="sources\businesslogic\data\" />
     <Folder Include="sources\businesslogic\util\" />
-    <Folder Include="sources\businesslogic\tasks\" />
+    <Folder Include="sources\businesslogic\services\" />
     <Folder Include="sources\dal\" />
     <Folder Include="sources\dal\mongodb\" />
     <Folder Include="sources\dal\mongodb\stores\business\" />
