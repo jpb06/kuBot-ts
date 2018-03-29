@@ -9,7 +9,7 @@ export abstract class RegionWatchStore {
         watchedRegions: Array<WatchedRegion>
     ): Promise<boolean> {
         let result = await GenericStore.clearAndCreateMany(
-            RegionWatchStore.storeName,
+            this.storeName,
             { guildId: guildId },
             watchedRegions
         );
@@ -18,7 +18,7 @@ export abstract class RegionWatchStore {
     }
 
     public static async getAll(): Promise<Array<WatchedRegion>> {
-        let result = await GenericStore.getAll(RegionWatchStore.storeName) as Array<WatchedRegion>;
+        let result = await GenericStore.getAll(this.storeName) as Array<WatchedRegion>;
 
         return result;
     }
@@ -27,7 +27,7 @@ export abstract class RegionWatchStore {
         guildId: string
     ): Promise<Array<WatchedRegion>> {
         let result = await GenericStore.getBy(
-            RegionWatchStore.storeName,
+            this.storeName,
             { guildId: guildId }
         ) as Array<WatchedRegion>;
 

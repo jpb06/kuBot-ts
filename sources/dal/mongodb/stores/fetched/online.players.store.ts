@@ -7,13 +7,13 @@ export abstract class OnlinePlayersStore {
     public static async set(
         onlinePlayers: Array<OnlinePlayer>
     ): Promise<boolean> {
-        let result = await GenericStore.clearAllAndCreateMany(OnlinePlayersStore.storeName, onlinePlayers);
+        let result = await GenericStore.clearAllAndCreateMany(this.storeName, onlinePlayers);
 
         return result;
     }
 
     public static async getAll(): Promise<Array<OnlinePlayer>> {
-        let result = await GenericStore.getAll(OnlinePlayersStore.storeName) as Array<OnlinePlayer>;
+        let result = await GenericStore.getAll(this.storeName) as Array<OnlinePlayer>;
 
         return result;
     }

@@ -9,7 +9,7 @@ export abstract class LastFetchStore {
         value: string
     ): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
-            LastFetchStore.storeName,
+            this.storeName,
             { target: LastFetchStore.target },
             { target: LastFetchStore.target, date: value }
         );
@@ -18,7 +18,10 @@ export abstract class LastFetchStore {
     }
 
     public static async get(): Promise<LastFetch> {
-        let result = await GenericStore.getBy(LastFetchStore.storeName, { target: LastFetchStore.target }) as Array<LastFetch>;
+        let result = await GenericStore.getBy(
+            this.storeName,
+            { target: LastFetchStore.target }
+        ) as Array<LastFetch>;
 
         return result[0];
     }

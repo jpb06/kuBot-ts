@@ -9,7 +9,7 @@ export abstract class PlayerWatchStore {
         watchedPlayer: WatchedPlayer
     ): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
-            PlayerWatchStore.storeName,
+            this.storeName,
             { name: name },
             watchedPlayer
         );
@@ -18,7 +18,7 @@ export abstract class PlayerWatchStore {
     }
 
     public static async getAll(): Promise<Array<WatchedPlayer>> {
-        let result = await GenericStore.getAll(PlayerWatchStore.storeName) as Array<WatchedPlayer>;
+        let result = await GenericStore.getAll(this.storeName) as Array<WatchedPlayer>;
 
         return result;
     }
@@ -27,7 +27,7 @@ export abstract class PlayerWatchStore {
         guildId: string
     ): Promise<Array<WatchedPlayer>> {
         let result = await GenericStore.getBy(
-            PlayerWatchStore.storeName,
+            this.storeName,
             { guildId: guildId }
         ) as Array<WatchedPlayer>;
 
@@ -39,7 +39,7 @@ export abstract class PlayerWatchStore {
         name: string
     ): Promise<boolean> {
         return await GenericStore.remove(
-            PlayerWatchStore.storeName,
+            this.storeName,
             { guildId: guildId, name: name }
         );
     }

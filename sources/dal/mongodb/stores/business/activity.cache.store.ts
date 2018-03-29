@@ -7,13 +7,13 @@ export abstract class ActivityCacheStore {
     public static async set(
         cache: Array<GuildActivityCache>
     ): Promise<boolean> {
-        let result = await GenericStore.clearAllAndCreateMany(ActivityCacheStore.storeName, cache);
+        let result = await GenericStore.clearAllAndCreateMany(this.storeName, cache);
 
         return result;
     }
 
     public static async getAll(): Promise<Array<GuildActivityCache>> {
-        let result = await GenericStore.getAll(ActivityCacheStore.storeName) as Array<GuildActivityCache>;
+        let result = await GenericStore.getAll(this.storeName) as Array<GuildActivityCache>;
 
         return result;
     }
@@ -22,7 +22,7 @@ export abstract class ActivityCacheStore {
         guildId: string
     ): Promise<GuildActivityCache> {
         let result = await GenericStore.getBy(
-            ActivityCacheStore.storeName,
+            this.storeName,
             { guildId: guildId }) as Array<GuildActivityCache>;
 
         return result[0];

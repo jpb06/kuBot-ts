@@ -8,7 +8,7 @@ export abstract class GuildsStore {
         guildSettings: GuildConfiguration
     ): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
-            GuildsStore.storeName,
+            this.storeName,
             { guildId: guildSettings.guildId },
             guildSettings
         );
@@ -17,7 +17,7 @@ export abstract class GuildsStore {
     }
 
     public static async getAll(): Promise<Array<GuildConfiguration>> {
-        let result = await GenericStore.getAll(GuildsStore.storeName) as Array<GuildConfiguration>;
+        let result = await GenericStore.getAll(this.storeName) as Array<GuildConfiguration>;
 
         return result;
     }
@@ -26,7 +26,7 @@ export abstract class GuildsStore {
         guildId: string
     ): Promise<GuildConfiguration> {
         let result = await GenericStore.getBy(
-            GuildsStore.storeName,
+            this.storeName,
             { guildId: guildId }) as Array<GuildConfiguration>;
 
         return result[0];

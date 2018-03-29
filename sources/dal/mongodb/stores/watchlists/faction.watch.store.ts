@@ -9,7 +9,7 @@ export abstract class FactionWatchStore {
         watchedFactions: Array<WatchedFaction>
     ): Promise<boolean> {
         let result = await GenericStore.clearAndCreateMany(
-            FactionWatchStore.storeName,
+            this.storeName,
             { guildId: guildId },
             watchedFactions
         );
@@ -18,7 +18,7 @@ export abstract class FactionWatchStore {
     }
 
     public static async getAll(): Promise<Array<WatchedFaction>> {
-        let result = await GenericStore.getAll(FactionWatchStore.storeName) as Array<WatchedFaction>;
+        let result = await GenericStore.getAll(this.storeName) as Array<WatchedFaction>;
 
         return result;
     }
@@ -27,7 +27,7 @@ export abstract class FactionWatchStore {
         guildId: string
     ): Promise<Array<WatchedFaction>> {
         let result = await GenericStore.getBy(
-            FactionWatchStore.storeName,
+            this.storeName,
             { guildId: guildId }
         ) as Array<WatchedFaction>;
 
