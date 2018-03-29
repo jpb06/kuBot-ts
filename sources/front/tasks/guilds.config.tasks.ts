@@ -1,9 +1,9 @@
 ﻿import { Guild, Client, Message, TextChannel } from 'discord.js';
 
-import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
+import { GuildConfiguration } from './../../types/dbase/persisted.types';
 import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
 
-import { MappedGuildConfiguration } from './../../types/businesslogic/mapped.guild.configuration.type';
+import { MappedGuildConfiguration } from './../../types/businesslogic/business.types';
 import { GuildConfigService } from './../../businesslogic/services/guild.config.service';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';

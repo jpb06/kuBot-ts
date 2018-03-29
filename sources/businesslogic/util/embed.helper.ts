@@ -1,8 +1,7 @@
 ﻿import { RichEmbed, TextChannel } from 'discord.js';
 
-import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
-import { ScannedFaction } from './../../types/businesslogic/scanned.faction.type';
-import { ScannedRegion } from './../../types/businesslogic/scanned.region.type';
+import { GuildConfiguration } from './../../types/dbase/persisted.types';
+import { ScannedFaction, ScannedRegion } from './../../types/businesslogic/business.types';
 
 export class EmbedHelper {
     channel: TextChannel;

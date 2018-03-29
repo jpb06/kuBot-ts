@@ -46,9 +46,6 @@
     <Content Include="sources\configuration\private.config.local.ts">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="sources\types\dbase\external\online.player.type.ts">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="tsconfig.json" />
     <TypeScriptCompile Include="sources\businesslogic\commands\arguments.validation.ts">
       <SubType>Code</SubType>
@@ -125,34 +122,16 @@
     <TypeScriptCompile Include="sources\front\tasks\guilds.config.tasks.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\businesslogic\mapped.guild.configuration.type.ts">
+    <TypeScriptCompile Include="sources\types\businesslogic\business.types.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\businesslogic\scanned.faction.type.ts">
+    <TypeScriptCompile Include="sources\types\businesslogic\business.types.validation.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\businesslogic\scanned.region.type.ts">
+    <TypeScriptCompile Include="sources\types\dbase\persisted.types.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\business\activity.cache.item.type.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\watch\watched.faction.type.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\business\guild.activity.cache.type.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\business\guild.configuration.type.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\business\last.fetch.type.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\watch\watched.player.type.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\types\dbase\watch\watched.region.type.ts">
+    <TypeScriptCompile Include="sources\types\dbase\persisted.types.validation.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\commands\scan.command.ts">
@@ -177,10 +156,7 @@
     <Folder Include="sources\front\tasks\" />
     <Folder Include="sources\types\" />
     <Folder Include="sources\dal\mongodb\stores\" />
-    <Folder Include="sources\types\dbase\external\" />
-    <Folder Include="sources\types\dbase\business\" />
     <Folder Include="sources\types\dbase\" />
-    <Folder Include="sources\types\dbase\watch\" />
     <Folder Include="sources\configuration\" />
     <Folder Include="sources\front\" />
     <Folder Include="sources\front\commands\" />

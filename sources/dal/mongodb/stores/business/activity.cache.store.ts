@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { GuildActivityCache } from './../../../../types/dbase/business/guild.activity.cache.type';
+import { GuildActivityCache } from './../../../../types/dbase/persisted.types';
 
 export abstract class ActivityCacheStore {
     public static storeName = 'activitystatuscache';

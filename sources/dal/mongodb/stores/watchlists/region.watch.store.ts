@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { WatchedRegion } from './../../../../types/dbase/watch/watched.region.type';
+import { WatchedRegion } from './../../../../types/dbase/persisted.types';
 
 export abstract class RegionWatchStore {
     public static storeName = 'regionswatch';

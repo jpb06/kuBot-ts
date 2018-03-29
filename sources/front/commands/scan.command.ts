@@ -1,16 +1,11 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
+
+import { GuildConfiguration, WatchedFaction, WatchedRegion, WatchedPlayer, OnlinePlayer } from './../../types/dbase/persisted.types';
+import { ScannedFaction, ScannedRegion } from './../../types/businesslogic/business.types';
 
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
 import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
-
-import { WatchedFaction } from './../../types/dbase/watch/watched.faction.type';
-import { WatchedRegion } from './../../types/dbase/watch/watched.region.type';
-import { WatchedPlayer } from './../../types/dbase/watch/watched.player.type';
-import { OnlinePlayer } from './../../types/dbase/external/online.player.type';
-import { ScannedFaction } from './../../types/businesslogic/scanned.faction.type';
-import { ScannedRegion } from './../../types/businesslogic/scanned.region.type';
 
 import { OnlinePlayersService } from './../../businesslogic/services/online.players.service';
 

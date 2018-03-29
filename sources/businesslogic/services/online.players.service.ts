@@ -1,9 +1,8 @@
 ﻿import * as moment from 'moment';
 
 import { LastFetchStore } from './../../dal/mongodb/stores/business/last.fetch.store';
-import { LastFetch } from './../../types/dbase/business/last.fetch.type';
 import { OnlinePlayersStore } from './../../dal/mongodb/stores/fetched/online.players.store';
-import { OnlinePlayer } from './../../types/dbase/external/online.player.type';
+import { LastFetch, OnlinePlayer } from './../../types/dbase/persisted.types';
 
 import { DiscoveryGCRequests } from './../httprequests/discoverygc.requests';
 

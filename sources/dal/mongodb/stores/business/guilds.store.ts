@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { GuildConfiguration } from './../../../../types/dbase/business/guild.configuration.type';
+import { GuildConfiguration } from './../../../../types/dbase/persisted.types';
 
 export abstract class GuildsStore {
     public static storeName = 'guilds';

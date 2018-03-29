@@ -1,5 +1,5 @@
 ﻿import { GenericStore } from './../dal.generic.store';
-import { WatchedFaction } from './../../../../types/dbase/watch/watched.faction.type';
+import { WatchedFaction } from './../../../../types/dbase/persisted.types';
 
 export abstract class FactionWatchStore {
     public static storeName = 'factionswatch';

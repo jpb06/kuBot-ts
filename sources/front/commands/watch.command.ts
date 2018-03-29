@@ -1,10 +1,8 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
 
+import { GuildConfiguration, WatchedFaction } from './../../types/dbase/persisted.types';
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
-
-import { WatchedFaction } from './../../types/dbase/watch/watched.faction.type';
 
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';

@@ -5,8 +5,8 @@ import { promisify } from 'util';
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
 import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
-import { MappedGuildConfiguration } from './../../types/businesslogic/mapped.guild.configuration.type';
-import { GuildConfiguration } from './../../types/dbase/business/guild.configuration.type';
+import { MappedGuildConfiguration } from './../../types/businesslogic/business.types';
+import { GuildConfiguration } from './../../types/dbase/persisted.types';
 
 import { FilesHelper } from './../util/files.helper';
 import { GuildConfigurationValidator } from './../data/guild.config.validator';
