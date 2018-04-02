@@ -119,6 +119,9 @@
     <TypeScriptCompile Include="sources\front\commands\watch.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\tasks\cyclic.activity.notice.task.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\tasks\guilds.config.tasks.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
