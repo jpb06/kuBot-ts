@@ -1,6 +1,6 @@
-﻿import { RichEmbed, TextChannel } from 'discord.js';
+﻿import { RichEmbed, TextChannel, Message } from 'discord.js';
 
-import { GuildConfiguration } from './../../types/dbase/persisted.types';
+import { GuildConfiguration, ActivityCacheItem } from './../../types/dbase/persisted.types';
 import { ScannedFaction, ScannedRegion } from './../../types/businesslogic/business.types';
 
 export class EmbedHelper {
@@ -103,7 +103,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Quote command
        ---------------------------------------------------------------------------------------------------------------*/
-    public generateQuote(
+    private generateQuote(
         user: string,
         quoteSendDate: Date,
         quoteAuthor: string,
@@ -131,7 +131,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        QuoteText command
        ---------------------------------------------------------------------------------------------------------------*/
-    public generateQuoteText(
+    private generateQuoteText(
         user: string,
         quoteContent: string
     ) : RichEmbed {
@@ -155,7 +155,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Embed command
        ---------------------------------------------------------------------------------------------------------------*/
-    public generateEmbed(
+    private generateEmbed(
         user: string,
         title: string,
         content: string
@@ -278,5 +278,42 @@ export class EmbedHelper {
                 .setTitle('Settings importation completed')
                 .setDescription('kuBot settings for your guild have been validated and saved.')
         });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+      Factions activity notice
+     ---------------------------------------------------------------------------------------------------------------*/
+    private static GenerateActivityNotice(
+        factions: ActivityCacheItem[]
+    ): RichEmbed {
+        let embed = new RichEmbed()
+            .setThumbnail('https://i.imgur.com/5L7T68j.png')
+            .setTimestamp(new Date())
+            .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+            .setColor(3447003)
+            .setDescription('An unusually high activity has been reported');
+
+        factions.forEach(faction => {
+            embed.addField(faction.name, `${faction.playersCount} players`);
+        });
+
+        return embed;
+    }
+
+    public static async UpdateActivityNotice(
+        message: Message,
+        factions: ActivityCacheItem[]
+    ): Promise<void> {
+        await message.edit(this.GenerateActivityNotice(factions));
+    }
+
+    public static async SendActivityNotice(
+        channel: TextChannel,
+        factions: ActivityCacheItem[]
+    ): Promise<string> {
+        let message = await channel.send({
+            embed: this.GenerateActivityNotice(factions)
+        });
+
+        return (<Message>message).id;
     }
 }
