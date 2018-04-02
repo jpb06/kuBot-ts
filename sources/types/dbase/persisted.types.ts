@@ -7,8 +7,9 @@ export interface ActivityCacheItem {
 }
 
 export interface GuildActivityCache {
-    GuildId: string;
-    Cache: Array<ActivityCacheItem>;
+    guildId: string;
+    lastMessageId: string;
+    cache: Array<ActivityCacheItem>;
 }
 
 /* ---------------------------------------------------------------------------------------------------------------
