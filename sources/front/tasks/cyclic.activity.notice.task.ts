@@ -2,12 +2,13 @@
 import * as Schedule from 'node-schedule';
 
 import { MappedGuildConfiguration } from './../../types/businesslogic/business.types';
-import { GuildActivityCache, ActivityCacheItem, WatchedFaction, WatchedRegion, OnlinePlayer } from './../../types/dbase/persisted.types';
+import { GuildActivityCache, ActivityCacheItem, WatchedFaction, WatchedRegion, WatchedPlayer, OnlinePlayer } from './../../types/dbase/persisted.types';
 
 import { OnlinePlayersService } from './../../businesslogic/services/online.players.service';
 
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
+import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
 import { ActivityCacheStore } from './../../dal/mongodb/stores/business/activity.cache.store';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
@@ -18,6 +19,7 @@ export abstract class CyclicActivityNotice {
     private static job: Schedule.Job;
     private static watchedFactions: WatchedFaction[];
     private static watchedRegions: WatchedRegion[];
+    private static watchedPlayers: WatchedPlayer[];
     private static onlinePlayers: OnlinePlayer[];
 
     public static async Start(guildsConfiguration: MappedGuildConfiguration[]) {
@@ -30,20 +32,26 @@ export abstract class CyclicActivityNotice {
                 this.onlinePlayers = await OnlinePlayersService.GetList();
                 this.watchedFactions = await FactionWatchStore.getAll();
                 this.watchedRegions = await RegionWatchStore.getAll();
+                this.watchedPlayers = await PlayerWatchStore.getAll();
                 let activityCache = await ActivityCacheStore.getAll();
 
                 let updatedCache: GuildActivityCache[] = [];
 
                 await this.AsyncForEach(guildsConfiguration, async (guildConfiguration) => {
+                    let messageId = '';
 
                     let currentActivity = this.BuildCurrentActivity(guildConfiguration.id);
-                    let cachedActivity = activityCache.find(cache => cache.guildId === guildConfiguration.id);
 
-                    let similar = await this.CompareActivity(cachedActivity, currentActivity);
+                    let playersCount = currentActivity.map(el => el.playersCount).reduce((a, b) => a + b, 0);
+                    if (playersCount >= guildConfiguration.minimumPlayersCount) {
 
-                    let messageId = '';
-                    if (currentActivity.length > 0 && !similar) {
-                        messageId = await this.ReportActivity(cachedActivity, guildConfiguration.emergencyChannel as TextChannel, currentActivity);
+                        let cachedActivity = activityCache.find(cache => cache.guildId === guildConfiguration.id);
+                        let similar = await this.CompareActivity(cachedActivity, currentActivity);
+
+                        
+                        if (currentActivity.length > 0 && !similar) {
+                            messageId = await this.ReportActivity(cachedActivity, guildConfiguration.emergencyChannel as TextChannel, currentActivity);
+                        }
                     }
 
                     updatedCache.push({
@@ -74,7 +82,7 @@ export abstract class CyclicActivityNotice {
         guildId: string
     ): ActivityCacheItem[] {
 
-        let factionsActivity: ActivityCacheItem[] = [];
+        let activity: ActivityCacheItem[] = [];
 
         let guildWatchedFactions = this.watchedFactions
             .filter(faction => faction.guildId === guildId)
@@ -94,15 +102,22 @@ export abstract class CyclicActivityNotice {
                 systems.some(el => el === player.System)
             );
 
-            if (factionOnlinePlayers.length >= 2) {
-                factionsActivity.push({
+            if (factionOnlinePlayers.length > 0) {
+                activity.push({
                     name: faction.name,
                     playersCount: factionOnlinePlayers.length
                 });
             }
         });
 
-        return factionsActivity;
+        let guildWatchedPlayers = this.watchedPlayers.filter(player => player.guildId === guildId);
+
+        activity.push({
+            name: 'Individuals of interest',
+            playersCount: guildWatchedPlayers.length
+        });
+
+        return activity;
     }
 
     private static async CompareActivity(
@@ -131,7 +146,7 @@ export abstract class CyclicActivityNotice {
     ): Promise<string> {
         let messageId = '';
 
-        let cachedLastMessageId = cachedActivity === undefined ? '0' : (<GuildActivityCache>cachedActivity).lastMessageId;
+        let cachedLastMessageId = cachedActivity === undefined ? '-1' : (<GuildActivityCache>cachedActivity).lastMessageId;
 
         let messages = await emergencyChannel.fetchMessages({
             limit: 1

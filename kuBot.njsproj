@@ -11,7 +11,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6db0e2f6-df00-474e-93ff-b9391ff233cd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>deploy\bot.js</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
