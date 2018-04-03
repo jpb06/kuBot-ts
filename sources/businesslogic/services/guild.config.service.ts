@@ -25,7 +25,8 @@ export abstract class GuildConfigService {
             return {
                 id: guild.id,
                 defaultChannel: guild.channels.find(channel => channel.name === guildSettings.mainChannel),
-                emergencyChannel: guild.channels.find(channel => channel.name === guildSettings.emergencyChannel)
+                emergencyChannel: guild.channels.find(channel => channel.name === guildSettings.emergencyChannel),
+                minimumPlayersCount: guildSettings.activityNoticeMinPlayers
             };
         } else {
             return Promise.reject(new Error(`Couldn't find settings for guild ${guild.id}`));
