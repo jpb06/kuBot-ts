@@ -110,14 +110,24 @@ export abstract class CyclicActivityNotice {
             }
         });
 
-        let guildWatchedPlayers = this.watchedPlayers.filter(player => player.guildId === guildId);
+        let guildWatchedPlayers = this.watchedPlayers.filter(player => player.guildId === guildId).map(player => player.name);
+        let onlineWatchedPlayers = this.onlinePlayers.filter(player =>
+            systems.some(el => el === player.System) &&
+            guildWatchedPlayers.some(watchedPlayer => watchedPlayer === player.Name)
+        );
 
-        activity.push({
-            name: 'Individuals of interest',
-            playersCount: guildWatchedPlayers.length
-        });
+        if (onlineWatchedPlayers.length > 0) {
+            activity.push({
+                name: 'Individuals of interest',
+                playersCount: onlineWatchedPlayers.length
+            });
+        }
 
         return activity;
+    }
+
+    private static FetchPlayersActivity(): void {
+
     }
 
     private static async CompareActivity(
