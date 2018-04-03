@@ -25,6 +25,7 @@ export interface GuildConfiguration {
     adminChannel: string;
     emergencyChannel: string;
     acknowledged: string;
+    activityNoticeMinPlayers: number;
 }
 
 /* ---------------------------------------------------------------------------------------------------------------

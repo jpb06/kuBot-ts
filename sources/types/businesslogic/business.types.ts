@@ -2,9 +2,10 @@
 import { WatchedPlayer } from './../dbase/persisted.types';
 
 export interface MappedGuildConfiguration {
-    id: string,
-    defaultChannel: GuildChannel,
-    emergencyChannel: GuildChannel
+    id: string;
+    defaultChannel: GuildChannel;
+    emergencyChannel: GuildChannel;
+    minimumPlayersCount: number;
 }
 
 export interface ScannedFaction {
