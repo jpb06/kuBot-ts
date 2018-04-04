@@ -59,6 +59,29 @@ export class EmbedHelper {
             .setDescription('An error occurred while processing your request')
         });
     }
+
+    public static CommandsDescription(
+        embed: RichEmbed
+    ) : RichEmbed {
+        embed
+            .addField('!help', 'Displays the available commands list.\n')
+            .addField('!scan', 'Scans Sirius sector.\n')
+            .addField('!watch', 'Adds a player to the watch list.\n')
+            .addField('!show', 'Displays a watch list.\n')
+            .addField('!quote', 'Quotes one and only one message using its identifier.\n')
+            .addField('!quotetext', 'Quotes a text.\n')
+            .addField('!embed', 'Creates an embed using a title and a content message.\n');
+
+        return embed;
+    }
+
+    public static CommandsDescriptionAdmin(
+        embed: RichEmbed
+    ): RichEmbed {
+        embed.addField('!remove', 'Removes a player or a faction from watch lists\n')
+
+        return embed;
+    }
     /* ---------------------------------------------------------------------------------------------------------------
        Scan command
        ---------------------------------------------------------------------------------------------------------------*/
@@ -315,5 +338,25 @@ export class EmbedHelper {
         });
 
         return (<Message>message).id;
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+        Help command
+       ---------------------------------------------------------------------------------------------------------------*/
+    public sendHelpResponse() {
+        this.channel.send({
+            embed: EmbedHelper.CommandsDescription(
+                this.generateGeneric()
+                .setTitle('KuBot is monitoring Sirius Sector for you!')
+                .setDescription('I am doing my best to answer your requests. Please take a look at the following commands :')
+            )
+        });
+    }
+    public sendHelpAdminResponse() {
+        this.channel.send({
+            embed: EmbedHelper.CommandsDescriptionAdmin(
+                this.generateGeneric()
+                    .setTitle('Admin commands')
+            )
+        });
     }
 }
