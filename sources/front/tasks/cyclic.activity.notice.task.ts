@@ -22,7 +22,9 @@ export abstract class CyclicActivityNotice {
     private static watchedPlayers: WatchedPlayer[];
     private static onlinePlayers: OnlinePlayer[];
 
-    public static async Start(guildsConfiguration: MappedGuildConfiguration[]) {
+    public static async Start(
+        guildsConfiguration: MappedGuildConfiguration[]
+    ): Promise<void> {
         try {
             let rule = new Schedule.RecurrenceRule();
             rule.minute = new Schedule.Range(0, 59, 30);
@@ -124,10 +126,6 @@ export abstract class CyclicActivityNotice {
         }
 
         return activity;
-    }
-
-    private static FetchPlayersActivity(): void {
-
     }
 
     private static async CompareActivity(

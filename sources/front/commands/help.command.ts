@@ -8,7 +8,7 @@ export abstract class HelpCommand {
     public static async Send(
         guildSettings: GuildConfiguration,
         message: Message
-    ) {
+    ): Promise<void> {
         try {
             let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
 
@@ -22,7 +22,7 @@ export abstract class HelpCommand {
     public static async SendAdmin(
         guildSettings: GuildConfiguration,
         message: Message
-    ) {
+    ): Promise<void> {
         try {
             let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
 

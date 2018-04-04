@@ -342,7 +342,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
         Help command
        ---------------------------------------------------------------------------------------------------------------*/
-    public sendHelpResponse() {
+    public sendHelpResponse(): void {
         this.channel.send({
             embed: EmbedHelper.CommandsDescription(
                 this.generateGeneric()
@@ -351,7 +351,7 @@ export class EmbedHelper {
             )
         });
     }
-    public sendHelpAdminResponse() {
+    public sendHelpAdminResponse(): void {
         this.channel.send({
             embed: EmbedHelper.CommandsDescriptionAdmin(
                 this.generateGeneric()
