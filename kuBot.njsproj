@@ -123,6 +123,9 @@
     <TypeScriptCompile Include="sources\front\commands\watch.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\events\guild.subscription.event.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\tasks\cyclic.activity.notice.task.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -160,6 +163,7 @@
     <Folder Include="sources\dal\mongodb\stores\fetched\" />
     <Folder Include="sources\dal\mongodb\stores\watchlists\" />
     <Folder Include="sources\businesslogic\" />
+    <Folder Include="sources\front\events\" />
     <Folder Include="sources\front\tasks\" />
     <Folder Include="sources\types\" />
     <Folder Include="sources\dal\mongodb\stores\" />
