@@ -111,6 +111,9 @@
     <TypeScriptCompile Include="sources\front\commands\admin.remove.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\commands\help.command.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\commands\quote.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
