@@ -36,14 +36,13 @@
     <TypeScriptCompile Include="sources\bot.ts" />
     <Content Include=".gitignore" />
     <Content Include="guildsConfiguration\350303355014479874.json" />
+    <Content Include="guildsConfiguration\354940463318564864.json" />
     <Content Include="guildsConfiguration\408471167683264513.json" />
+    <Content Include="guildsConfiguration\426814330856669185.json" />
     <Content Include="guildsConfiguration\93043962100580352.json" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="sources\configuration\bot.settings.json">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="sources\configuration\private.config.local.ts">
       <SubType>Code</SubType>
     </Content>
@@ -66,7 +65,7 @@
     <TypeScriptCompile Include="sources\businesslogic\services\online.players.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\businesslogic\services\guild.config.service.ts">
+    <TypeScriptCompile Include="sources\businesslogic\services\guild.configuration.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\util\embed.helper.ts">
@@ -76,6 +75,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\util\files.helper.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\businesslogic\util\invite.link.helper.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\businesslogic\util\promisify.rebinder.ts">
@@ -123,13 +125,22 @@
     <TypeScriptCompile Include="sources\front\commands\watch.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\front\events\guild.subscription.event.ts">
+    <TypeScriptCompile Include="sources\front\events\discord.guild.create.event.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\events\discord.client.ready.event.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\events\discord.guild.delete.event.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\events\discord.message.event.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\tasks\cyclic.activity.notice.task.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="sources\front\tasks\guilds.config.tasks.ts">
+    <TypeScriptCompile Include="sources\front\request\guild.config.update.request.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="sources\types\businesslogic\business.types.ts">
@@ -164,6 +175,7 @@
     <Folder Include="sources\dal\mongodb\stores\watchlists\" />
     <Folder Include="sources\businesslogic\" />
     <Folder Include="sources\front\events\" />
+    <Folder Include="sources\front\request\" />
     <Folder Include="sources\front\tasks\" />
     <Folder Include="sources\types\" />
     <Folder Include="sources\dal\mongodb\stores\" />
