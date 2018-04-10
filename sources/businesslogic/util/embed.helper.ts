@@ -4,17 +4,17 @@ import { GuildConfiguration, ActivityCacheItem } from './../../types/dbase/persi
 import { ScannedFaction, ScannedRegion } from './../../types/businesslogic/business.types';
 
 export class EmbedHelper {
-    channel: TextChannel;
-    guildSettings: GuildConfiguration;
-    authorName: string;
-    authorAvatarUrl: string;
+    private static channel: TextChannel;
+    private static guildSettings: GuildConfiguration;
+    private static authorName: string;
+    private static authorAvatarUrl: string;
 
-    constructor(
+    public static Setup(
         channel: TextChannel,
         guildSettings: GuildConfiguration,
-        authorName: string = '',
-        authorAvatarUrl: string = ''
-    ) {
+        authorName: string,
+        authorAvatarUrl: string
+    ): void {
         this.channel = channel;
         this.guildSettings = guildSettings;
         this.authorName = authorName;
@@ -23,7 +23,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Generic
        ---------------------------------------------------------------------------------------------------------------*/
-    private generateGeneric(): RichEmbed {
+    private static GenerateGeneric(): RichEmbed {
         let embed = new RichEmbed()
             .setThumbnail(this.guildSettings.messagesImage)
             .setTimestamp(new Date())
@@ -32,37 +32,35 @@ export class EmbedHelper {
         return embed;
     }
 
-    public sendValidationError(
+    public static SendValidationError(
         usage: string,
         errors: string
-    ) : void  {
+    ): void {
         this.channel.send({
-                embed: this.generateGeneric()
-                    .setColor(10684167)
-                    .setAuthor(this.authorName, this.authorAvatarUrl)
-                    .setTitle('Invalid request')
-                    .setDescription(usage)
-                    .addField('Errors', errors)
-            });
+            embed: this.GenerateGeneric()
+                .setColor(10684167)
+                .setAuthor(this.authorName, this.authorAvatarUrl)
+                .setTitle('Invalid request')
+                .setDescription(usage)
+                .addField('Errors', errors)
+        });
     }
 
-    public static Error(
-        channel: TextChannel
-    ) : void  {
-        channel.send({
+    public static Error(): void {
+        this.channel.send({
             embed: new RichEmbed()
-            .setThumbnail('https://i.imgur.com/5L7T68j.png')
-            .setTimestamp(new Date())
-            .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
-            .setColor(10684167)
-            .setTitle('Error')
-            .setDescription('An error occurred while processing your request')
+                .setThumbnail('https://i.imgur.com/5L7T68j.png')
+                .setTimestamp(new Date())
+                .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+                .setColor(10684167)
+                .setTitle('Error')
+                .setDescription('An error occurred while processing your request')
         });
     }
 
     public static CommandsDescription(
         embed: RichEmbed
-    ) : RichEmbed {
+    ): RichEmbed {
         embed
             .addField('!help', 'Displays the available commands list.\n')
             .addField('!scan', 'Scans Sirius sector.\n')
@@ -83,14 +81,79 @@ export class EmbedHelper {
         return embed;
     }
     /* ---------------------------------------------------------------------------------------------------------------
+       Guild config file upload
+       ---------------------------------------------------------------------------------------------------------------*/
+    public static SendInvalidGuildConfig(
+        errors: string
+    ): void {
+        this.channel.send({
+            embed: new RichEmbed()
+                .setThumbnail('https://i.imgur.com/5L7T68j.png')
+                .setTimestamp(new Date())
+                .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+                .setColor(10684167)
+                .setTitle('Invalid configuration file')
+                .setDescription(errors)
+        });
+    }
+
+    public static SendGuildSettingsInitCompleted(): void {
+        this.channel.send({
+            embed: new RichEmbed()
+                .setThumbnail('https://i.imgur.com/5L7T68j.png')
+                .setTimestamp(new Date())
+                .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+                .setColor(3447003)
+                .setTitle('Settings importation completed')
+                .setDescription('kuBot settings for your guild have been validated and saved.')
+        });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+       Factions activity notice
+       ---------------------------------------------------------------------------------------------------------------*/
+    private static GenerateActivityNotice(
+        factions: ActivityCacheItem[]
+    ): RichEmbed {
+        let embed = new RichEmbed()
+            .setThumbnail('https://i.imgur.com/5L7T68j.png')
+            .setTimestamp(new Date())
+            .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+            .setColor(3447003)
+            .setDescription('An unusually high activity has been reported');
+
+        factions.forEach(faction => {
+            embed.addField(faction.name, `${faction.playersCount} players`);
+        });
+
+        return embed;
+    }
+
+    public static async UpdateActivityNotice(
+        message: Message,
+        factions: ActivityCacheItem[]
+    ): Promise<void> {
+        await message.edit(this.GenerateActivityNotice(factions));
+    }
+
+    public static async SendActivityNotice(
+        emergencyChannel: TextChannel,
+        factions: ActivityCacheItem[]
+    ): Promise<string> {
+        let message = await emergencyChannel.send({
+            embed: this.GenerateActivityNotice(factions)
+        });
+
+        return (<Message>message).id;
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
        Scan command
        ---------------------------------------------------------------------------------------------------------------*/
-    public sendScanResponse(
+    public static SendScanResponse(
         playersCount: number,
         factions: ScannedFaction[],
         regions: ScannedRegion[]
     ) : void {
-        let embed = this.generateGeneric()
+        let embed = this.GenerateGeneric()
             .setColor(3447003)
             .setTitle(`**${playersCount} Players online**\n\n`)
             .setDescription(`Scanning ${this.guildSettings.scanMainRegionName}...`);
@@ -126,7 +189,7 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Quote command
        ---------------------------------------------------------------------------------------------------------------*/
-    private generateQuote(
+    private static GenerateQuote(
         user: string,
         quoteSendDate: Date,
         quoteAuthor: string,
@@ -141,20 +204,20 @@ export class EmbedHelper {
         return embed;
     }
 
-    public sendQuote(
+    public static SendQuote(
         user: string,
         quoteSendDate: Date,
         quoteAuthor: string,
         quoteContent: string
     ) : void {
         this.channel.send({
-            embed: this.generateQuote(user, quoteSendDate, quoteAuthor, quoteContent)
+            embed: this.GenerateQuote(user, quoteSendDate, quoteAuthor, quoteContent)
         });
     }
     /* ---------------------------------------------------------------------------------------------------------------
        QuoteText command
        ---------------------------------------------------------------------------------------------------------------*/
-    private generateQuoteText(
+    private static GenerateQuoteText(
         user: string,
         quoteContent: string
     ) : RichEmbed {
@@ -167,18 +230,18 @@ export class EmbedHelper {
         return embed;
     }
 
-    public sendQuoteText(
+    public static SendQuoteText(
         user: string,
         quoteContent: string
     ) : void {
         this.channel.send({
-            embed: this.generateQuoteText(user, quoteContent)
+            embed: this.GenerateQuoteText(user, quoteContent)
         });
     }
     /* ---------------------------------------------------------------------------------------------------------------
        Embed command
        ---------------------------------------------------------------------------------------------------------------*/
-    private generateEmbed(
+    private static GenerateEmbed(
         user: string,
         title: string,
         content: string
@@ -192,24 +255,24 @@ export class EmbedHelper {
         return embed;
     }
 
-    public sendEmbed(
+    public static SendEmbed(
         user: string,
         title: string,
         content: string
     ) : void {
         this.channel.send({
-            embed: this.generateEmbed(user, title, content)
+            embed: this.GenerateEmbed(user, title, content)
         });
     }
     /* ---------------------------------------------------------------------------------------------------------------
-        Watch command
+       Watch command
        ---------------------------------------------------------------------------------------------------------------*/
-    public sendFactionPlayerWatchError(
+    public static SendFactionPlayerWatchError(
         name: string,
         factions: string
     ) : void {
         this.channel.send({
-            embed: this.generateGeneric()
+            embed: this.GenerateGeneric()
                 .setColor(10684167)
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle('Error')
@@ -217,11 +280,11 @@ export class EmbedHelper {
         });
     }
 
-    public sendWatchResponse(
+    public static SendWatchResponse(
         name: string
     ) : void {
         this.channel.send({
-            embed: this.generateGeneric()
+            embed: this.GenerateGeneric()
             .setColor(3447003)
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle(`${this.guildSettings.acknowledged}`)
@@ -230,28 +293,28 @@ export class EmbedHelper {
     }
     /* ---------------------------------------------------------------------------------------------------------------
        Show command
-      ---------------------------------------------------------------------------------------------------------------*/
-    public sendShowResponse(
+       ---------------------------------------------------------------------------------------------------------------*/
+    public static SendShowResponse(
         count: number,
         description: string,
         type: string
     ) : void {
         this.channel.send({
-            embed: this.generateGeneric()
+            embed: this.GenerateGeneric()
             .setColor(3447003)
             .setTitle(`**${count} ${type} in watch list**\n\n`)
             .setDescription(description)
         });
     }
     /* ---------------------------------------------------------------------------------------------------------------
-      remove admin command
-     ---------------------------------------------------------------------------------------------------------------*/
-    public sendRemoveResponse(
+       Remove admin command
+       ---------------------------------------------------------------------------------------------------------------*/
+    public static SendRemoveResponse(
         term: string,
         type: string
     ) : void {
         this.channel.send({
-            embed: this.generateGeneric()
+            embed: this.GenerateGeneric()
             .setColor(3447003)
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle(`${this.guildSettings.acknowledged}`)
@@ -259,12 +322,12 @@ export class EmbedHelper {
         });
     }
 
-    public sendRemovalFailure(
+    public static SendRemovalFailure(
         term: string,
         type: string
     ) : void {
         this.channel.send({
-            embed: this.generateGeneric()
+            embed: this.GenerateGeneric()
                 .setColor(10684167)
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle('Request failure')
@@ -272,89 +335,21 @@ export class EmbedHelper {
         });
     }
     /* ---------------------------------------------------------------------------------------------------------------
-      guild config file upload
-     ---------------------------------------------------------------------------------------------------------------*/
-    public static SendInvalidGuildConfig(
-        channel: TextChannel,
-        errors: string
-    ) : void {
-        channel.send({
-            embed: new RichEmbed()
-                .setThumbnail('https://i.imgur.com/5L7T68j.png')
-                .setTimestamp(new Date())
-                .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
-                .setColor(10684167)
-                .setTitle('Invalid configuration file')
-                .setDescription(errors)
-        });
-    }
-
-    public static SendGuildSettingsInitCompleted(
-        channel: TextChannel
-    ) : void {
-        channel.send({
-            embed: new RichEmbed()
-                .setThumbnail('https://i.imgur.com/5L7T68j.png')
-                .setTimestamp(new Date())
-                .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
-                .setColor(3447003)
-                .setTitle('Settings importation completed')
-                .setDescription('kuBot settings for your guild have been validated and saved.')
-        });
-    }
-    /* ---------------------------------------------------------------------------------------------------------------
-      Factions activity notice
-     ---------------------------------------------------------------------------------------------------------------*/
-    private static GenerateActivityNotice(
-        factions: ActivityCacheItem[]
-    ): RichEmbed {
-        let embed = new RichEmbed()
-            .setThumbnail('https://i.imgur.com/5L7T68j.png')
-            .setTimestamp(new Date())
-            .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
-            .setColor(3447003)
-            .setDescription('An unusually high activity has been reported');
-
-        factions.forEach(faction => {
-            embed.addField(faction.name, `${faction.playersCount} players`);
-        });
-
-        return embed;
-    }
-
-    public static async UpdateActivityNotice(
-        message: Message,
-        factions: ActivityCacheItem[]
-    ): Promise<void> {
-        await message.edit(this.GenerateActivityNotice(factions));
-    }
-
-    public static async SendActivityNotice(
-        channel: TextChannel,
-        factions: ActivityCacheItem[]
-    ): Promise<string> {
-        let message = await channel.send({
-            embed: this.GenerateActivityNotice(factions)
-        });
-
-        return (<Message>message).id;
-    }
-    /* ---------------------------------------------------------------------------------------------------------------
-        Help command
+       Help command
        ---------------------------------------------------------------------------------------------------------------*/
-    public sendHelpResponse(): void {
+    public static SendHelpResponse(): void {
         this.channel.send({
-            embed: EmbedHelper.CommandsDescription(
-                this.generateGeneric()
+            embed: this.CommandsDescription(
+                this.GenerateGeneric()
                 .setTitle('KuBot is monitoring Sirius Sector for you!')
                 .setDescription('I am doing my best to answer your requests. Please take a look at the following commands :')
             )
         });
     }
-    public sendHelpAdminResponse(): void {
+    public static SendHelpAdminResponse(): void {
         this.channel.send({
-            embed: EmbedHelper.CommandsDescriptionAdmin(
-                this.generateGeneric()
+            embed: this.CommandsDescriptionAdmin(
+                this.GenerateGeneric()
                     .setTitle('Admin commands')
             )
         });
