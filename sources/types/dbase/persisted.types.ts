@@ -21,9 +21,9 @@ export interface GuildConfiguration {
     messagesImage: string;
     messagesFooterName: string;
     scanMainRegionName: string;
-    mainChannel: string;
-    adminChannel: string;
-    emergencyChannel: string;
+    mainChannelName: string;
+    adminChannelName: string;
+    emergencyChannelName: string;
     acknowledged: string;
     activityNoticeMinPlayers: number;
 }

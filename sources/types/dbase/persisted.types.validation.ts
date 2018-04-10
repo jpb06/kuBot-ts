@@ -35,9 +35,9 @@ export abstract class PersistedTypesValidation {
             typeof obj.messagesImage === "string" &&
             typeof obj.messagesFooterName === "string" &&
             typeof obj.scanMainRegionName === "string" &&
-            typeof obj.mainChannel === "string" &&
-            typeof obj.adminChannel === "string" &&
-            typeof obj.emergencyChannel === "string" &&
+            typeof obj.mainChannelName === "string" &&
+            typeof obj.adminChannelName === "string" &&
+            typeof obj.emergencyChannelName === "string" &&
             typeof obj.acknowledged === "string"
         );
     }
