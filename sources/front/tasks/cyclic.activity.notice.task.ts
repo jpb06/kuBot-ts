@@ -5,6 +5,7 @@ import { MappedGuildConfiguration } from './../../types/businesslogic/business.t
 import { GuildActivityCache, ActivityCacheItem, WatchedFaction, WatchedRegion, WatchedPlayer, OnlinePlayer } from './../../types/dbase/persisted.types';
 
 import { OnlinePlayersService } from './../../businesslogic/services/online.players.service';
+import { GuildConfigurationService } from './../../businesslogic/services/guild.configuration.service';
 
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
@@ -22,9 +23,7 @@ export abstract class CyclicActivityNotice {
     private static watchedPlayers: WatchedPlayer[];
     private static onlinePlayers: OnlinePlayer[];
 
-    public static async Start(
-        guildsConfiguration: MappedGuildConfiguration[]
-    ): Promise<void> {
+    public static async Start(): Promise<void> {
         try {
             let rule = new Schedule.RecurrenceRule();
             rule.minute = new Schedule.Range(0, 59, 30);
@@ -39,15 +38,15 @@ export abstract class CyclicActivityNotice {
 
                 let updatedCache: GuildActivityCache[] = [];
 
-                await this.AsyncForEach(guildsConfiguration, async (guildConfiguration) => {
+                await this.AsyncForEach(GuildConfigurationService.guildsSettings, async (guildConfiguration) => {
                     let messageId = '';
 
-                    let currentActivity = this.BuildCurrentActivity(guildConfiguration.id);
+                    let currentActivity = this.BuildCurrentActivity(guildConfiguration.guildId);
 
                     let playersCount = currentActivity.map(el => el.playersCount).reduce((a, b) => a + b, 0);
-                    if (playersCount >= guildConfiguration.minimumPlayersCount) {
+                    if (playersCount >= guildConfiguration.activityNoticeMinPlayers) {
 
-                        let cachedActivity = activityCache.find(cache => cache.guildId === guildConfiguration.id);
+                        let cachedActivity = activityCache.find(cache => cache.guildId === guildConfiguration.guildId);
                         let similar = await this.CompareActivity(cachedActivity, currentActivity);
 
                         
@@ -57,7 +56,7 @@ export abstract class CyclicActivityNotice {
                     }
 
                     updatedCache.push({
-                        guildId: guildConfiguration.id,
+                        guildId: guildConfiguration.guildId,
                         lastMessageId: messageId,
                         cache: currentActivity
                     });
@@ -70,6 +69,9 @@ export abstract class CyclicActivityNotice {
         }
     }
 
+    public static Stop(): void {
+        this.job.cancel();
+    }
 
     private static async AsyncForEach(
         array: MappedGuildConfiguration[],
