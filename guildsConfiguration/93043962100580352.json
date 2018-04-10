@@ -4,6 +4,7 @@
             "name": "Naval Forces",
             "tags": [
                 "[KNF]",
+                "IKN-",
                 "KDS-",
                 "Serpent-"
             ],
@@ -105,7 +106,8 @@
             "identifier": "outcasts",
             "name": "Outcasts",
             "tags": [
-                "(C~"
+                "(C~",
+                "MNS-"
             ],
             "alwaysDisplay": false
         },
@@ -177,13 +179,14 @@
             "alwaysDisplay": false
         }
     ],
-    "guildSettings": {
-        "messagesImage": "https://i.imgur.com/V16L8i9.jpg",
-        "messagesFooterName": "Kusari Kaigun",
-        "scanMainRegionName": "House Kusari",
-        "acknowledged": "Ryoukai!",
-        "mainChannel": "bots",
-        "adminChannel": "admiralty",
-        "emergencyChannel": "emergency"
-    }
+  "guildSettings": {
+    "messagesImage": "https://i.imgur.com/V16L8i9.jpg",
+    "messagesFooterName": "Kusari Kaigun",
+    "scanMainRegionName": "House Kusari",
+    "acknowledged": "Ryoukai!",
+    "mainChannelName": "bots",
+    "adminChannelName": "admiralty",
+    "emergencyChannelName": "emergency",
+    "activityNoticeMinPlayers": "2"
+  }
 }

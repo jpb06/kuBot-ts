@@ -108,13 +108,14 @@
             "alwaysDisplay": false
         }
     ],
-    "guildSettings": {
-        "messagesImage": "https://i.imgur.com/30rX1oo.jpg",
-        "messagesFooterName": "Apostatas",
-        "scanMainRegionName": "Corsario Empire",
-        "acknowledged": "Muy bien",
-        "mainChannel": "bot",
-        "adminChannel": "council-chamber",
-        "emergencyChannel": "emergency-channel"
-    }
+  "guildSettings": {
+    "messagesImage": "https://i.imgur.com/30rX1oo.jpg",
+    "messagesFooterName": "Apostatas",
+    "scanMainRegionName": "Corsario Empire",
+    "acknowledged": "Muy bien",
+    "mainChannelName": "bot",
+    "adminChannelName": "council-chamber",
+    "emergencyChannelName": "emergency-channel",
+    "activityNoticeMinPlayers": "2"
+  }
 }

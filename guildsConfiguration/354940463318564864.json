@@ -1,0 +1,159 @@
+{
+    "factions": [{
+            "identifier": "ApS",
+            "name": "Apostatas",
+            "tags": [
+                "ApS|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "[TBH] & C::",
+            "name": "Corsair Forces",
+            "tags": [
+                "[TBH]",
+                "C::"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "SCRA|, SCEC| & CPW-",
+            "name": "Coalition Forces",
+            "tags": [
+                "SCRA|",
+                "CPW-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "[RHA], RHC- & RHB-",
+            "name": "Red Hessian Forces",
+            "tags": [
+                "[RHA]",
+                "RHC-",
+                "RHB-"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "BD",
+            "name": "Blood Dragons",
+            "tags": [
+                "BD|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "outcasts",
+            "name": "Outcasts",
+            "tags": [
+                "(C~",
+                "MNS-",
+                "NC-",
+                "AD|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "404 & =LSF=",
+            "name": "Liberty Intelligence",
+            "tags": [
+                ":404",
+                "=LSF="
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "BDM|, [RM] & RFP|",
+            "name": "Rheinland Forces",
+            "tags": [
+                "[RM]",
+                "BDM|",
+                "RFP|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "[KNF], KNI- ",
+            "name": "Kusari Forces",
+            "tags": [
+                "[KNF]",
+                "KDS-",
+                "KNI-"
+            ],
+            "alwaysDisplay": true
+        }
+    ],
+    "regions": [{
+            "identifier": "omegas",
+            "name": "Omegas",
+            "systems": [
+                "Omega-3",
+                "Omega-5",
+                "Omega-7",
+                "Omega-9",
+                "Omega-11",
+                "Omega-54",
+                "Omega-55",
+                "Omega-58",
+                "Omega-49",
+                "Cayman",
+                "Omega-41",
+                "Omega-47",
+                "Omicron-omega"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "Bretonia",
+            "name": "Bretonia",
+            "systems": [
+                "New London",
+                "Cambridge",
+                "Poole",
+                "Leeds",
+                "Manchester",
+                "Dublin",
+                "Newcastle",
+                "Edinburgh"
+				],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "independent worlds",
+            "name": "Independent Worlds",
+            "systems": [
+                "Magellan",
+                "Cortez",
+                "Inverness",
+                "Drake",
+                "Coronado"
+				],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "taus",
+            "name": "Taus",
+            "systems": [
+                "Tau-29",
+                "Tau-31",
+                "Tau-23",
+                "Tau-37",
+                "Roussillon",
+                "Orkney",
+                "Baffin"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+  "guildSettings": {
+    "messagesImage": "https://i.imgur.com/jFKFz4Y.png",
+    "messagesFooterName": "Secret  Intelligence Service",
+    "scanMainRegionName": "Sirius sector",
+    "acknowledged": "Aye aye!",
+    "mainChannelName": "signals-intelligence",
+    "adminChannelName": "admin",
+    "emergencyChannelName": "signals-intelligence",
+    "activityNoticeMinPlayers": "2"
+  }
+}
