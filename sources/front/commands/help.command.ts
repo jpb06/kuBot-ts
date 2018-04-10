@@ -1,35 +1,25 @@
 ﻿import { Message, TextChannel } from 'discord.js';
-import { GuildConfiguration } from './../../types/dbase/persisted.types';
 
+import { GuildConfiguration } from './../../types/dbase/persisted.types';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export abstract class HelpCommand {
-    public static async Send(
-        guildSettings: GuildConfiguration,
-        message: Message
-    ): Promise<void> {
+    public static async Send(): Promise<void> {
         try {
-            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
-
-            embedHelper.sendHelpResponse();
+            EmbedHelper.SendHelpResponse();
         } catch (error) {
             await ErrorsLogging.Save(error);
-            EmbedHelper.Error(message.channel as TextChannel);
+            EmbedHelper.Error();
         }
     }
 
-    public static async SendAdmin(
-        guildSettings: GuildConfiguration,
-        message: Message
-    ): Promise<void> {
+    public static async SendAdmin(): Promise<void> {
         try {
-            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
-
-            embedHelper.sendHelpAdminResponse();
+            EmbedHelper.SendHelpAdminResponse();
         } catch (error) {
             await ErrorsLogging.Save(error);
-            EmbedHelper.Error(message.channel as TextChannel);
+            EmbedHelper.Error();
         }
     }
 }

@@ -14,25 +14,22 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 
 export abstract class ScanCommand {
     public static async Process(
-        guildSettings: GuildConfiguration,
-        message: Message,
-        client: Client
+        guildId: string
     ): Promise<void> {
         try {
-            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings);
             let onlinePlayers = await OnlinePlayersService.GetList();
 
-            let watchedFactions = await FactionWatchStore.get(message.guild.id);
-            let watchedRegions = await RegionWatchStore.get(message.guild.id);
-            let watchedPlayers = await PlayerWatchStore.get(message.guild.id);
+            let watchedFactions = await FactionWatchStore.get(guildId);
+            let watchedRegions = await RegionWatchStore.get(guildId);
+            let watchedPlayers = await PlayerWatchStore.get(guildId);
 
             let factions = this.GetFactions(watchedFactions, onlinePlayers);
             let regions = this.GetRegions(watchedFactions, watchedRegions, watchedPlayers, onlinePlayers);
 
-            embedHelper.sendScanResponse(onlinePlayers.length, factions, regions);
+            EmbedHelper.SendScanResponse(onlinePlayers.length, factions, regions);
         } catch (error) {
             await ErrorsLogging.Save(error);
-            EmbedHelper.Error(message.channel as TextChannel);
+            EmbedHelper.Error();
         }
     }
 

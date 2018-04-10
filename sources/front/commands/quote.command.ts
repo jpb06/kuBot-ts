@@ -8,62 +8,53 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 
 export abstract class Quoting {
 
-    public async processMessage(
-        guildSettings: GuildConfiguration,
+    public static async ProcessMessage(
         args: string[],
         message: Message,
-        client: Client
     ): Promise<void> {
         try {
-            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
             let errors = ArgumentsValidation.CheckQuoteMessageArgs(args);
 
             if (errors.length > 0) {
-                embedHelper.sendValidationError(CommandsDescription.QuoteUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.QuoteUsage(), errors);
             } else {
                 if (message.channel.type === 'text') {
                     let messageToQuote = await message.channel.fetchMessage(args[0]);
 
                     if (!messageToQuote.author.bot) {
-                        embedHelper.sendQuote(message.author.username, messageToQuote.createdAt, messageToQuote.author.username, messageToQuote.content);
+                        EmbedHelper.SendQuote(message.author.username, messageToQuote.createdAt, messageToQuote.author.username, messageToQuote.content);
                     }
                 }
             }
         } catch (error) {
             await ErrorsLogging.Save(error);
-            EmbedHelper.Error(message.channel as TextChannel);
+            EmbedHelper.Error();
         }
     }
 
-    public async processText(
-        guildSettings: GuildConfiguration,
+    public static async ProcessText(
         text: string,
-        message: Message,
-        client: Client
+        authorName: string
     ): Promise<void> {
         try {
-            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
             let errors = ArgumentsValidation.CheckQuoteTextArgs(text);
 
             if (errors.length > 0) {
-                embedHelper.sendValidationError(CommandsDescription.QuoteTextUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.QuoteTextUsage(), errors);
             } else {
-                embedHelper.sendQuoteText(message.author.username, text);
+                EmbedHelper.SendQuoteText(authorName, text);
             }
         } catch (error) {
             await ErrorsLogging.Save(error);
-            EmbedHelper.Error(message.channel as TextChannel);
+            EmbedHelper.Error();
         }
     }
 
-    public async processEmbed(
-        guildSettings: GuildConfiguration,
+    public static async ProcessEmbed(
         args,
-        message: Message,
-        client: Client
+        authorName: string
     ): Promise<void> {
         try {
-            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
 
             let content: string[] = args.split('').reduce((accumulator, currentValue) => {
                 if (currentValue === '"') {
@@ -81,13 +72,13 @@ export abstract class Quoting {
             let errors = ArgumentsValidation.CheckEmbedArgs(content);
 
             if (errors.length > 0) {
-                embedHelper.sendValidationError(CommandsDescription.EmbedUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.EmbedUsage(), errors);
             } else {
-                embedHelper.sendEmbed(message.author.username, content[0], content[1]);
+                EmbedHelper.SendEmbed(authorName, content[0], content[1]);
             }
         } catch (error) {
             await ErrorsLogging.Save(error);
-            EmbedHelper.Error(message.channel as TextChannel);
+            EmbedHelper.Error();
         }
     }
 }
