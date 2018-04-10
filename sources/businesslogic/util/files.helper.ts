@@ -1,5 +1,5 @@
 ﻿import { get } from 'https';
-import { createWriteStream, unlink } from 'fs';
+import { createWriteStream, unlink, rename } from 'fs';
 
 export abstract class FilesHelper {
     public static async Save(
@@ -35,11 +35,26 @@ export abstract class FilesHelper {
         });
     }
 
-    public static Remove(
+    public static async Remove(
         path: string
-    ): void {
-        unlink(path, function (err) {
-            return new Promise((resolve, reject) => {
+    ): Promise<{}> {
+        return new Promise((resolve, reject) => {
+            unlink(path, function (err) {
+                if (err) {
+                    reject(err);
+
+                resolve();
+                }
+            });
+        });
+    }
+
+    public static Rename(
+        path: string,
+        newPath: string
+    ): Promise<{}> {
+        return new Promise((resolve, reject) => {
+            rename(path, newPath, function (err) {
                 if (err) {
                     reject(err);
                 }
