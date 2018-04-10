@@ -13,35 +13,31 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 export abstract class ShowCommand {
 
     public static async Process(
-        guildSettings: GuildConfiguration,
         args: string,
-        message: Message,
-        client: Client
+        guildId: string
     ): Promise<void> {
         try {
-            let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
             let errors = ArgumentsValidation.CheckShowArgs(args);
 
             if (errors.length > 0) {
-                embedHelper.sendValidationError(CommandsDescription.ShowUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.ShowUsage(), errors);
             } else {
                 if (args === 'players' || args === 'p') {
-                    await this.ProcessPlayers(message.guild.id, embedHelper);
+                    await this.ProcessPlayers(guildId);
                 } else if (args === 'factions' || args === 'f') {
-                    await this.ProcessFactions(message.guild.id, embedHelper);
+                    await this.ProcessFactions(guildId);
                 } else if (args === 'regions' || args === 'r') {
-                    await this.ProcessRegions(message.guild.id, embedHelper);
+                    await this.ProcessRegions(guildId);
                 }
             }
         } catch (error) {
             await ErrorsLogging.Save(error);
-            EmbedHelper.Error(message.channel as TextChannel);
+            EmbedHelper.Error();
         }
     }
 
     private static async ProcessPlayers(
-        guildId: string,
-        embedHelper: EmbedHelper
+        guildId: string
     ): Promise<void> {
         let watchedPlayers = await PlayerWatchStore.get(guildId);
 
@@ -52,12 +48,11 @@ export abstract class ShowCommand {
                 description += '\n';
         });
 
-        embedHelper.sendShowResponse(watchedPlayers.length, description, 'Players');
+        EmbedHelper.SendShowResponse(watchedPlayers.length, description, 'Players');
     }
 
     private static async ProcessFactions(
-        guildId: string,
-        embedHelper: EmbedHelper
+        guildId: string
     ): Promise<void> {
         let watchedFactions = await FactionWatchStore.get(guildId);
 
@@ -74,12 +69,11 @@ export abstract class ShowCommand {
                 description = description.slice(0, -2) + '\n\n';
             });
 
-        embedHelper.sendShowResponse(watchedFactions.length, description, 'Factions');
+        EmbedHelper.SendShowResponse(watchedFactions.length, description, 'Factions');
     }
 
     private static async ProcessRegions(
-        guildId: string,
-        embedHelper: EmbedHelper
+        guildId: string
     ): Promise<void> {
         let watchedRegions = await RegionWatchStore.get(guildId);
 
@@ -96,6 +90,6 @@ export abstract class ShowCommand {
                 description = description.slice(0, -2) + '\n\n';
             });
 
-        embedHelper.sendShowResponse(watchedRegions.length, description, 'Regions');
+        EmbedHelper.SendShowResponse(watchedRegions.length, description, 'Regions');
     }
 }

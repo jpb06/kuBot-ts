@@ -1,20 +1,21 @@
 {
-    "factions": [
+    "factions": [{
+            "identifier": "harmony",
+            "name": "Battlegroup Harmony",
+            "tags": [
+                "H|-",
+                "SNS-"
+            ],
+            "alwaysDisplay": true
+        },
         {
             "identifier": "ln",
             "name": "Liberty Navy",
             "tags": [
                 "[LN]",
                 "LNS-",
-                "5th|"
-            ],
-            "alwaysDisplay": true
-        },
-        {
-            "identifier": "harmony",
-            "name": "Battlegroup Harmony",
-            "tags": [
-                "H|-"
+                "5th|",
+                "6th|"
             ],
             "alwaysDisplay": false
         },
@@ -23,14 +24,6 @@
             "name": "Lane Hackers",
             "tags": [
                 "LH~"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "dss",
-            "name": "Deep Space Solutions",
-            "tags": [
-                "|=DSS=|"
             ],
             "alwaysDisplay": false
         },
@@ -47,23 +40,6 @@
             "name": "Hellfire Legion",
             "tags": [
                 "[HF]"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "ic",
-            "name": "Interspace Commerce",
-            "tags": [
-                "IC|"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "grn",
-            "name": "Gallic Royal Navy",
-            "tags": [
-                "MRG|",
-                "RNS-"
             ],
             "alwaysDisplay": false
         },
@@ -98,9 +74,52 @@
                 "=LSF="
             ],
             "alwaysDisplay": false
+        },
+        {
+            "identifier": "xenos",
+            "name": "Xenos",
+            "tags": [
+                "XA-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "za",
+            "name": "Zoner Marines",
+            "tags": [
+                "<ZA>"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "onioners",
+            "name": "Unioners",
+            "tags": [
+                "UN|"
+            ],
+            "alwaysDisplay": false
         }
     ],
-    "regions": [
+    "regions": [{
+            "identifier": "home",
+            "name": "Bering",
+            "systems": [
+                "Bering"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "sur-sys",
+            "name": "Surrounding systems",
+            "systems": [
+                "Hudson",
+                "Puerto Rico",
+                "Hamburg",
+                "Texas"
+            ],
+            "alwaysDisplay": false
+        },
+
         {
             "identifier": "liberty",
             "name": "Liberty",
@@ -114,50 +133,19 @@
                 "New Hampshire",
                 "California",
                 "Pennsylvania",
-                "Texas",
-                "Puerto Rico",
                 "Kansas"
-            ],
-            "alwaysDisplay": true
-        },
-        {
-            "identifier": "kusariborder",
-            "name": "Kusari border",
-            "systems": [
-                "Kepler",
-                "Galileo"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "bretoniaborder",
-            "name": "Bretonia Border",
-            "systems": [
-                "Vespucci",
-                "Magellan",
-                "Cortez",
-                "Inverness"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "rheinlandborder",
-            "name": "Rheinland border",
-            "systems": [
-                "Bering",
-                "Hudson"
             ],
             "alwaysDisplay": false
         }
     ],
   "guildSettings": {
-    "messagesImage": "https://i.imgur.com/Oa566E7.png",
-    "messagesFooterName": "Liberty Navy Admiralty",
+    "messagesImage": "https://i.imgur.com/3PDZSvL.png",
+    "messagesFooterName": "Marshall Station",
     "scanMainRegionName": "House Liberty",
     "acknowledged": "Aye aye!",
-    "mainChannelName": "kubot",
-    "adminChannelName": "kubotadmin",
-    "emergencyChannelName": "kubot",
+    "mainChannelName": "spyglass-scanner",
+    "adminChannelName": "admin",
+    "emergencyChannelName": "pre-warning",
     "activityNoticeMinPlayers": "2"
   }
 }

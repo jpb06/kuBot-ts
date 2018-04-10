@@ -29,6 +29,17 @@
 
         return null;
     }
+    private static ValidateNumber(
+        name: string,
+        value: any
+    ): (string | null) {
+        if (!value)
+            return name + ' is not defined';
+        if (typeof value !== 'number')
+            return name + ' is not a number';
+
+        return null;
+    }
     /* ---------------------------------------------------------------------------------------------------------------
        Objects
        ---------------------------------------------------------------------------------------------------------------*/
@@ -69,8 +80,10 @@
         errors.push(this.ValidateString('messagesFooterName', guildSettings.messagesFooterName));
         errors.push(this.ValidateString('scanMainRegionName', guildSettings.scanMainRegionName));
         errors.push(this.ValidateString('acknowledged', guildSettings.acknowledged));
-        errors.push(this.ValidateString('mainChannel', guildSettings.mainChannel));
-        errors.push(this.ValidateString('adminChannel', guildSettings.adminChannel));
+        errors.push(this.ValidateString('mainChannelName', guildSettings.mainChannelName));
+        errors.push(this.ValidateString('adminChannelName', guildSettings.adminChannelName));
+        errors.push(this.ValidateString('emergencyChannelName', guildSettings.emergencyChannelName));
+        errors.push(this.ValidateNumber('activityNoticeMinPlayers', guildSettings.activityNoticeMinPlayers));
 
         let desc = errors.filter(el => el).join('\n\t');
         if (desc.length > 0) desc = '- **Guild Settings (guildSettings) : **\n\t' + desc;

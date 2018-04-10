@@ -10,33 +10,30 @@ import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export async function AdminRemove(
-    guildSettings: GuildConfiguration,
     args: string[],
-    message: Message,
-    client: Client
+    guildId: string
 ): Promise<void> {
     try {
-        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
         let validationErrors = ArgumentsValidation.CheckAdminRemoveArgs(args);
 
         if (validationErrors.length > 0) {
-            embedHelper.sendValidationError(CommandsDescription.AdminRemoveUsage(), validationErrors);
+            EmbedHelper.SendValidationError(CommandsDescription.AdminRemoveUsage(), validationErrors);
         } else {
             let result = false;
             let type = '';
             if (args[0] === 'player' || args[0] === 'p') {
                 type = 'Players';
-                result = await PlayerWatchStore.remove(message.guild.id, args[1]);
+                result = await PlayerWatchStore.remove(guildId, args[1]);
             } 
 
             if (result) {
-                embedHelper.sendRemoveResponse(args[1], type);
+                EmbedHelper.SendRemoveResponse(args[1], type);
             } else {
-                embedHelper.sendRemovalFailure(args[1], type);
+                EmbedHelper.SendRemovalFailure(args[1], type);
             }
         }
     } catch (error) {
         await ErrorsLogging.Save(error);
-        EmbedHelper.Error(message.channel as TextChannel);
+        EmbedHelper.Error();
     }
 }

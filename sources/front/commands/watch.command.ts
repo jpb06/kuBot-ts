@@ -10,19 +10,16 @@ import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export async function Watch(
-    guildSettings: GuildConfiguration,
     args: string[],
-    message: Message,
-    client: Client
+    guildId: string
 ): Promise<void> {
     try {
-        let embedHelper = new EmbedHelper(message.channel as TextChannel, guildSettings, client.user.username, client.user.avatarURL);
         let validation = ArgumentsValidation.CheckWatchArgs(args);
 
         if (validation.errors.length > 0) {
-            embedHelper.sendValidationError(CommandsDescription.WatchUsage(), validation.errors);
+            EmbedHelper.SendValidationError(CommandsDescription.WatchUsage(), validation.errors);
         } else {
-            let watchedFactions = await FactionWatchStore.get(message.guild.id);
+            let watchedFactions = await FactionWatchStore.get(guildId);
             let playerFactions = watchedFactions.filter(faction => faction.tags.some(tag => validation.args.player.includes(tag)));
             if (playerFactions.length > 0) {
                 let playerFactionsDesc = '';
@@ -30,19 +27,19 @@ export async function Watch(
                     playerFactionsDesc += faction.name + '\n';
                 });
 
-                embedHelper.sendFactionPlayerWatchError(validation.args.player, playerFactionsDesc);
+                EmbedHelper.SendFactionPlayerWatchError(validation.args.player, playerFactionsDesc);
             } else {
-                await PlayerWatchStore.set(message.guild.id, {
-                    guildId: message.guild.id,
+                await PlayerWatchStore.set(guildId, {
+                    guildId: guildId,
                     name: validation.args.player,
                     comment: validation.args.comment
                 });
 
-                embedHelper.sendWatchResponse(validation.args.player);
+                EmbedHelper.SendWatchResponse(validation.args.player);
             }
         }
     } catch (error) {
         await ErrorsLogging.Save(error);
-        EmbedHelper.Error(message.channel as TextChannel);
+        EmbedHelper.Error();
     }
 }

@@ -32,4 +32,15 @@ export abstract class GuildsStore {
         return result[0];
     }
 
+    public static async remove(
+        guildId: string
+    ): Promise<boolean> {
+
+        let result = await GenericStore.remove(
+            this.storeName,
+            { guildId: guildId }
+        );
+
+        return result;
+    }
 }
