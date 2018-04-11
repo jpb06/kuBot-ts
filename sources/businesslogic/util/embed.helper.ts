@@ -122,7 +122,7 @@ export class EmbedHelper {
             .setDescription('An unusually high activity has been reported');
 
         factions.forEach(faction => {
-            embed.addField(faction.name, `${faction.playersCount} players`);
+            embed.addField(faction.name, `${faction.playersCount} player(s)`);
         });
 
         return embed;
@@ -155,7 +155,7 @@ export class EmbedHelper {
     ) : void {
         let embed = this.GenerateGeneric()
             .setColor(3447003)
-            .setTitle(`**${playersCount} Players online**\n\n`)
+            .setTitle(`**${playersCount} Player(s) online**\n\n`)
             .setDescription(`Scanning ${this.guildSettings.scanMainRegionName}...`);
 
         let factionsDescription = '';
@@ -179,7 +179,7 @@ export class EmbedHelper {
                 });
             }
 
-            embed.addField(`**${region.name}** : ${region.playersCount} players`, watch);
+            embed.addField(`**${region.name}** : ${region.playersCount} player(s)`, watch);
         });
 
         this.channel.send({
