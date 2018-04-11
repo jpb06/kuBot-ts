@@ -9,7 +9,7 @@ export abstract class RequestOptions {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': process.env.kuBotConfig.discogcAuthPostData.length
+                'Content-Length': process.env['discogcAuthPostData'].length
             }
         };
 

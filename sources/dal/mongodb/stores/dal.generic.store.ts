@@ -7,8 +7,8 @@ export abstract class GenericStore {
         term: object,
         value: object
     ): Promise<boolean> {
-        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
-        let db = client.db(process.env.kuBotConfig.mongodbBase);
+        const client = await MongoClient.connect(process.env['mongodbUrl']);
+        let db = client.db(process.env['mongodbBase']);
 
         try {
             let collection = db.collection(collectionName);
@@ -26,8 +26,8 @@ export abstract class GenericStore {
         term: object,
         values: Array<object>
     ): Promise<boolean> {
-        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
-        let db = client.db(process.env.kuBotConfig.mongodbBase);
+        const client = await MongoClient.connect(process.env['mongodbUrl']);
+        let db = client.db(process.env['mongodbBase']);
 
         try {
             let collection = db.collection(collectionName);
@@ -51,8 +51,8 @@ export abstract class GenericStore {
     public static async getAll(
         collectionName: string
     ): Promise<Array<object>> {
-        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
-        let db = client.db(process.env.kuBotConfig.mongodbBase);
+        const client = await MongoClient.connect(process.env['mongodbUrl']);
+        let db = client.db(process.env['mongodbBase']);
 
         try {
             let collection = db.collection(collectionName);
@@ -66,14 +66,18 @@ export abstract class GenericStore {
 
     public static async getBy(
         collectionName: string,
-        term: object
+        term: object,
+        sort: object
     ): Promise<Array<object>> {
-        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
-        let db = client.db(process.env.kuBotConfig.mongodbBase);
+        const client = await MongoClient.connect(process.env['mongodbUrl']);
+        let db = client.db(process.env['mongodbBase']);
 
         try {
             let collection = db.collection(collectionName);
-            const result = await collection.find(term).toArray();
+            const result = await collection
+                .find(term)
+                .sort(sort)
+                .toArray();
 
             return result;
         } finally {
@@ -85,8 +89,8 @@ export abstract class GenericStore {
         collectionName: string,
         term: object
     ): Promise<boolean> {
-        const client = await MongoClient.connect(process.env.kuBotConfig.mongodbUrl);
-        let db = client.db(process.env.kuBotConfig.mongodbBase);
+        const client = await MongoClient.connect(process.env['mongodbUrl']);
+        let db = client.db(process.env['mongodbBase']);
 
         try {
             let collection = db.collection(collectionName);

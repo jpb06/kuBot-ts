@@ -5,6 +5,10 @@ import { GuildCreateEvent } from './front/events/discord.guild.create.event';
 import { GuildDeleteEvent } from './front/events/discord.guild.delete.event';
 import { MessageEvent } from './front/events/discord.message.event';
 
+import { PrivateSettings } from './configuration/pivate.settings.mapping';
+
+PrivateSettings.AddToProcess();
+
 const client = new Discord.Client({
     disableEveryone: true
 });
@@ -21,5 +25,4 @@ client.on('guildDelete', async (guild) => {
 client.on('message', async (message) => {
     await MessageEvent.React(message, client.user.username, client.user.avatarURL);
 });
-
-client.login(process.env.apiKey);
+client.login(process.env['apiKey']);

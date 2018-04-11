@@ -14,7 +14,7 @@ export abstract class DiscoveryGCRequests {
             });
             request.on('error', (error) => reject(error));
 
-            request.write(process.env.kuBotConfig.discogcAuthPostData);
+            request.write(process.env['discogcAuthPostData']);
             request.end();
         });
     }

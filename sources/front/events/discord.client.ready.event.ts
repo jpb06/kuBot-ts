@@ -1,6 +1,5 @@
 ﻿import { Client } from 'discord.js';
 
-import { PrivateSettings } from './../../configuration/pivate.settings.mapping';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 import { GuildConfigurationService } from './../../businesslogic/services/guild.configuration.service';
 import { CyclicActivityNotice } from './../tasks/cyclic.activity.notice.task';
@@ -12,9 +11,7 @@ export abstract class ClientReadyEvent {
         client: Client
     ): Promise<void> {
         try {
-            await PrivateSettings.AddToProcess();
-
-            await client.user.setGame(`Sirius Sector`);
+            await client.user.setActivity('Sirius Sector', { type: 'WATCHING' });
 
             await GuildConfigurationService.Initialize(client);
 

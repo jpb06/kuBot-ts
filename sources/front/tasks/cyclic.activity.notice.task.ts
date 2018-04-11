@@ -165,7 +165,7 @@ export abstract class CyclicActivityNotice {
         if (messages.size > 0) {
             let message = messages.first();
 
-            if (message.author.id === process.env.botId && message.id === cachedLastMessageId) {
+            if (message.author.id === process.env['botId'] && message.id === cachedLastMessageId) {
                 await EmbedHelper.UpdateActivityNotice(message, currentActivity);
                 messageId = message.id;
             }
