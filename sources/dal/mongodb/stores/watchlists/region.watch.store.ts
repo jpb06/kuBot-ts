@@ -28,7 +28,8 @@ export abstract class RegionWatchStore {
     ): Promise<Array<WatchedRegion>> {
         let result = await GenericStore.getBy(
             this.storeName,
-            { guildId: guildId }
+            { guildId: guildId },
+            { name: 1 }
         ) as Array<WatchedRegion>;
 
         return result;

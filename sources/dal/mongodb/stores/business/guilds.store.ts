@@ -27,7 +27,9 @@ export abstract class GuildsStore {
     ): Promise<GuildConfiguration> {
         let result = await GenericStore.getBy(
             this.storeName,
-            { guildId: guildId }) as Array<GuildConfiguration>;
+            { guildId: guildId },
+            {}
+        ) as Array<GuildConfiguration>;
 
         return result[0];
     }

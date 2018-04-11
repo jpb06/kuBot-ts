@@ -28,7 +28,8 @@ export abstract class FactionWatchStore {
     ): Promise<Array<WatchedFaction>> {
         let result = await GenericStore.getBy(
             this.storeName,
-            { guildId: guildId }
+            { guildId: guildId },
+            { name: 1 }
         ) as Array<WatchedFaction>;
 
         return result;

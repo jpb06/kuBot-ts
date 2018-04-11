@@ -20,7 +20,8 @@ export abstract class LastFetchStore {
     public static async get(): Promise<LastFetch> {
         let result = await GenericStore.getBy(
             this.storeName,
-            { target: LastFetchStore.target }
+            { target: LastFetchStore.target },
+            {}
         ) as Array<LastFetch>;
 
         return result[0];

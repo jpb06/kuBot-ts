@@ -5,12 +5,13 @@ export abstract class PlayerWatchStore {
     public static storeName = 'playerswatch';
 
     public static async set(
+        guildId: string,
         name: string,
         watchedPlayer: WatchedPlayer
     ): Promise<boolean> {
         let result = await GenericStore.createOrUpdate(
             this.storeName,
-            { name: name },
+            { guildId: guildId, name: name },
             watchedPlayer
         );
 
@@ -28,7 +29,8 @@ export abstract class PlayerWatchStore {
     ): Promise<Array<WatchedPlayer>> {
         let result = await GenericStore.getBy(
             this.storeName,
-            { guildId: guildId }
+            { guildId: guildId },
+            { name: 1 }
         ) as Array<WatchedPlayer>;
 
         return result;

@@ -23,7 +23,9 @@ export abstract class ActivityCacheStore {
     ): Promise<GuildActivityCache> {
         let result = await GenericStore.getBy(
             this.storeName,
-            { guildId: guildId }) as Array<GuildActivityCache>;
+            { guildId: guildId },
+            {}
+        ) as Array<GuildActivityCache>;
 
         return result[0];
     }
