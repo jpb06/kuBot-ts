@@ -29,7 +29,7 @@ export async function Watch(
 
                 EmbedHelper.SendFactionPlayerWatchError(validation.args.player, playerFactionsDesc);
             } else {
-                await PlayerWatchStore.set(guildId, {
+                await PlayerWatchStore.set(guildId, validation.args.player, {
                     guildId: guildId,
                     name: validation.args.player,
                     comment: validation.args.comment

@@ -42,10 +42,12 @@ export abstract class ScanCommand {
         watchedFactions.forEach(faction => {
             let factionPlayers = onlinePlayers.filter(player => faction.tags.some(tag => player.Name.includes(tag)));
 
-            factions.push({
-                name: faction.name,
-                playersCount: factionPlayers.length
-            });
+            if (factionPlayers.length > 0 || faction.alwaysDisplay) {
+                factions.push({
+                    name: faction.name,
+                    playersCount: factionPlayers.length
+                });
+            }
         });
 
         return factions;
@@ -72,17 +74,21 @@ export abstract class ScanCommand {
                             guildId: watchedFaction.guildId,
                             name: player.Name,
                             comment: watchedFaction.name
-                        }
+                        };
                     });
             });
 
-            regionwatchedPlayers.push(...watchedPlayers);
+            let regionWatchedPlayers = watchedPlayers.filter(player => regionPlayers.some(regionPlayer => regionPlayer.Name === player.name));
 
-            regions.push({
-                name: region.name,
-                watchedPlayers: regionwatchedPlayers,
-                playersCount: regionPlayers.length
-            });
+            regionwatchedPlayers.push(...regionWatchedPlayers);
+
+            if (regionPlayers.length > 0 || region.alwaysDisplay) {
+                regions.push({
+                    name: region.name,
+                    watchedPlayers: regionwatchedPlayers,
+                    playersCount: regionPlayers.length
+                });
+            }
         });
 
         return regions;
