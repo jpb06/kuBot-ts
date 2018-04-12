@@ -122,7 +122,7 @@ export class EmbedHelper {
             .setDescription('An unusually high activity has been reported');
 
         factions.forEach(faction => {
-            embed.addField(faction.name, `${faction.playersCount} player(s)`);
+            embed.addField(faction.name, `${faction.playersCount} ${this.GetProperQuantifiedSubstantive('player', faction.playersCount)}`);
         });
 
         return embed;
@@ -155,7 +155,7 @@ export class EmbedHelper {
     ) : void {
         let embed = this.GenerateGeneric()
             .setColor(3447003)
-            .setTitle(`**${playersCount} Player(s) online**\n\n`)
+            .setTitle(`**${playersCount} ${this.GetProperQuantifiedSubstantive('player', playersCount)} online**\n\n`)
             .setDescription(`Scanning ${this.guildSettings.scanMainRegionName}...`);
 
         let factionsDescription = '';
@@ -179,7 +179,7 @@ export class EmbedHelper {
                 });
             }
 
-            embed.addField(`**${region.name}** : ${region.playersCount} player(s)`, watch);
+            embed.addField(`**${region.name}** : ${region.playersCount} ${this.GetProperQuantifiedSubstantive('player', region.playersCount)}`, watch);
         });
 
         this.channel.send({
@@ -353,5 +353,18 @@ export class EmbedHelper {
                     .setTitle('Admin commands')
             )
         });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+       Misc
+       ---------------------------------------------------------------------------------------------------------------*/
+    private static GetProperQuantifiedSubstantive(
+        name: string,
+        quantity: number
+    ): string {
+        if (quantity > 1) {
+            return name + 's';
+        } else {
+            return name;
+        }
     }
 }
