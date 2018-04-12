@@ -56,6 +56,7 @@ export abstract class GuildConfigurationService {
         if (validationErrors.length > 0) {
             let error = new Error(validationErrors);
             error.name = 'Custom';
+            throw error;
         }
 
         let defaultChannel = this.GetChannel(parsed.guildSettings.mainChannelName, channels);
