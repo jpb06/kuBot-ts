@@ -158,6 +158,6 @@
     "mainChannelName": "kubot",
     "adminChannelName": "kubotadmin",
     "emergencyChannelName": "kubot",
-    "activityNoticeMinPlayers": "2"
+    "activityNoticeMinPlayers": 3
   }
 }

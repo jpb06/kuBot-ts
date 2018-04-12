@@ -146,6 +146,6 @@
     "mainChannelName": "spyglass-scanner",
     "adminChannelName": "admin",
     "emergencyChannelName": "pre-warning",
-    "activityNoticeMinPlayers": "2"
+    "activityNoticeMinPlayers": 3
   }
 }

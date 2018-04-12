@@ -187,6 +187,6 @@
     "mainChannelName": "bots",
     "adminChannelName": "admiralty",
     "emergencyChannelName": "emergency",
-    "activityNoticeMinPlayers": "2"
+    "activityNoticeMinPlayers": 3
   }
 }
