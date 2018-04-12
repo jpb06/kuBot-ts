@@ -25,17 +25,17 @@ export abstract class MessageEvent {
             let guildSettings = GuildConfigurationService.guildsSettings.find(guildSettings => guildSettings.guildId === message.guild.id);
             if (guildSettings === undefined) return;
 
+            let textChannel = <TextChannel>message.channel;
+            EmbedHelper.Setup(textChannel, guildSettings, botUsername, botAvatarUrl);
+
             if (message.content.startsWith('!')) {
                 let messageChunks = message.content.slice(1).trim().split(/ +/g);
                 let command = messageChunks[0].toLowerCase();
-
-                let textChannel = <TextChannel>message.channel;
-                EmbedHelper.Setup(textChannel, guildSettings, botUsername, botAvatarUrl);
-
+                
                 /* ------------------------------------------------------------------------------------------- 
                 Default + Admin */
                 if (textChannel.name === guildSettings.mainChannelName || textChannel.name === guildSettings.adminChannelName) {
-                    
+
                     if (command === 'help') { /* help command | !help */
                         await HelpCommand.Send();
                     }
@@ -90,7 +90,7 @@ export abstract class MessageEvent {
                     await message.delete();
                     return;
                 }
-            } else if (TextChannel.name === guildSettings.adminChannelName && message.attachments.size === 1) {
+            } else if (textChannel.name === guildSettings.adminChannelName && message.attachments.size === 1) {
                 /* Guild config json upload */
                 await GuildConfigUpdateRequest.Process(message);
             }
