@@ -45,10 +45,7 @@ export abstract class GuildCreateEvent {
                     messagesImage: defaultSettings.messagesImage,
                     messagesFooterName: defaultSettings.messagesFooterName,
                     acknowledged: defaultSettings.acknowledged,
-                    activityNoticeMinPlayers: defaultSettings.activityNoticeMinPlayers,
-
-                    defaultChannel: guild.channels.find(channel => channel.name === defaultSettings.mainChannelName),
-                    emergencyChannel: guild.channels.find(channel => channel.name === defaultSettings.emergencyChannelName),
+                    activityNoticeMinPlayers: defaultSettings.activityNoticeMinPlayers
                 });
             }
             else {

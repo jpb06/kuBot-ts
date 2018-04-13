@@ -4,14 +4,13 @@ import { promisify } from 'util';
 import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
 import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
 import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
-import { MappedGuildConfiguration } from './../../types/businesslogic/business.types';
 import { GuildConfiguration } from './../../types/dbase/persisted.types';
 
 import { GuildConfigurationValidator } from './../data/guild.config.validator';
 
 export abstract class GuildConfigurationService {
 
-    public static guildsSettings: MappedGuildConfiguration[] = [];
+    public static guildsSettings: GuildConfiguration[] = [];
 
     public static async Initialize(
         client: Client
@@ -34,10 +33,7 @@ export abstract class GuildConfigurationService {
                 messagesImage: persistedGuildParams.messagesImage,
                 messagesFooterName: persistedGuildParams.messagesFooterName,
                 acknowledged: persistedGuildParams.acknowledged,
-                activityNoticeMinPlayers: persistedGuildParams.activityNoticeMinPlayers,
-
-                defaultChannel: guild.channels.find(channel => channel.name === persistedGuildParams.mainChannelName),
-                emergencyChannel: guild.channels.find(channel => channel.name === persistedGuildParams.emergencyChannelName),
+                activityNoticeMinPlayers: persistedGuildParams.activityNoticeMinPlayers
 
             });
         });
@@ -59,8 +55,8 @@ export abstract class GuildConfigurationService {
             throw error;
         }
 
-        let defaultChannel = this.GetChannel(parsed.guildSettings.mainChannelName, channels);
-        let emergencyChannel = this.GetChannel(parsed.guildSettings.emergencyChannelName, channels);
+        this.CheckChannel(parsed.guildSettings.mainChannelName, channels);
+        this.CheckChannel(parsed.guildSettings.emergencyChannelName, channels);
 
         await FactionWatchStore.set(guildId, parsed.factions.map(faction => ({
             guildId: guildId,
@@ -90,19 +86,16 @@ export abstract class GuildConfigurationService {
             messagesImage: parsed.guildSettings.messagesImage,
             messagesFooterName: parsed.guildSettings.messagesFooterName,
             acknowledged: parsed.guildSettings.acknowledged,
-            activityNoticeMinPlayers: parsed.guildSettings.activityNoticeMinPlayers,
-
-            defaultChannel: defaultChannel,
-            emergencyChannel: emergencyChannel
+            activityNoticeMinPlayers: parsed.guildSettings.activityNoticeMinPlayers
         };
 
         return true;
     }
 
-    private static GetChannel(
+    private static CheckChannel(
         name: string,
         channels: GuildChannel[]
-    ): GuildChannel {
+    ): void {
 
         let channel = channels.find(channel => channel.name === name);
 
@@ -116,7 +109,5 @@ export abstract class GuildConfigurationService {
             error.name = 'Custom';
             throw error;
         }
-
-        return <GuildChannel>channel;
     }       
 }
