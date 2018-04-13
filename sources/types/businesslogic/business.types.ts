@@ -1,10 +1,5 @@
 ﻿import { GuildChannel } from 'discord.js';
-import { WatchedPlayer, GuildConfiguration } from './../dbase/persisted.types';
-
-export interface MappedGuildConfiguration extends GuildConfiguration {
-    defaultChannel: GuildChannel;
-    emergencyChannel: GuildChannel;
-}
+import { WatchedPlayer } from './../dbase/persisted.types';
 
 export interface ScannedFaction {
     name: string;

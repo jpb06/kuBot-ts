@@ -4,6 +4,7 @@ import { ClientReadyEvent } from './front/events/discord.client.ready.event';
 import { GuildCreateEvent } from './front/events/discord.guild.create.event';
 import { GuildDeleteEvent } from './front/events/discord.guild.delete.event';
 import { MessageEvent } from './front/events/discord.message.event';
+import { ErrorEvent } from './front/events/discord.error.event';
 
 import { PrivateSettings } from './configuration/pivate.settings.mapping';
 
@@ -24,5 +25,8 @@ client.on('guildDelete', async (guild) => {
 });
 client.on('message', async (message) => {
     await MessageEvent.React(message, client.user.username, client.user.avatarURL);
+});
+client.on('error', async (error) => {
+    await ErrorEvent.React(error);
 });
 client.login(process.env['apiKey']);

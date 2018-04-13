@@ -1,8 +1,7 @@
-﻿import { TextChannel } from 'discord.js';
+﻿import { Client, TextChannel } from 'discord.js';
 import * as Schedule from 'node-schedule';
 
-import { MappedGuildConfiguration } from './../../types/businesslogic/business.types';
-import { GuildActivityCache, ActivityCacheItem, WatchedFaction, WatchedRegion, WatchedPlayer, OnlinePlayer } from './../../types/dbase/persisted.types';
+import { GuildActivityCache, ActivityCacheItem, WatchedFaction, WatchedRegion, WatchedPlayer, OnlinePlayer, GuildConfiguration } from './../../types/dbase/persisted.types';
 
 import { OnlinePlayersService } from './../../businesslogic/services/online.players.service';
 import { GuildConfigurationService } from './../../businesslogic/services/guild.configuration.service';
@@ -23,7 +22,9 @@ export abstract class CyclicActivityNotice {
     private static watchedPlayers: WatchedPlayer[];
     private static onlinePlayers: OnlinePlayer[];
 
-    public static async Start(): Promise<void> {
+    public static async Start(
+        client: Client
+    ): Promise<void> {
         try {
             let rule = new Schedule.RecurrenceRule();
             rule.minute = new Schedule.Range(0, 59, 30);
@@ -51,7 +52,13 @@ export abstract class CyclicActivityNotice {
 
                         
                         if (currentActivity.length > 0 && !similar) {
-                            messageId = await this.ReportActivity(cachedActivity, guildConfiguration.emergencyChannel as TextChannel, currentActivity);
+                            let guild = client.guilds.find(guild => guild.id === guildConfiguration.guildId);
+                            if (guild !== undefined) {
+                                let emergencyChannel = guild.channels.find(channel => channel.name === guildConfiguration.emergencyChannelName && channel.type === 'text');
+                                if (emergencyChannel !== undefined) {
+                                    messageId = await this.ReportActivity(cachedActivity, <TextChannel>emergencyChannel, currentActivity);
+                                }
+                            }
                         }
                     }
 
@@ -74,8 +81,8 @@ export abstract class CyclicActivityNotice {
     }
 
     private static async AsyncForEach(
-        array: MappedGuildConfiguration[],
-        callback: (config: MappedGuildConfiguration) => Promise<void>
+        array: GuildConfiguration[],
+        callback: (config: GuildConfiguration) => Promise<void>
     ): Promise<void> {
         for (let index = 0; index < array.length; index++) {
             await callback(array[index]);
