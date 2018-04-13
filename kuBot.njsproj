@@ -124,6 +124,9 @@
     <TypeScriptCompile Include="sources\front\commands\watch.command.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\front\events\discord.error.event.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\front\events\discord.guild.create.event.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
