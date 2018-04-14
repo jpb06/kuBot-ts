@@ -5,7 +5,7 @@
     "sourceMap": true,
     "outDir": "./deploy",
     "strictNullChecks": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noEmitOnError": true,
     "removeComments": true
   },

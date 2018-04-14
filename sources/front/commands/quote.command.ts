@@ -51,12 +51,12 @@ export abstract class Quoting {
     }
 
     public static async ProcessEmbed(
-        args,
+        args: string,
         authorName: string
     ): Promise<void> {
         try {
 
-            let content: string[] = args.split('').reduce((accumulator, currentValue) => {
+            let content: string[] = args.split('').reduce((accumulator: Acc, currentValue) => {
                 if (currentValue === '"') {
                     accumulator.quote ^= 1;
                 } else if (!accumulator.quote && currentValue === ' ') {
@@ -81,4 +81,9 @@ export abstract class Quoting {
             EmbedHelper.Error();
         }
     }
+}
+
+interface Acc {
+    quote: any,
+    val: Array<string>
 }

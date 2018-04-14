@@ -103,7 +103,7 @@
         if (factionsValidation) {
             errors.push(factionsValidation);
         } else {
-            json.factions.forEach((faction, index) => {
+            json.factions.forEach((faction: any, index: number) => {
                 let elementValidation = this.VerifyFaction(faction);
                 if (elementValidation)
                     errors.push(`- **Faction ${index + 1}**:\n\t` + elementValidation);
@@ -114,7 +114,7 @@
         if (regionsValidation) {
             errors.push(regionsValidation);
         } else {
-            json.regions.forEach((region, index) => {
+            json.regions.forEach((region: any, index: number) => {
                 let elementValidation = this.VerifyRegion(region);
                 if (elementValidation)
                     errors.push(`- **Region ${index + 1}**:\n\t` + elementValidation);
