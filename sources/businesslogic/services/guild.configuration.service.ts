@@ -58,14 +58,14 @@ export abstract class GuildConfigurationService {
         this.CheckChannel(parsed.guildSettings.mainChannelName, channels);
         this.CheckChannel(parsed.guildSettings.emergencyChannelName, channels);
 
-        await FactionWatchStore.set(guildId, parsed.factions.map(faction => ({
+        await FactionWatchStore.set(guildId, parsed.factions.map((faction: any) => ({
             guildId: guildId,
             name: faction.name,
             tags: faction.tags,
             alwaysDisplay: faction.alwaysDisplay ? faction.alwaysDisplay : false
         })));
 
-        await RegionWatchStore.set(guildId, parsed.regions.map(region => ({
+        await RegionWatchStore.set(guildId, parsed.regions.map((region: any) => ({
             guildId: guildId,
             name: region.name,
             systems: region.systems,
