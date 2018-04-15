@@ -51,7 +51,7 @@ export abstract class ScanCommand {
         });
 
         return factions;
-    } 
+    }
 
     private static GetRegions(
         watchedFactions: WatchedFaction[],
@@ -67,7 +67,7 @@ export abstract class ScanCommand {
             let regionwatchedPlayers: WatchedPlayer[] = [];
 
             watchedFactions.forEach(watchedFaction => {
-                regionwatchedPlayers = onlinePlayers
+                let factionPlayersInRegion: WatchedPlayer[] = regionPlayers
                     .filter(player => watchedFaction.tags.some(tag => player.Name.includes(tag)))
                     .map(player => {
                         return {
@@ -76,6 +76,8 @@ export abstract class ScanCommand {
                             comment: watchedFaction.name
                         };
                     });
+
+                regionwatchedPlayers.push(...factionPlayersInRegion);
             });
 
             let regionWatchedPlayers = watchedPlayers.filter(player => regionPlayers.some(regionPlayer => regionPlayer.Name === player.name));
