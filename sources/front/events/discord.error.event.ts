@@ -2,12 +2,11 @@
 
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
-export abstract class ErrorEvent {
+export abstract class GlobalErrorEvent {
 
     public static async React(
         error: Error
     ): Promise<void> {
-        console.log('Error: ', error);
-        await ErrorsLogging.Save(error);
+        await ErrorsLogging.SaveGlobal(error);
     }
 }
