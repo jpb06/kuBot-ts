@@ -10,4 +10,12 @@ export abstract class ErrorsLogging {
         let desc = `\r\n-----------------------------\r\n${moment().format('MM/DD/YYYY HH:mm:ss')}\r\n${error.stack}`;
         await FilesHelper.Append('./err.log', desc);
     }
+
+    public static async SaveGlobal(
+        error: Error
+    ): Promise<void> {
+        let errorData = (error.stack !== undefined) ? error.stack : error.message;
+        let desc = `\r\n-----------------------------\r\n${moment().format('MM/DD/YYYY HH:mm:ss')}\r\n${errorData}`;
+        await FilesHelper.Append('./err.log', desc);
+    }
 }
