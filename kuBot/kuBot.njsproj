@@ -33,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="sources\bot.ts" />
-    <Content Include=".gitignore" />
     <Content Include="guildsConfiguration\350303355014479874.json" />
     <Content Include="guildsConfiguration\354940463318564864.json" />
     <Content Include="guildsConfiguration\408471167683264513.json" />
@@ -41,7 +40,6 @@
     <Content Include="guildsConfiguration\93043962100580352.json" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
-    <Content Include="README.md" />
     <Content Include="sources\configuration\private.config.local.ts">
       <SubType>Code</SubType>
     </Content>
