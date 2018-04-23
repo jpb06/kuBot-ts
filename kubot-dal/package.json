@@ -1,0 +1,21 @@
+{
+  "name": "kubot-dal",
+  "version": "1.0.0",
+  "description": "kubot-dal",
+  "main": "index.js",
+  "types": "typings/index.d.ts",
+  "author": {
+    "name": "jpb"
+  },
+  "devDependencies": {
+    "@types/mongodb": "^3.0.15",
+    "@types/node": "^6.0.87",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rimraf": "^0.2.2",
+    "gulp-typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "mongodb": "^3.0.7"
+  }
+}
