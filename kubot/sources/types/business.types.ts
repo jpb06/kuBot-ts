@@ -1,5 +1,4 @@
-﻿import { GuildChannel } from 'discord.js';
-import { WatchedPlayer } from './../dbase/persisted.types';
+﻿import { WatchedPlayer } from './../../../kubot-dal/sources/types/persisted.types';
 
 export interface ScannedFaction {
     name: string;

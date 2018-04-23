@@ -1,17 +1,17 @@
 ﻿import { RichEmbed, TextChannel, Message } from 'discord.js';
+import * as Dal from 'kubot-dal';
 
-import { GuildConfiguration, ActivityCacheItem } from './../../types/dbase/persisted.types';
-import { ScannedFaction, ScannedRegion } from './../../types/businesslogic/business.types';
+import { ScannedFaction, ScannedRegion } from './../../types/business.types';
 
 export class EmbedHelper {
     private static channel: TextChannel;
-    private static guildSettings: GuildConfiguration;
+    private static guildSettings: Dal.Types.GuildConfiguration;
     private static authorName: string;
     private static authorAvatarUrl: string;
 
     public static Setup(
         channel: TextChannel,
-        guildSettings: GuildConfiguration,
+        guildSettings: Dal.Types.GuildConfiguration,
         authorName: string,
         authorAvatarUrl: string
     ): void {
@@ -112,7 +112,7 @@ export class EmbedHelper {
        Factions activity notice
        ---------------------------------------------------------------------------------------------------------------*/
     private static GenerateActivityNotice(
-        factions: ActivityCacheItem[]
+        factions: Dal.Types.ActivityCacheItem[]
     ): RichEmbed {
         let embed = new RichEmbed()
             .setThumbnail('https://i.imgur.com/5L7T68j.png')
@@ -130,14 +130,14 @@ export class EmbedHelper {
 
     public static async UpdateActivityNotice(
         message: Message,
-        factions: ActivityCacheItem[]
+        factions: Dal.Types.ActivityCacheItem[]
     ): Promise<void> {
         await message.edit(this.GenerateActivityNotice(factions));
     }
 
     public static async SendActivityNotice(
         emergencyChannel: TextChannel,
-        factions: ActivityCacheItem[]
+        factions: Dal.Types.ActivityCacheItem[]
     ): Promise<string> {
         let message = await emergencyChannel.send({
             embed: this.GenerateActivityNotice(factions)

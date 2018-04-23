@@ -1,9 +1,5 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-import { GuildConfiguration } from './../../types/dbase/persisted.types';
-
-import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
-import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
-import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
+import * as Dal from 'kubot-dal';
 
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
@@ -39,7 +35,7 @@ export abstract class ShowCommand {
     private static async ProcessPlayers(
         guildId: string
     ): Promise<void> {
-        let watchedPlayers = await PlayerWatchStore.get(guildId);
+        let watchedPlayers = await Dal.Manipulation.PlayerWatchStore.get(guildId);
 
         let description = '';
         watchedPlayers.forEach(player => {
@@ -54,7 +50,7 @@ export abstract class ShowCommand {
     private static async ProcessFactions(
         guildId: string
     ): Promise<void> {
-        let watchedFactions = await FactionWatchStore.get(guildId);
+        let watchedFactions = await Dal.Manipulation.FactionWatchStore.get(guildId);
 
         let description = '';
         watchedFactions
@@ -75,7 +71,7 @@ export abstract class ShowCommand {
     private static async ProcessRegions(
         guildId: string
     ): Promise<void> {
-        let watchedRegions = await RegionWatchStore.get(guildId);
+        let watchedRegions = await Dal.Manipulation.RegionWatchStore.get(guildId);
 
         let description = '';
         watchedRegions

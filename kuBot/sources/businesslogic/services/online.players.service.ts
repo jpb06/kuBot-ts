@@ -1,15 +1,12 @@
 ﻿import * as moment from 'moment';
-
-import { LastFetchStore } from './../../dal/mongodb/stores/business/last.fetch.store';
-import { OnlinePlayersStore } from './../../dal/mongodb/stores/fetched/online.players.store';
-import { LastFetch, OnlinePlayer } from './../../types/dbase/persisted.types';
+import * as Dal from 'kubot-dal';
 
 import { DiscoveryGCRequests } from './../httprequests/discoverygc.requests';
 
 export abstract class OnlinePlayersService {
 
-    public static async GetList(): Promise<OnlinePlayer[]> {
-        let lastFetch = await LastFetchStore.get();
+    public static async GetList(): Promise<Dal.Types.OnlinePlayer[]> {
+        let lastFetch = await Dal.Manipulation.LastFetchStore.get();
         let now = moment();
 
         // request threshold to discogc = 2 minutes 
@@ -31,12 +28,12 @@ export abstract class OnlinePlayersService {
                 console.log(cleaned);
             }
 
-            await OnlinePlayersStore.set(online.Players);
-            await LastFetchStore.set(moment().format());
+            await Dal.Manipulation.OnlinePlayersStore.set(online.Players);
+            await Dal.Manipulation.LastFetchStore.set(moment().format());
 
             return online.Players;
         } else {
-            let onlinePlayers = await OnlinePlayersStore.getAll();
+            let onlinePlayers = await Dal.Manipulation.OnlinePlayersStore.getAll();
             return onlinePlayers;
         }
     }

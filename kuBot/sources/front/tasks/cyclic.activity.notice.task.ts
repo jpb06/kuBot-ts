@@ -1,15 +1,9 @@
 ﻿import { Client, TextChannel } from 'discord.js';
 import * as Schedule from 'node-schedule';
-
-import { GuildActivityCache, ActivityCacheItem, WatchedFaction, WatchedRegion, WatchedPlayer, OnlinePlayer, GuildConfiguration } from './../../types/dbase/persisted.types';
+import * as Dal from 'kubot-dal';
 
 import { OnlinePlayersService } from './../../businesslogic/services/online.players.service';
 import { GuildConfigurationService } from './../../businesslogic/services/guild.configuration.service';
-
-import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
-import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
-import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
-import { ActivityCacheStore } from './../../dal/mongodb/stores/business/activity.cache.store';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
@@ -17,10 +11,10 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 export abstract class CyclicActivityNotice {
 
     private static job: Schedule.Job;
-    private static watchedFactions: WatchedFaction[];
-    private static watchedRegions: WatchedRegion[];
-    private static watchedPlayers: WatchedPlayer[];
-    private static onlinePlayers: OnlinePlayer[];
+    private static watchedFactions: Dal.Types.WatchedFaction[];
+    private static watchedRegions: Dal.Types.WatchedRegion[];
+    private static watchedPlayers: Dal.Types.WatchedPlayer[];
+    private static onlinePlayers: Dal.Types.OnlinePlayer[];
 
     public static async Start(
         client: Client
@@ -32,12 +26,12 @@ export abstract class CyclicActivityNotice {
             this.job = Schedule.scheduleJob(rule, async () => {
 
                 this.onlinePlayers = await OnlinePlayersService.GetList();
-                this.watchedFactions = await FactionWatchStore.getAll();
-                this.watchedRegions = await RegionWatchStore.getAll();
-                this.watchedPlayers = await PlayerWatchStore.getAll();
-                let activityCache = await ActivityCacheStore.getAll();
+                this.watchedFactions = await Dal.Manipulation.FactionWatchStore.getAll();
+                this.watchedRegions = await Dal.Manipulation.RegionWatchStore.getAll();
+                this.watchedPlayers = await Dal.Manipulation.PlayerWatchStore.getAll();
+                let activityCache = await Dal.Manipulation.ActivityCacheStore.getAll();
 
-                let updatedCache: GuildActivityCache[] = [];
+                let updatedCache: Dal.Types.GuildActivityCache[] = [];
 
                 await this.AsyncForEach(GuildConfigurationService.guildsSettings, async (guildConfiguration) => {
                     let messageId = '';
@@ -69,7 +63,7 @@ export abstract class CyclicActivityNotice {
                     });
                 });
 
-                await ActivityCacheStore.set(updatedCache);
+                await Dal.Manipulation.ActivityCacheStore.set(updatedCache);
             });
         } catch (error) {
             await ErrorsLogging.Save(error);
@@ -81,8 +75,8 @@ export abstract class CyclicActivityNotice {
     }
 
     private static async AsyncForEach(
-        array: GuildConfiguration[],
-        callback: (config: GuildConfiguration) => Promise<void>
+        array: Dal.Types.GuildConfiguration[],
+        callback: (config: Dal.Types.GuildConfiguration) => Promise<void>
     ): Promise<void> {
         for (let index = 0; index < array.length; index++) {
             await callback(array[index]);
@@ -91,9 +85,9 @@ export abstract class CyclicActivityNotice {
 
     private static BuildCurrentActivity(
         guildId: string
-    ): ActivityCacheItem[] {
+    ): Dal.Types.ActivityCacheItem[] {
 
-        let activity: ActivityCacheItem[] = [];
+        let activity: Dal.Types.ActivityCacheItem[] = [];
 
         let guildWatchedFactions = this.watchedFactions
             .filter(faction => faction.guildId === guildId)
@@ -138,8 +132,8 @@ export abstract class CyclicActivityNotice {
     }
 
     private static async CompareActivity(
-        activityInCache: GuildActivityCache | undefined,
-        activityFetched: ActivityCacheItem[]
+        activityInCache: Dal.Types.GuildActivityCache | undefined,
+        activityFetched: Dal.Types.ActivityCacheItem[]
     ): Promise<boolean> {
         if (activityInCache === undefined) return false;
         if (activityInCache.cache.length !== activityFetched.length) return false;
@@ -157,13 +151,13 @@ export abstract class CyclicActivityNotice {
     }
 
     private static async ReportActivity(
-        cachedActivity: GuildActivityCache | undefined,
+        cachedActivity: Dal.Types.GuildActivityCache | undefined,
         emergencyChannel: TextChannel,
-        currentActivity: ActivityCacheItem[]
+        currentActivity: Dal.Types.ActivityCacheItem[]
     ): Promise<string> {
         let messageId = '';
 
-        let cachedLastMessageId = cachedActivity === undefined ? '-1' : (<GuildActivityCache>cachedActivity).lastMessageId;
+        let cachedLastMessageId = cachedActivity === undefined ? '-1' : (<Dal.Types.GuildActivityCache>cachedActivity).lastMessageId;
 
         let messages = await emergencyChannel.fetchMessages({
             limit: 1

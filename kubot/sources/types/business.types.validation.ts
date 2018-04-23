@@ -1,5 +1,5 @@
 ﻿import * as BusinessTypes from './business.types';
-import { PersistedTypesValidation } from './../dbase/persisted.types.validation';
+import * as Dal from 'kubot-dal';
 
 export abstract class BusinessTypesValidation {
 
@@ -20,7 +20,7 @@ export abstract class BusinessTypesValidation {
         }
 
         for (let i = 0; i < obj.watchedPlayers.length; i++) {
-            if (!PersistedTypesValidation.IsWatchedPlayer(obj.watchedPlayers[i])) return false;
+            if (!Dal.Types.PersistedTypesValidation.IsWatchedPlayer(obj.watchedPlayers[i])) return false;
         }
 
         return true;

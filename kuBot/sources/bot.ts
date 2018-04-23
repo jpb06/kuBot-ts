@@ -30,3 +30,4 @@ client.on('error', async (error) => {
     await GlobalErrorEvent.React(error);
 });
 client.login(process.env['apiKey']);
+

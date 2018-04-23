@@ -1,12 +1,7 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
+import * as Dal from 'kubot-dal';
 
-import { GuildConfiguration, WatchedFaction, WatchedRegion, WatchedPlayer, OnlinePlayer } from './../../types/dbase/persisted.types';
-import { ScannedFaction, ScannedRegion } from './../../types/businesslogic/business.types';
-
-import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
-import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
-import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
-
+import { ScannedFaction, ScannedRegion } from './../../types/business.types';
 import { OnlinePlayersService } from './../../businesslogic/services/online.players.service';
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
@@ -19,9 +14,9 @@ export abstract class ScanCommand {
         try {
             let onlinePlayers = await OnlinePlayersService.GetList();
 
-            let watchedFactions = await FactionWatchStore.get(guildId);
-            let watchedRegions = await RegionWatchStore.get(guildId);
-            let watchedPlayers = await PlayerWatchStore.get(guildId);
+            let watchedFactions = await Dal.Manipulation.FactionWatchStore.get(guildId);
+            let watchedRegions = await Dal.Manipulation.RegionWatchStore.get(guildId);
+            let watchedPlayers = await Dal.Manipulation.PlayerWatchStore.get(guildId);
 
             let factions = this.GetFactions(watchedFactions, onlinePlayers);
             let regions = this.GetRegions(watchedFactions, watchedRegions, watchedPlayers, onlinePlayers);
@@ -34,8 +29,8 @@ export abstract class ScanCommand {
     }
 
     private static GetFactions(
-        watchedFactions: WatchedFaction[],
-        onlinePlayers: OnlinePlayer[]
+        watchedFactions: Dal.Types.WatchedFaction[],
+        onlinePlayers: Dal.Types.OnlinePlayer[]
     ): ScannedFaction[] {
         let factions: ScannedFaction[] = [];
 
@@ -54,20 +49,20 @@ export abstract class ScanCommand {
     }
 
     private static GetRegions(
-        watchedFactions: WatchedFaction[],
-        watchedRegions: WatchedRegion[],
-        watchedPlayers: WatchedPlayer[],
-        onlinePlayers: OnlinePlayer[]
+        watchedFactions: Dal.Types.WatchedFaction[],
+        watchedRegions: Dal.Types.WatchedRegion[],
+        watchedPlayers: Dal.Types.WatchedPlayer[],
+        onlinePlayers: Dal.Types.OnlinePlayer[]
     ): ScannedRegion[] {
         let regions: ScannedRegion[] = [];
 
         watchedRegions.forEach(region => {
 
             let regionPlayers = onlinePlayers.filter(player => region.systems.some(system => player.System === system));
-            let regionwatchedPlayers: WatchedPlayer[] = [];
+            let regionwatchedPlayers: Dal.Types.WatchedPlayer[] = [];
 
             watchedFactions.forEach(watchedFaction => {
-                let factionPlayersInRegion: WatchedPlayer[] = regionPlayers
+                let factionPlayersInRegion: Dal.Types.WatchedPlayer[] = regionPlayers
                     .filter(player => watchedFaction.tags.some(tag => player.Name.includes(tag)))
                     .map(player => {
                         return {

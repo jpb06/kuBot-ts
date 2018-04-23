@@ -1,8 +1,7 @@
 ﻿import { Guild } from 'discord.js';
+import * as Dal from 'kubot-dal';
 
-import { GuildConfiguration } from './../../types/dbase/persisted.types';
 import { GuildConfigurationService } from './../../businesslogic/services/guild.configuration.service';
-import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export abstract class GuildDeleteEvent {
@@ -15,7 +14,7 @@ export abstract class GuildDeleteEvent {
 
             GuildConfigurationService.guildsSettings = GuildConfigurationService.guildsSettings.filter(guildConfig => guildConfig.guildId !== guild.id);
 
-            await GuildsStore.remove(guild.id);
+            await Dal.Manipulation.GuildsStore.remove(guild.id);
             
         } catch (err) {
             await ErrorsLogging.Save(err);

@@ -1,8 +1,5 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
-
-import { GuildConfiguration, WatchedFaction } from './../../types/dbase/persisted.types';
-import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
-import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
+import * as Dal from 'kubot-dal';
 
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
@@ -19,7 +16,7 @@ export async function Watch(
         if (validation.errors.length > 0) {
             EmbedHelper.SendValidationError(CommandsDescription.WatchUsage(), validation.errors);
         } else {
-            let watchedFactions = await FactionWatchStore.get(guildId);
+            let watchedFactions = await Dal.Manipulation.FactionWatchStore.get(guildId);
             let playerFactions = watchedFactions.filter(faction => faction.tags.some(tag => validation.args.player.includes(tag)));
             if (playerFactions.length > 0) {
                 let playerFactionsDesc = '';
@@ -29,7 +26,7 @@ export async function Watch(
 
                 EmbedHelper.SendFactionPlayerWatchError(validation.args.player, playerFactionsDesc);
             } else {
-                await PlayerWatchStore.set(guildId, validation.args.player, {
+                await Dal.Manipulation.PlayerWatchStore.set(guildId, validation.args.player, {
                     guildId: guildId,
                     name: validation.args.player,
                     comment: validation.args.comment

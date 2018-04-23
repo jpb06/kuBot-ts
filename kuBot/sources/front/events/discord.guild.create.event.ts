@@ -1,17 +1,16 @@
 ﻿import { Guild } from 'discord.js';
+import * as Dal from 'kubot-dal';
 
-import { GuildConfiguration } from './../../types/dbase/persisted.types';
 import { GuildConfigurationService } from './../../businesslogic/services/guild.configuration.service';
-import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export abstract class GuildCreateEvent {
 
     private static GetDefaultSettings(
         guildId: string
-    ): GuildConfiguration {
+    ): Dal.Types.GuildConfiguration {
 
-        let defaultSettings: GuildConfiguration = {
+        let defaultSettings: Dal.Types.GuildConfiguration = {
             guildId: guildId,
             messagesImage: 'https://i.imgur.com/5L7T68j.png',
             messagesFooterName: 'kuBot',
@@ -35,7 +34,7 @@ export abstract class GuildCreateEvent {
             if (GuildConfigurationService.guildsSettings.filter(configuredGuild => configuredGuild.guildId === guild.id).length === 0) {
                 let defaultSettings = this.GetDefaultSettings(guild.id);
 
-                await GuildsStore.set(defaultSettings);
+                await Dal.Manipulation.GuildsStore.set(defaultSettings);
                 GuildConfigurationService.guildsSettings.push({
                     guildId: guild.id,
                     adminChannelName: defaultSettings.adminChannelName,

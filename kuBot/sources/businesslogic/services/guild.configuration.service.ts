@@ -1,24 +1,21 @@
 ﻿import { Client, GuildChannel } from 'discord.js';
 import { promisify } from 'util';
 
-import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
-import { RegionWatchStore } from './../../dal/mongodb/stores/watchlists/region.watch.store';
-import { GuildsStore } from './../../dal/mongodb/stores/business/guilds.store';
-import { GuildConfiguration } from './../../types/dbase/persisted.types';
+import * as Dal from 'kubot-dal';
 
 import { GuildConfigurationValidator } from './../data/guild.config.validator';
 
 export abstract class GuildConfigurationService {
 
-    public static guildsSettings: GuildConfiguration[] = [];
+    public static guildsSettings: Dal.Types.GuildConfiguration[] = [];
 
     public static async Initialize(
         client: Client
     ): Promise<void> {
-        let persistedParams = await GuildsStore.getAll();
+        let persistedParams = await Dal.Manipulation.GuildsStore.getAll();
 
         client.guilds.forEach(async (guild) => {
-            let persistedGuildParams = <GuildConfiguration>persistedParams.find(g => g.guildId === guild.id);
+            let persistedGuildParams = <Dal.Types.GuildConfiguration>persistedParams.find(g => g.guildId === guild.id);
 
             if (persistedGuildParams === undefined) {
                 throw new Error(`Couldn't find settings for guild ${guild.id}`);
@@ -58,14 +55,14 @@ export abstract class GuildConfigurationService {
         this.CheckChannel(parsed.guildSettings.mainChannelName, channels);
         this.CheckChannel(parsed.guildSettings.emergencyChannelName, channels);
 
-        await FactionWatchStore.set(guildId, parsed.factions.map((faction: any) => ({
+        await Dal.Manipulation.FactionWatchStore.set(guildId, parsed.factions.map((faction: any) => ({
             guildId: guildId,
             name: faction.name,
             tags: faction.tags,
             alwaysDisplay: faction.alwaysDisplay ? faction.alwaysDisplay : false
         })));
 
-        await RegionWatchStore.set(guildId, parsed.regions.map((region: any) => ({
+        await Dal.Manipulation.RegionWatchStore.set(guildId, parsed.regions.map((region: any) => ({
             guildId: guildId,
             name: region.name,
             systems: region.systems,
@@ -73,7 +70,7 @@ export abstract class GuildConfigurationService {
         })));
 
         parsed.guildSettings.guildId = guildId;
-        await GuildsStore.set(parsed.guildSettings);
+        await Dal.Manipulation.GuildsStore.set(parsed.guildSettings);
 
         let settingsIndex = this.guildsSettings.findIndex(el => el.guildId === guildId);
 

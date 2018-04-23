@@ -1,8 +1,6 @@
 ﻿import { Client, Message, TextChannel } from 'discord.js';
 
-import { GuildConfiguration, WatchedFaction } from './../../types/dbase/persisted.types';
-import { FactionWatchStore } from './../../dal/mongodb/stores/watchlists/faction.watch.store';
-import { PlayerWatchStore } from './../../dal/mongodb/stores/watchlists/player.watch.store';
+import * as Dal from 'kubot-dal';
 
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
@@ -23,7 +21,7 @@ export async function AdminRemove(
             let type = '';
             if (args[0] === 'player' || args[0] === 'p') {
                 type = 'Players';
-                result = await PlayerWatchStore.remove(guildId, args[1]);
+                result = await Dal.Manipulation.PlayerWatchStore.remove(guildId, args[1]);
             } 
 
             if (result) {
