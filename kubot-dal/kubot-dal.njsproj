@@ -29,6 +29,7 @@
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>True</StartWebBrowser>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,12 +39,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="package-lock.json" />
+    <Content Include="README.md">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="tsconfig.json" />
     <Content Include="package.json">
       <Publish>False</Publish>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="tools\" />
     <Folder Include="sources\" />
     <Folder Include="sources\manipulation\mongodb\" />
     <Folder Include="sources\manipulation\mongodb\stores\" />
@@ -73,7 +78,10 @@
     </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gulpfile.js">
+    <Compile Include="tools\move-readme-webpack-plugin.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="webpack.config.js">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

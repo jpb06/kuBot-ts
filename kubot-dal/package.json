@@ -10,12 +10,29 @@
   "devDependencies": {
     "@types/mongodb": "^3.0.15",
     "@types/node": "^6.0.87",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-rimraf": "^0.2.2",
-    "gulp-typescript": "^4.0.2"
+    "generate-package-json-webpack-plugin": "^1.0.0",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^4.2.0",
+    "typescript": "^2.8.3",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15"
   },
   "dependencies": {
     "mongodb": "^3.0.7"
+  },
+  "scripts": {
+    "build": "webpack",
+    "clean": "rimraf build"
+  },
+  "-vs-binding": {
+    "BeforeBuild": [
+      "clean"
+    ],
+    "AfterBuild": [
+      "build"
+    ],
+    "Clean": [
+      "clean"
+    ]
   }
 }
