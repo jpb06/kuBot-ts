@@ -1,4 +1,5 @@
-﻿import { PrivateConfig } from './private.config.local'
+﻿import { PrivateConfig } from './private.config.local';
+import * as Dal from 'kubot-dal';
 
 export abstract class PrivateSettings {
 
@@ -6,7 +7,6 @@ export abstract class PrivateSettings {
         process.env['apiKey'] = PrivateConfig.apiKey;
         process.env['botId'] = PrivateConfig.botId;
         process.env['discogcAuthPostData'] = PrivateConfig.discogcAuthPostData;
-        process.env['mongodbUrl'] = PrivateConfig.mongodbUrl;
-        process.env['mongodbBase'] = PrivateConfig.mongodbBase;
+        Dal.Configuration.Setup(PrivateConfig.mongodbUrl, PrivateConfig.mongodbBase);
     }
 }

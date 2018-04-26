@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6db0e2f6-df00-474e-93ff-b9391ff233cd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>deploy\bot.js</StartupFile>
+    <StartupFile>dist\bot.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -126,7 +126,6 @@
     <TypeScriptCompile Include="sources\types\business.types.validation.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="deploy\" />
     <Folder Include="guildsConfiguration\" />
     <Folder Include="sources\" />
     <Folder Include="sources\businesslogic\httprequests\" />

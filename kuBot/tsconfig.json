@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es6",
     "sourceMap": true,
-    "outDir": "./deploy",
+    "outDir": "./dist",
     "strictNullChecks": true,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -11,8 +11,10 @@
   },
   "compileOnSave": false,
   "buildOnSave": false,
+  "include": [
+    "sources/**/*"
+  ],
   "exclude": [
-    "node_modules",
-    "platforms"
+    "node_modules"
   ]
 }

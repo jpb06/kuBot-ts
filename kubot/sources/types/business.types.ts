@@ -1,4 +1,4 @@
-﻿import { WatchedPlayer } from './../../../kubot-dal/sources/types/persisted.types';
+﻿import * as Dal from 'kubot-dal';
 
 export interface ScannedFaction {
     name: string;
@@ -7,6 +7,6 @@ export interface ScannedFaction {
 
 export interface ScannedRegion {
     name: string;
-    watchedPlayers: WatchedPlayer[];
+    watchedPlayers: Dal.Types.WatchedPlayer[];
     playersCount: number;
 }
