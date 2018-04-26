@@ -1,5 +1,7 @@
 ﻿import { MongoClient }  from 'mongodb';
 
+import { DalConfiguration } from './../../../configuration/dal.configuration';
+
 export abstract class GenericStore {
 
     public static async createOrUpdate(
@@ -7,10 +9,12 @@ export abstract class GenericStore {
         term: object,
         value: object
     ): Promise<boolean> {
-        const client = await MongoClient.connect(process.env['mongodbUrl']);
-        let db = client.db(process.env['mongodbBase']);
+        DalConfiguration.Verify();
 
+        const client = await MongoClient.connect(DalConfiguration.url);
+        
         try {
+            let db = client.db(DalConfiguration.database);
             let collection = db.collection(collectionName);
 
             await collection.findOneAndUpdate(term, value, { upsert: true });
@@ -26,16 +30,18 @@ export abstract class GenericStore {
         term: object,
         values: Array<object>
     ): Promise<boolean> {
-        const client = await MongoClient.connect(process.env['mongodbUrl']);
-        let db = client.db(process.env['mongodbBase']);
+        DalConfiguration.Verify();
 
+        const client = await MongoClient.connect(DalConfiguration.url);
+        
         try {
+            let db = client.db(DalConfiguration.database);
             let collection = db.collection(collectionName);
 
             await collection.deleteMany(term);
             await collection.insertMany(values);
 
-            return true;
+            return false;
         } finally {
             client.close();
         }
@@ -51,11 +57,14 @@ export abstract class GenericStore {
     public static async getAll(
         collectionName: string
     ): Promise<Array<object>> {
-        const client = await MongoClient.connect(process.env['mongodbUrl']);
-        let db = client.db(process.env['mongodbBase']);
+        DalConfiguration.Verify();
 
+        const client = await MongoClient.connect(DalConfiguration.url);
+        
         try {
+            let db = client.db(DalConfiguration.database);
             let collection = db.collection(collectionName);
+
             const result = await collection.find().toArray();
 
             return result;
@@ -69,11 +78,14 @@ export abstract class GenericStore {
         term: object,
         sort: object
     ): Promise<Array<object>> {
-        const client = await MongoClient.connect(process.env['mongodbUrl']);
-        let db = client.db(process.env['mongodbBase']);
+        DalConfiguration.Verify();
 
+        const client = await MongoClient.connect(DalConfiguration.url);
+        
         try {
+            let db = client.db(DalConfiguration.database);
             let collection = db.collection(collectionName);
+
             const result = await collection
                 .find(term)
                 .sort(sort)
@@ -89,10 +101,12 @@ export abstract class GenericStore {
         collectionName: string,
         term: object
     ): Promise<boolean> {
-        const client = await MongoClient.connect(process.env['mongodbUrl']);
-        let db = client.db(process.env['mongodbBase']);
+        DalConfiguration.Verify();
 
+        const client = await MongoClient.connect(DalConfiguration.url);
+        
         try {
+            let db = client.db(DalConfiguration.database);
             let collection = db.collection(collectionName);
 
             let result = await collection.deleteOne(term);
