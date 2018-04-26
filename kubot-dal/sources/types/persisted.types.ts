@@ -1,12 +1,12 @@
 ﻿/* ---------------------------------------------------------------------------------------------------------------
    Activity Cache
    ---------------------------------------------------------------------------------------------------------------*/
-export interface ActivityCacheItem {
+export class ActivityCacheItem {
     name: string;
     playersCount: number;
 }
 
-export interface GuildActivityCache {
+export class GuildActivityCache {
     guildId: string;
     lastMessageId: string;
     cache: Array<ActivityCacheItem>;
@@ -15,7 +15,7 @@ export interface GuildActivityCache {
 /* ---------------------------------------------------------------------------------------------------------------
    Guild Configuration
    ---------------------------------------------------------------------------------------------------------------*/
-export interface GuildConfiguration {
+export class GuildConfiguration {
     guildId: string;
     messagesImage: string;
     messagesFooterName: string;
@@ -30,7 +30,7 @@ export interface GuildConfiguration {
 /* ---------------------------------------------------------------------------------------------------------------
    Last Fetch
    ---------------------------------------------------------------------------------------------------------------*/
-export interface LastFetch {
+export class LastFetch {
     target: string;
     date: string;
 }
@@ -38,7 +38,7 @@ export interface LastFetch {
 /* ---------------------------------------------------------------------------------------------------------------
    Online Player
    ---------------------------------------------------------------------------------------------------------------*/
-export interface OnlinePlayer {
+export class OnlinePlayer {
     Time: string;
     Name: string;
     System: string;
@@ -49,28 +49,28 @@ export interface OnlinePlayer {
 /* ---------------------------------------------------------------------------------------------------------------
    Watched Faction
    ---------------------------------------------------------------------------------------------------------------*/
-export interface WatchedFaction {
-    guildId: string,
-    name: string,
-    tags: Array<string>,
-    alwaysDisplay: boolean
+export class WatchedFaction {
+    guildId: string;
+    name: string;
+    tags: Array<string>;
+    alwaysDisplay: boolean;
 }
 
 /* ---------------------------------------------------------------------------------------------------------------
    Watched Player
    ---------------------------------------------------------------------------------------------------------------*/
-export interface WatchedPlayer {
-    guildId: string,
-    name: string,
-    comment: string
+export class WatchedPlayer {
+    guildId: string;
+    name: string;
+    comment: string;
 }
 
 /* ---------------------------------------------------------------------------------------------------------------
    Watched Region
    ---------------------------------------------------------------------------------------------------------------*/
-export interface WatchedRegion {
-    guildId: string,
-    name: string,
-    systems: Array<string>,
-    alwaysDisplay: boolean
+export class WatchedRegion {
+    guildId: string;
+    name: string;
+    systems: Array<string>;
+    alwaysDisplay: boolean;
 }
