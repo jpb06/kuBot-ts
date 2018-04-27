@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "kuBot", "kuBot.njsproj", "{6DB0E2F6-DF00-474E-93FF-B9391FF233CD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C0E9EEB-1AFB-4B23-9C32-810D03F252C8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "kubot", "kubot\kubot.njsproj", "{6DB0E2F6-DF00-474E-93FF-B9391FF233CD}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "kubot-config-website", "kubot-config-website\kubot-config-website.njsproj", "{76BDCD81-CBC5-41E7-BD9E-5AC90A8E7D82}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "kubot-dal", "kubot-dal\kubot-dal.njsproj", "{09CF3C54-5998-47AF-8C82-D5ECEED2DFB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,14 @@ Global
 		{6DB0E2F6-DF00-474E-93FF-B9391FF233CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DB0E2F6-DF00-474E-93FF-B9391FF233CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DB0E2F6-DF00-474E-93FF-B9391FF233CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76BDCD81-CBC5-41E7-BD9E-5AC90A8E7D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76BDCD81-CBC5-41E7-BD9E-5AC90A8E7D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76BDCD81-CBC5-41E7-BD9E-5AC90A8E7D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76BDCD81-CBC5-41E7-BD9E-5AC90A8E7D82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09CF3C54-5998-47AF-8C82-D5ECEED2DFB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09CF3C54-5998-47AF-8C82-D5ECEED2DFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09CF3C54-5998-47AF-8C82-D5ECEED2DFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09CF3C54-5998-47AF-8C82-D5ECEED2DFB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

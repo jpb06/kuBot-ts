@@ -1,0 +1,37 @@
+﻿doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='css/custom.css')
+    link(rel='stylesheet', href='materialdesignicons/material-icons.css')
+    script(src='jquery/jquery.min.js')
+    script(src='bootstrap/js/bootstrap.min.js')
+  body
+    nav(class='navbar navbar-expand-sm navbar-dark bg-dark')
+        a(class='navbar-brand' href='/') 
+            i(class='material-icons vertical-align-sub md-36') settings_applications 
+            span kuBot
+        button(
+            class='navbar-toggler' 
+            type='button' 
+            data-toggle='collapse' 
+            data-target='#navbarNav' 
+            aria-controls='navbarNav' 
+            aria-expanded='false' 
+            aria-label='Toggle navigation'
+        )
+            span(class='navbar-toggler-icon')
+
+        div(class='collapse navbar-collapse' id='navbarNav')
+            ul(class='navbar-nav mr-auto')
+                li(class='nav-item active')
+                    a(class='nav-link' href="/guildconfig") Guild configuration generator
+                        span(class='sr-only') (current)
+    
+    div(class='container-fluid margin-top-15')
+        nav(aria-label='breadcrumb')
+            ol(class='breadcrumb')
+                li(class='breadcrumb-item active' aria-current='page') #{title}
+
+        block content
