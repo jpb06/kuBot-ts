@@ -38,10 +38,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="dist\package.json">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="dist\README.md" />
     <Content Include="package-lock.json" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json">
@@ -49,7 +45,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="dist\" />
     <Folder Include="sources\configuration\" />
     <Folder Include="sources\" />
     <Folder Include="sources\manipulation\mongodb\" />
