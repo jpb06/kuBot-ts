@@ -1,8 +1,8 @@
 {
-  "name": "ku-bot-ts",
+  "name": "kubot-ts",
   "version": "0.0.0",
   "description": "kuBot",
-  "main": "deploy/bot.js",
+  "main": "dist/bot.js",
   "author": {
     "name": "jpb"
   },
