@@ -287,6 +287,9 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-# Custom
-deploy/
-sources/configuration/private.config.local.ts
+# Custom kubot project
+kubot/dist
+kubot/sources/configuration/private.config.local.ts
+# Custom kubot-dal project
+kubot-dal/dist/js
+kubot-dal/dist/typings

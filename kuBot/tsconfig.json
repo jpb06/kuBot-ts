@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "include": [
+    "sources/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
