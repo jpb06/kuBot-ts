@@ -15,6 +15,7 @@ export abstract class ClientReadyEvent {
 
             await GuildConfigurationService.Initialize(client);
 
+            CyclicActivityNotice.Stop();
             await CyclicActivityNotice.Start(client);
 
             // let link = generateInviteLink(client);
