@@ -12,6 +12,8 @@ export abstract class GuildConfigurationService {
     public static async Initialize(
         client: Client
     ): Promise<void> {
+        this.guildsSettings = [];
+
         let persistedParams = await Dal.Manipulation.GuildsStore.getAll();
 
         client.guilds.forEach(async (guild) => {
