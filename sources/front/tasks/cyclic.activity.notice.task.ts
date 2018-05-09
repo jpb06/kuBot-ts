@@ -1,4 +1,4 @@
-﻿import { Client, TextChannel } from 'discord.js';
+﻿import { Client, TextChannel, GuildChannel } from 'discord.js';
 import * as Schedule from 'node-schedule';
 import * as Dal from 'kubot-dal';
 
@@ -24,7 +24,6 @@ export abstract class CyclicActivityNotice {
             rule.minute = new Schedule.Range(0, 59, 30);
 
             this.job = Schedule.scheduleJob(rule, async () => {
-
                 this.onlinePlayers = await OnlinePlayersService.GetList();
                 this.watchedFactions = await Dal.Manipulation.FactionWatchStore.getAll();
                 this.watchedRegions = await Dal.Manipulation.RegionWatchStore.getAll();
@@ -44,13 +43,16 @@ export abstract class CyclicActivityNotice {
                         let cachedActivity = activityCache.find(cache => cache.guildId === guildConfiguration.guildId);
                         let similar = await this.CompareActivity(cachedActivity, currentActivity);
 
-                        
+
                         if (currentActivity.length > 0 && !similar) {
                             let guild = client.guilds.find(guild => guild.id === guildConfiguration.guildId);
                             if (guild !== undefined) {
-                                let emergencyChannel = guild.channels.find(channel => channel.name === guildConfiguration.emergencyChannelName && channel.type === 'text');
-                                if (emergencyChannel !== undefined) {
-                                    messageId = await this.ReportActivity(cachedActivity, <TextChannel>emergencyChannel, currentActivity);
+                                let emergencyChannel: GuildChannel = guild.channels.find(channel => channel.name === guildConfiguration.emergencyChannelName && channel.type === 'text');
+                                if (emergencyChannel !== undefined && emergencyChannel instanceof TextChannel) {
+                                    messageId = await this.ReportActivity(cachedActivity, emergencyChannel, currentActivity);
+                                } else {
+                                    console.log(`couldn't locate emergency for:${guildConfiguration.guildId}`);
+                                    console.log(guild.channels);
                                 }
                             }
                         }
@@ -71,7 +73,9 @@ export abstract class CyclicActivityNotice {
     }
 
     public static Stop(): void {
-        this.job.cancel();
+        if (this.job instanceof Schedule.Job) {
+            this.job.cancel();
+        }
     }
 
     private static async AsyncForEach(
