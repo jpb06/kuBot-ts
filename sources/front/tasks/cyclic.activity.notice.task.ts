@@ -24,8 +24,6 @@ export abstract class CyclicActivityNotice {
             rule.minute = new Schedule.Range(0, 59, 30);
 
             this.job = Schedule.scheduleJob(rule, async () => {
-                console.log(`started new task (${client.uptime})`);
-
                 this.onlinePlayers = await OnlinePlayersService.GetList();
                 this.watchedFactions = await Dal.Manipulation.FactionWatchStore.getAll();
                 this.watchedRegions = await Dal.Manipulation.RegionWatchStore.getAll();
@@ -76,7 +74,6 @@ export abstract class CyclicActivityNotice {
 
     public static Stop(): void {
         if (this.job instanceof Schedule.Job) {
-            console.log('stopping task');
             this.job.cancel();
         }
     }

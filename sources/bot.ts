@@ -15,7 +15,6 @@ const client = new Discord.Client({
 });
 
 client.on('ready', async () => {
-    console.log(`entered ready (${client.uptime})`);
     await ClientReadyEvent.React(client);
 });
 client.on('guildCreate', async (guild) => {
@@ -28,7 +27,6 @@ client.on('message', async (message) => {
     await MessageEvent.React(message, client.user.username, client.user.avatarURL);
 });
 client.on('error', async (error) => {
-    console.log(`entered error (${client.uptime})`);
     await GlobalErrorEvent.React(error);
 });
 client.login(process.env['apiKey']);
