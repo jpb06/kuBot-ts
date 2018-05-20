@@ -12,10 +12,7 @@ export abstract class GuildDeleteEvent {
         try {
             console.log(`Removed from: ${guild.name} (id: ${guild.id})`);
 
-            GuildConfigurationService.guildsSettings = GuildConfigurationService.guildsSettings.filter(guildConfig => guildConfig.guildId !== guild.id);
-
-            await Dal.Manipulation.GuildsStore.remove(guild.id);
-            
+            GuildConfigurationService.remove(guild.id);
         } catch (err) {
             await ErrorsLogging.Save(err);
         }

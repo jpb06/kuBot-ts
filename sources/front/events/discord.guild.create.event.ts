@@ -31,7 +31,11 @@ export abstract class GuildCreateEvent {
         try {
             console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
-            if (GuildConfigurationService.guildsSettings.filter(configuredGuild => configuredGuild.guildId === guild.id).length === 0) {
+            let persitedGuildSettings: Dal.Types.GuildConfiguration[] = await Dal.Manipulation.GuildsStore.getAll();
+
+            let joinerSettings = persitedGuildSettings.filter(guildSettings => guildSettings.guildId === guild.id);
+
+            if (joinerSettings.length === 0) {
                 let defaultSettings = this.GetDefaultSettings(guild.id);
 
                 await Dal.Manipulation.GuildsStore.set(defaultSettings);
@@ -46,10 +50,9 @@ export abstract class GuildCreateEvent {
                     acknowledged: defaultSettings.acknowledged,
                     activityNoticeMinPlayers: defaultSettings.activityNoticeMinPlayers
                 });
-            }
-            else {
-                throw new Error('The configuration for this guild already exists');
-            }
+            } else if (joinerSettings.length === 1) {
+                GuildConfigurationService.guildsSettings.push(joinerSettings[0]);
+            } 
         } catch (err) {
             await ErrorsLogging.Save(err);
         }
