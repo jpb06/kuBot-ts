@@ -91,6 +91,12 @@ export abstract class GuildConfigurationService {
         return true;
     }
 
+    public static remove(
+        guildId: string
+    ): void {
+        this.guildsSettings = this.guildsSettings.filter(guildConfig => guildConfig.guildId !== guildId);
+    }
+
     private static CheckChannel(
         name: string,
         channels: GuildChannel[]
