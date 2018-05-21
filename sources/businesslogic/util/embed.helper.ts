@@ -361,7 +361,7 @@ export class EmbedHelper {
         name: string,
         quantity: number
     ): string {
-        if (quantity > 1) {
+        if (quantity == 0 || quantity > 1) {
             return name + 's';
         } else {
             return name;
