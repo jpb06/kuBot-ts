@@ -23,6 +23,15 @@ export abstract class DiscoveryGCRequests {
         cookies: string[]
     ): Promise<string> {
         return new Promise<string>((resolve, reject) => {
+
+            // mybb 1.8.16 update issue is forcing me to forge a request, entirely bypassing authentication
+            cookies =[
+                'mybb[lastactive]=1531947631;',
+                'mybb[lastvisit]=1531939536;',
+                'mybbuser=' + process.env['discogcAccountUserId'] + ';',
+                'sid=' + process.env['discogcSessionId'] + '; HttpOnly; Secure'
+            ];
+
             const request = https.request(RequestOptions.OnlinePlayersRequestOptions(cookies), (response) => {
                 let buffer: any[] = [];
 

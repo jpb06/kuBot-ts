@@ -11,8 +11,8 @@ export abstract class OnlinePlayersService {
 
         // request threshold to discogc = 2 minutes 
         if (!lastFetch || moment(lastFetch.date).add(2, 'm').isBefore(now)) {
-            let cookies = await DiscoveryGCRequests.Auth();
-            let data = await DiscoveryGCRequests.OnlinePlayers(cookies);
+            //let cookies = await DiscoveryGCRequests.Auth();
+            let data = await DiscoveryGCRequests.OnlinePlayers([]);//cookies);
 
             // ??? why escaped quotes
             let cleaned = '';

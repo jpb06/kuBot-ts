@@ -7,6 +7,8 @@ export abstract class PrivateSettings {
         process.env['apiKey'] = PrivateConfig.apiKey;
         process.env['botId'] = PrivateConfig.botId;
         process.env['discogcAuthPostData'] = PrivateConfig.discogcAuthPostData;
+        process.env['discogcAccountUserId'] = PrivateConfig.discogcAccountUserId;
+        process.env['discogcSessionId'] = PrivateConfig.discogcSessionId;
         Dal.Configuration.Setup(PrivateConfig.mongodbUrl, PrivateConfig.mongodbBase);
     }
 }
