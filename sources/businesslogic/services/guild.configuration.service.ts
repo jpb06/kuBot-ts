@@ -44,7 +44,14 @@ export abstract class GuildConfigurationService {
         json: string
     ): Promise<boolean> {
 
-        let parsed = JSON.parse(json);
+        let parsed: any = null;
+        try {
+            parsed = JSON.parse(json);
+        } catch (parsingError) {
+            let error = new Error(`Failed to parse JSON:\n${parsingError.message}`);
+            error.name = 'Custom';
+            throw error;
+        }
 
         let validationErrors = GuildConfigurationValidator.VerifyGuildConfig(parsed);
 

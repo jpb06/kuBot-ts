@@ -1,0 +1,201 @@
+{
+    "factions": [{
+            "identifier": "knf",
+            "name": "Naval Forces",
+            "tags": [
+                "[KNF]",
+                "IKN-",
+                "KDS-",
+                "Serpent-"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "bd",
+            "name": "Blood Dragons",
+            "tags": [
+                "BD|",
+                "n~}",
+                "KA|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "ksp",
+            "name": "State Police",
+            "tags": [
+                "[KSP]"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "gc",
+            "name": "Golden Chrysanthemums",
+            "tags": [
+                "GC|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "kishiro",
+            "name": "Kishiro",
+            "tags": [
+                "Kishiro|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "samura",
+            "name": "Samura",
+            "tags": [
+                "Samura|-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "hogosha",
+            "name": "Hogosha",
+            "tags": [
+                "[HA]"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "aoi",
+            "name": "Hanta Iseijin 113th",
+            "tags": [
+                "|Aoi"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "corsairs",
+            "name": "Corsairs",
+            "tags": [
+                "C::",
+                "[TBH]",
+                "CNS-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "defilers",
+            "name": "Defilers",
+            "tags": [
+                "Defiler."
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "lanehackers",
+            "name": "Lane Hackers",
+            "tags": [
+                "LH~"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "toyota",
+            "name": "Casa Loyola",
+            "tags": [
+                "Loyola"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "outcasts",
+            "name": "Outcasts",
+            "tags": [
+                "(C~",
+                "MNS-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "mercs",
+            "name": "Mercenaries",
+            "tags": [
+                "Forlorn|-"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+			"identifier": "rm",
+            "name": "Rheinland Forces",
+            "tags": [
+                "[RM]",
+				"RNC-"
+            ],
+            "alwaysDisplay": false
+		}
+    ],
+    "regions": [{
+            "identifier": "kusari",
+            "name": "Kusari",
+            "systems": [
+                "Nagano",
+                "Chugoku",
+                "Tohoku",
+                "Rishiri",
+                "Tottori",
+                "Hokkaido",
+                "Hiroshima",
+                "New Tokyo",
+                "Honshu",
+                "Kyushu",
+                "Shikoku"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "libertyborder",
+            "name": "Liberty border",
+            "systems": [
+                "Kepler",
+                "Galileo"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "taus",
+            "name": "Taus",
+            "systems": [
+                "Tau-29",
+                "Tau-37",
+                "Tau-23",
+                "Tau-44"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "sigmas",
+            "name": "Sigmas",
+            "systems": [
+                "Sigma-19",
+                "Sigma-13",
+                "Sigma-21",
+                "Sigma-17",
+                "Okinawa"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "uncharted",
+            "name": "Unknown space",
+            "systems": [
+                "Uncharted Kusari"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+  "guildSettings": {
+    "messagesImage": "https://i.imgur.com/V16L8i9.jpg",
+    "messagesFooterName": "Kusari Kaigun",
+    "scanMainRegionName": "House Kusari",
+    "acknowledged": "Ryoukai!",
+    "mainChannelName": "bots",
+    "adminChannelName": "admiralty",
+    "emergencyChannelName": "emergency",
+    "activityNoticeMinPlayers": 3
+  }
+}
