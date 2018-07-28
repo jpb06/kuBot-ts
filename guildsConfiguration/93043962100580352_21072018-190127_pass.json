@@ -126,6 +126,7 @@
             "name": "Rheinland Forces",
             "tags": [
                 "[RM]",
+				"BDM|",
 				"RNC-"
             ],
             "alwaysDisplay": false
