@@ -28,7 +28,7 @@ export abstract class MessageEvent {
             let textChannel = <TextChannel>message.channel;
             EmbedHelper.Setup(textChannel, guildSettings, botUsername, botAvatarUrl);
 
-            if (message.content.startsWith('!')) {
+            if (message.content.startsWith(guildSettings.commandsPrefix)) {
                 let messageChunks = message.content.slice(1).trim().split(/ +/g);
                 let command = messageChunks[0].toLowerCase();
                 
