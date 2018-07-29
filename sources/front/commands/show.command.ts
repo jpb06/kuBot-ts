@@ -10,13 +10,14 @@ export abstract class ShowCommand {
 
     public static async Process(
         args: string,
-        guildId: string
+        guildId: string,
+        commandsPrefix: string
     ): Promise<void> {
         try {
             let errors = ArgumentsValidation.CheckShowArgs(args);
 
             if (errors.length > 0) {
-                EmbedHelper.SendValidationError(CommandsDescription.ShowUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.ShowUsage(commandsPrefix), errors);
             } else {
                 if (args === 'players' || args === 'p') {
                     await this.ProcessPlayers(guildId);

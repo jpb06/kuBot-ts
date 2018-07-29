@@ -10,12 +10,13 @@ export abstract class Quoting {
     public static async ProcessMessage(
         args: string[],
         message: Message,
+        commandsPrefix: string
     ): Promise<void> {
         try {
             let errors = ArgumentsValidation.CheckQuoteMessageArgs(args);
 
             if (errors.length > 0) {
-                EmbedHelper.SendValidationError(CommandsDescription.QuoteUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.QuoteUsage(commandsPrefix), errors);
             } else {
                 if (message.channel.type === 'text') {
                     let messageToQuote = await message.channel.fetchMessage(args[0]);
@@ -33,13 +34,14 @@ export abstract class Quoting {
 
     public static async ProcessText(
         text: string,
-        authorName: string
+        authorName: string,
+        commandsPrefix: string
     ): Promise<void> {
         try {
             let errors = ArgumentsValidation.CheckQuoteTextArgs(text);
 
             if (errors.length > 0) {
-                EmbedHelper.SendValidationError(CommandsDescription.QuoteTextUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.QuoteTextUsage(commandsPrefix), errors);
             } else {
                 EmbedHelper.SendQuoteText(authorName, text);
             }
@@ -51,7 +53,8 @@ export abstract class Quoting {
 
     public static async ProcessEmbed(
         args: string,
-        authorName: string
+        authorName: string,
+        commandsPrefix: string
     ): Promise<void> {
         try {
 
@@ -71,7 +74,7 @@ export abstract class Quoting {
             let errors = ArgumentsValidation.CheckEmbedArgs(content);
 
             if (errors.length > 0) {
-                EmbedHelper.SendValidationError(CommandsDescription.EmbedUsage(), errors);
+                EmbedHelper.SendValidationError(CommandsDescription.EmbedUsage(commandsPrefix), errors);
             } else {
                 EmbedHelper.SendEmbed(authorName, content[0], content[1]);
             }

@@ -4,18 +4,18 @@ import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export abstract class HelpCommand {
-    public static async Send(): Promise<void> {
+    public static async Send(commandsPrefix: string): Promise<void> {
         try {
-            EmbedHelper.SendHelpResponse();
+            EmbedHelper.SendHelpResponse(commandsPrefix);
         } catch (error) {
             await ErrorsLogging.Save(error);
             EmbedHelper.Error();
         }
     }
 
-    public static async SendAdmin(): Promise<void> {
+    public static async SendAdmin(commandsPrefix: string): Promise<void> {
         try {
-            EmbedHelper.SendHelpAdminResponse();
+            EmbedHelper.SendHelpAdminResponse(commandsPrefix);
         } catch (error) {
             await ErrorsLogging.Save(error);
             EmbedHelper.Error();
