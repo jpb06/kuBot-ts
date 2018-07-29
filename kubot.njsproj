@@ -37,7 +37,16 @@
     <Content Include="guildsConfiguration\350303355014479874.json" />
     <Content Include="guildsConfiguration\354940463318564864.json" />
     <Content Include="guildsConfiguration\408471167683264513.json" />
+    <Content Include="guildsConfiguration\416985551431008258.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="guildsConfiguration\426814330856669185_26072018-230856_pass.json" />
+    <Content Include="guildsConfiguration\453625936445964289.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="guildsConfiguration\469937138121703424.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="guildsConfiguration\93043962100580352_21072018-190127_pass.json" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />

@@ -7,14 +7,14 @@
     "name": "jpb"
   },
   "devDependencies": {
-    "@types/node": "^6.0.111",
+    "@types/node": "^6.0.114",
     "@types/node-schedule": "^1.2.2"
   },
   "dependencies": {
     "bufferutil": "^3.0.5",
     "discord.js": "^11.3.2",
-    "kubot-dal": "^1.1.43",
-    "moment": "^2.22.1",
+    "kubot-dal": "^1.1.45",
+    "moment": "^2.22.2",
     "node-schedule": "^1.3.0"
   }
 }
