@@ -29,7 +29,7 @@ export abstract class MessageEvent {
             EmbedHelper.Setup(textChannel, guildSettings, botUsername, botAvatarUrl);
 
             if (message.content.startsWith(guildSettings.commandsPrefix)) {
-                let messageChunks = message.content.slice(1).trim().split(/ +/g);
+                let messageChunks = message.content.slice(guildSettings.commandsPrefix.length).trim().split(/ +/g);
                 let command = messageChunks[0].toLowerCase();
                 
                 /* ------------------------------------------------------------------------------------------- 
@@ -37,7 +37,7 @@ export abstract class MessageEvent {
                 if (textChannel.name === guildSettings.mainChannelName || textChannel.name === guildSettings.adminChannelName) {
 
                     if (command === 'help') { /* help command | !help */
-                        await HelpCommand.Send();
+                        await HelpCommand.Send(guildSettings.commandsPrefix);
                     }
                     if (command === 'scan') { /* scan command | !scan */
                         await ScanCommand.Process(message.guild.id);
@@ -64,7 +64,7 @@ export abstract class MessageEvent {
                         return;
                     }
                     if (command === 'help') { /* help command | !help */
-                        await HelpCommand.SendAdmin();
+                        await HelpCommand.SendAdmin(guildSettings.commandsPrefix);
                         return;
                     }
                 }
