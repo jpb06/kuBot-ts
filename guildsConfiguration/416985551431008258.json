@@ -1,0 +1,13 @@
+﻿{
+  "_id": "5b2cb9108ebdadbf21030f04",
+  "guildId": "416985551431008258",
+  "messagesImage": "https://i.imgur.com/5L7T68j.png",
+  "messagesFooterName": "kuBot",
+  "scanMainRegionName": "Sirius Sector",
+  "acknowledged": "Understood!",
+  "mainChannelName": "bots",
+  "adminChannelName": "admin",
+  "emergencyChannelName": "emergency",
+  "activityNoticeMinPlayers": 3,
+  "commandsPrefix": "!"
+}

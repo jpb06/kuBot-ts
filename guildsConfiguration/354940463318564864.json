@@ -154,6 +154,7 @@
     "mainChannelName": "signals-intelligence",
     "adminChannelName": "admin",
     "emergencyChannelName": "signals-intelligence",
-    "activityNoticeMinPlayers": 3
+    "activityNoticeMinPlayers": 3,
+    "commandsPrefix": "!"
   }
 }

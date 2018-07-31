@@ -9,13 +9,14 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 
 export async function AdminRemove(
     args: string[],
-    guildId: string
+    guildId: string,
+    commandsPrefix: string
 ): Promise<void> {
     try {
         let validationErrors = ArgumentsValidation.CheckAdminRemoveArgs(args);
 
         if (validationErrors.length > 0) {
-            EmbedHelper.SendValidationError(CommandsDescription.AdminRemoveUsage(), validationErrors);
+            EmbedHelper.SendValidationError(CommandsDescription.AdminRemoveUsage(commandsPrefix), validationErrors);
         } else {
             let result = false;
             let type = '';

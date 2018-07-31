@@ -19,7 +19,8 @@ export abstract class GuildCreateEvent {
             mainChannelName: 'bots',
             adminChannelName: 'admin',
             emergencyChannelName: 'emergency',
-            activityNoticeMinPlayers: 3
+            activityNoticeMinPlayers: 3,
+            commandsPrefix:'!'
         };
 
         return defaultSettings;
@@ -48,7 +49,8 @@ export abstract class GuildCreateEvent {
                     messagesImage: defaultSettings.messagesImage,
                     messagesFooterName: defaultSettings.messagesFooterName,
                     acknowledged: defaultSettings.acknowledged,
-                    activityNoticeMinPlayers: defaultSettings.activityNoticeMinPlayers
+                    activityNoticeMinPlayers: defaultSettings.activityNoticeMinPlayers,
+                    commandsPrefix: defaultSettings.commandsPrefix
                 });
             } else if (joinerSettings.length === 1) {
                 GuildConfigurationService.guildsSettings.push(joinerSettings[0]);

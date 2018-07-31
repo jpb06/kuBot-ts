@@ -1,0 +1,166 @@
+{
+  "factions": [
+    {
+      "identifier": "harmony",
+      "name": "Battlegroup Harmony",
+      "tags": [
+        "H|-",
+        "SNS-"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "identifier": "noms",
+      "name": "Nomads",
+      "tags": [
+        "K'Hara",
+        "Vagrant",
+        "Wilde",
+        "|Aoi"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "ln",
+      "name": "Liberty Navy",
+      "tags": [
+        "[LN]",
+        "LNS-",
+        "5th|",
+        "6th|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "lanehackers",
+      "name": "Lane Hackers",
+      "tags": [
+        "LH~"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "order",
+      "name": "The Order",
+      "tags": [
+        "Order|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "hellfire",
+      "name": "Hellfire Legion",
+      "tags": [
+        "[HF]"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "ageira",
+      "name": "Ageira Innovations",
+      "tags": [
+        "Ageira~"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "lr",
+      "name": "Liberty Rogues",
+      "tags": [
+        "LR-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "lpi",
+      "name": "Liberty Police Incorporated",
+      "tags": [
+        "LPI-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "lsf",
+      "name": "Liberty Security Force",
+      "tags": [
+        "=LSF="
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "xenos",
+      "name": "Xenos",
+      "tags": [
+        "XA-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "za",
+      "name": "Zoner Marines",
+      "tags": [
+        "<ZA>"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "identifier": "onioners",
+      "name": "Unioners",
+      "tags": [
+        "UN|"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
+  "regions": [
+    {
+      "identifier": "home",
+      "name": "Bering",
+      "systems": [
+        "Bering"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "identifier": "sur-sys",
+      "name": "Surrounding systems",
+      "systems": [
+        "Hudson",
+        "Puerto Rico",
+        "Hamburg",
+        "Texas"
+      ],
+      "alwaysDisplay": false
+    },
+
+    {
+      "identifier": "liberty",
+      "name": "Liberty",
+      "systems": [
+        "Alberta",
+        "Colorado",
+        "Alaska",
+        "Ontario",
+        "New York",
+        "Virginia",
+        "New Hampshire",
+        "California",
+        "Pennsylvania",
+        "Kansas",
+        "Texas"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
+  "guildSettings": {
+    "messagesImage": "https://i.imgur.com/3PDZSvL.png",
+    "messagesFooterName": "Marshall Station",
+    "scanMainRegionName": "House Liberty",
+    "acknowledged": "Aye aye!",
+    "mainChannelName": "spyglass-scanner",
+    "adminChannelName": "admin",
+    "emergencyChannelName": "pre-warning",
+    "activityNoticeMinPlayers": 3,
+    "commandsPrefix": "!"
+  }
+}

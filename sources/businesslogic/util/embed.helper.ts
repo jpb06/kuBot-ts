@@ -59,24 +59,26 @@ export class EmbedHelper {
     }
 
     public static CommandsDescription(
-        embed: RichEmbed
+        embed: RichEmbed,
+        commandsPrefix: string
     ): RichEmbed {
         embed
-            .addField('!help', 'Displays the available commands list.\n')
-            .addField('!scan', 'Scans Sirius sector.\n')
-            .addField('!watch', 'Adds a player to the watch list.\n')
-            .addField('!show', 'Displays a watch list.\n')
-            .addField('!quote', 'Quotes one and only one message using its identifier.\n')
-            .addField('!quotetext', 'Quotes a text.\n')
-            .addField('!embed', 'Creates an embed using a title and a content message.\n');
+            .addField(commandsPrefix+'help', 'Displays the available commands list.\n')
+            .addField(commandsPrefix+'scan', 'Scans Sirius sector.\n')
+            .addField(commandsPrefix+'watch', 'Adds a player to the watch list.\n')
+            .addField(commandsPrefix+'show', 'Displays a watch list.\n')
+            .addField(commandsPrefix+'quote', 'Quotes one and only one message using its identifier.\n')
+            .addField(commandsPrefix+'quotetext', 'Quotes a text.\n')
+            .addField(commandsPrefix+'embed', 'Creates an embed using a title and a content message.\n');
 
         return embed;
     }
 
     public static CommandsDescriptionAdmin(
-        embed: RichEmbed
+        embed: RichEmbed,
+        commandsPrefix: string
     ): RichEmbed {
-        embed.addField('!remove', 'Removes a player or a faction from watch lists\n')
+        embed.addField(commandsPrefix+'remove', 'Removes a player or a faction from watch lists\n')
 
         return embed;
     }
@@ -337,20 +339,22 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Help command
        ---------------------------------------------------------------------------------------------------------------*/
-    public static SendHelpResponse(): void {
+    public static SendHelpResponse(commandsPrefix: string): void {
         this.channel.send({
             embed: this.CommandsDescription(
                 this.GenerateGeneric()
-                .setTitle('KuBot is monitoring Sirius Sector for you!')
-                .setDescription('I am doing my best to answer your requests. Please take a look at the following commands :')
+                    .setTitle('KuBot is monitoring Sirius Sector for you!')
+                    .setDescription('I am doing my best to answer your requests. Please take a look at the following commands :'),
+                commandsPrefix
             )
         });
     }
-    public static SendHelpAdminResponse(): void {
+    public static SendHelpAdminResponse(commandsPrefix: string): void {
         this.channel.send({
             embed: this.CommandsDescriptionAdmin(
                 this.GenerateGeneric()
-                    .setTitle('Admin commands')
+                    .setTitle('Admin commands'),
+                commandsPrefix
             )
         });
     }

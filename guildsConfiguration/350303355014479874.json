@@ -158,6 +158,7 @@
     "mainChannelName": "kubot",
     "adminChannelName": "kubotadmin",
     "emergencyChannelName": "kubot",
-    "activityNoticeMinPlayers": 3
+    "activityNoticeMinPlayers": 3,
+    "commandsPrefix": "!"
   }
 }

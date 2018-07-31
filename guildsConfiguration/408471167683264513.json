@@ -116,6 +116,7 @@
     "mainChannelName": "bot",
     "adminChannelName": "council-chamber",
     "emergencyChannelName": "emergency-channel",
-    "activityNoticeMinPlayers": 3
+    "activityNoticeMinPlayers": 3,
+    "commandsPrefix": "!"
   }
 }

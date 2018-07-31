@@ -24,7 +24,8 @@
             "identifier": "ksp",
             "name": "State Police",
             "tags": [
-                "[KSP]"
+                "[KSP]",
+				"(KSP)"
             ],
             "alwaysDisplay": false
         },
@@ -48,7 +49,8 @@
             "identifier": "samura",
             "name": "Samura",
             "tags": [
-                "Samura|-"
+                "Samura|-",
+				"TsuSec|"
             ],
             "alwaysDisplay": false
         },
@@ -124,6 +126,7 @@
             "name": "Rheinland Forces",
             "tags": [
                 "[RM]",
+				"BDM|",
 				"RNC-"
             ],
             "alwaysDisplay": false
@@ -196,6 +199,7 @@
     "mainChannelName": "bots",
     "adminChannelName": "admiralty",
     "emergencyChannelName": "emergency",
-    "activityNoticeMinPlayers": 3
+    "activityNoticeMinPlayers": 3,
+    "commandsPrefix": "!"
   }
 }

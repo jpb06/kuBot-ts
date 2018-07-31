@@ -28,8 +28,8 @@ export abstract class MessageEvent {
             let textChannel = <TextChannel>message.channel;
             EmbedHelper.Setup(textChannel, guildSettings, botUsername, botAvatarUrl);
 
-            if (message.content.startsWith('!')) {
-                let messageChunks = message.content.slice(1).trim().split(/ +/g);
+            if (message.content.startsWith(guildSettings.commandsPrefix)) {
+                let messageChunks = message.content.slice(guildSettings.commandsPrefix.length).trim().split(/ +/g);
                 let command = messageChunks[0].toLowerCase();
                 
                 /* ------------------------------------------------------------------------------------------- 
@@ -37,7 +37,7 @@ export abstract class MessageEvent {
                 if (textChannel.name === guildSettings.mainChannelName || textChannel.name === guildSettings.adminChannelName) {
 
                     if (command === 'help') { /* help command | !help */
-                        await HelpCommand.Send();
+                        await HelpCommand.Send(guildSettings.commandsPrefix);
                     }
                     if (command === 'scan') { /* scan command | !scan */
                         await ScanCommand.Process(message.guild.id);
@@ -45,12 +45,12 @@ export abstract class MessageEvent {
                     }
                     if (command === 'watch') { /* watch command | !watch <name> <comment> */
                         let args = messageChunks.splice(1);
-                        await Watch(args, message.guild.id);
+                        await Watch(args, message.guild.id, guildSettings.commandsPrefix);
                         return;
                     }
                     if (command === 'show') { /* show command | !show <term> */
                         let args = messageChunks.splice(1).join('');
-                        await ShowCommand.Process(args, message.guild.id);
+                        await ShowCommand.Process(args, message.guild.id, guildSettings.commandsPrefix);
                         return;
                     }
                 }
@@ -60,11 +60,11 @@ export abstract class MessageEvent {
                 if (textChannel.name === guildSettings.adminChannelName) {
                     if (command === 'remove') { /* remove command | !remove <target> <term> */
                         let args = messageChunks.splice(1);
-                        await AdminRemove(args, message.guild.id);
+                        await AdminRemove(args, message.guild.id, guildSettings.commandsPrefix);
                         return;
                     }
                     if (command === 'help') { /* help command | !help */
-                        await HelpCommand.SendAdmin();
+                        await HelpCommand.SendAdmin(guildSettings.commandsPrefix);
                         return;
                     }
                 }
@@ -73,20 +73,20 @@ export abstract class MessageEvent {
                 Every channel */
                 if (command === 'quote' || command === 'q') { /* quote command | !quote <identifier> */
                     let args = messageChunks.splice(1);
-                    await Quoting.ProcessMessage(args, message);
+                    await Quoting.ProcessMessage(args, message, guildSettings.commandsPrefix);
                     await message.delete();
                     return;
                 }
                 if (command === 'quotetext' || command === 'qt') { /*  quotetext command | !quotetext '<text>' */
                     let text = messageChunks.splice(1).join(' ');
-                    await Quoting.ProcessText(text, message.author.username);
+                    await Quoting.ProcessText(text, message.author.username, guildSettings.commandsPrefix);
                     await message.delete();
                     return;
                 }
                 if (command === 'embed' || command === 'e') { /*  embed command | !embed '<title>' '<text>' */
                     let args = messageChunks.splice(1).join(' ');
 
-                    await Quoting.ProcessEmbed(args, message.author.username);
+                    await Quoting.ProcessEmbed(args, message.author.username, guildSettings.commandsPrefix);
                     await message.delete();
                     return;
                 }

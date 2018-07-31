@@ -8,13 +8,14 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 
 export async function Watch(
     args: string[],
-    guildId: string
+    guildId: string,
+    commandsPrefix: string
 ): Promise<void> {
     try {
         let validation = ArgumentsValidation.CheckWatchArgs(args);
 
         if (validation.errors.length > 0) {
-            EmbedHelper.SendValidationError(CommandsDescription.WatchUsage(), validation.errors);
+            EmbedHelper.SendValidationError(CommandsDescription.WatchUsage(commandsPrefix), validation.errors);
         } else {
             let watchedFactions = await Dal.Manipulation.FactionWatchStore.get(guildId);
             let playerFactions = watchedFactions.filter(faction => faction.tags.some(tag => validation.args.player.includes(tag)));
