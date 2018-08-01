@@ -33,6 +33,7 @@ export abstract class GuildConfigurationService {
                 messagesFooterName: persistedGuildParams.messagesFooterName,
                 acknowledged: persistedGuildParams.acknowledged,
                 activityNoticeMinPlayers: persistedGuildParams.activityNoticeMinPlayers,
+                activityNoticeMessages: persistedGuildParams.activityNoticeMessages,
                 commandsPrefix: persistedGuildParams.commandsPrefix
 
             });
@@ -94,6 +95,7 @@ export abstract class GuildConfigurationService {
             messagesFooterName: parsed.guildSettings.messagesFooterName,
             acknowledged: parsed.guildSettings.acknowledged,
             activityNoticeMinPlayers: parsed.guildSettings.activityNoticeMinPlayers,
+            activityNoticeMessages: parsed.guildSettings.activityNoticeMessages,
             commandsPrefix: parsed.guildSettings.commandsPrefix
         };
 
