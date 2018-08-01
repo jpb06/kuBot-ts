@@ -159,6 +159,10 @@
     "adminChannelName": "kubotadmin",
     "emergencyChannelName": "kubot",
     "activityNoticeMinPlayers": 3,
+    "activityNoticeMessages": [
+      "An unusually high activity has been reported"
+    ],
     "commandsPrefix": "!"
+
   }
 }
