@@ -21,7 +21,7 @@ export abstract class CyclicActivityNotice {
     ): Promise<void> {
         try {
             let rule = new Schedule.RecurrenceRule();
-            rule.minute = new Schedule.Range(0, 59, 30);
+            rule.minute = new Schedule.Range(0, 59, 5);
 
             this.job = Schedule.scheduleJob(rule, async () => {
                 this.onlinePlayers = await OnlinePlayersService.GetList();
@@ -49,7 +49,10 @@ export abstract class CyclicActivityNotice {
                             if (guild !== undefined) {
                                 let emergencyChannel: GuildChannel = guild.channels.find(channel => channel.name === guildConfiguration.emergencyChannelName && channel.type === 'text');
                                 if (emergencyChannel !== undefined && emergencyChannel instanceof TextChannel) {
-                                    messageId = await this.ReportActivity(cachedActivity, emergencyChannel, currentActivity);
+                                    let messageIndex = Math.floor((Math.random() * guildConfiguration.activityNoticeMessages.length));
+                                    let message: string = guildConfiguration.activityNoticeMessages[messageIndex];
+
+                                    messageId = await this.ReportActivity(cachedActivity, emergencyChannel, currentActivity, message);
                                 } else {
                                     console.log(`couldn't locate emergency for:${guildConfiguration.guildId}`);
                                     console.log(guild.channels);
@@ -157,7 +160,8 @@ export abstract class CyclicActivityNotice {
     private static async ReportActivity(
         cachedActivity: Dal.Types.GuildActivityCache | undefined,
         emergencyChannel: TextChannel,
-        currentActivity: Dal.Types.ActivityCacheItem[]
+        currentActivity: Dal.Types.ActivityCacheItem[],
+        activityNoticemessage: string
     ): Promise<string> {
         let messageId = '';
 
@@ -171,13 +175,13 @@ export abstract class CyclicActivityNotice {
             let message = messages.first();
 
             if (message.author.id === process.env['botId'] && message.id === cachedLastMessageId) {
-                await EmbedHelper.UpdateActivityNotice(message, currentActivity);
+                await EmbedHelper.UpdateActivityNotice(message, currentActivity, activityNoticemessage);
                 messageId = message.id;
             }
         }
 
         if (messageId === '') {
-            messageId = await EmbedHelper.SendActivityNotice(emergencyChannel, currentActivity);
+            messageId = await EmbedHelper.SendActivityNotice(emergencyChannel, currentActivity, activityNoticemessage);
         }
 
         return messageId;
