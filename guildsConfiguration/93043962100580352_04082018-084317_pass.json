@@ -200,6 +200,13 @@
     "adminChannelName": "admiralty",
     "emergencyChannelName": "emergency",
     "activityNoticeMinPlayers": 3,
+    "activityNoticeMessages": [
+      "omae wa mou shindeiru",
+      "Weebs detected",
+      "Kill all the animu",
+      "There is some activity in Kusari!",
+	  "Bakas spotted"
+    ],
     "commandsPrefix": "!"
   }
 }

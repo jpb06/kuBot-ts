@@ -9,5 +9,8 @@
   "adminChannelName": "admin",
   "emergencyChannelName": "emergency",
   "activityNoticeMinPlayers": 3,
+  "activityNoticeMessages": [
+    "An unusually high activity has been reported"
+  ],
   "commandsPrefix": "!"
 }

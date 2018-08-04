@@ -155,6 +155,9 @@
     "adminChannelName": "admin",
     "emergencyChannelName": "signals-intelligence",
     "activityNoticeMinPlayers": 3,
+    "activityNoticeMessages": [
+      "An unusually high activity has been reported"
+    ],
     "commandsPrefix": "!"
   }
 }

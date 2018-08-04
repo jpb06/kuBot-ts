@@ -47,7 +47,7 @@
     <Content Include="guildsConfiguration\469937138121703424.json">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="guildsConfiguration\93043962100580352_21072018-190127_pass.json" />
+    <Content Include="guildsConfiguration\93043962100580352_04082018-084317_pass.json" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />

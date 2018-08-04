@@ -20,6 +20,9 @@ export abstract class GuildCreateEvent {
             adminChannelName: 'admin',
             emergencyChannelName: 'emergency',
             activityNoticeMinPlayers: 3,
+            activityNoticeMessages: [
+                'An unusually high activity has been reported'
+            ],
             commandsPrefix:'!'
         };
 
@@ -50,6 +53,7 @@ export abstract class GuildCreateEvent {
                     messagesFooterName: defaultSettings.messagesFooterName,
                     acknowledged: defaultSettings.acknowledged,
                     activityNoticeMinPlayers: defaultSettings.activityNoticeMinPlayers,
+                    activityNoticeMessages: defaultSettings.activityNoticeMessages,
                     commandsPrefix: defaultSettings.commandsPrefix
                 });
             } else if (joinerSettings.length === 1) {

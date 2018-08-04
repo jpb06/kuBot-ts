@@ -114,14 +114,15 @@ export class EmbedHelper {
        Factions activity notice
        ---------------------------------------------------------------------------------------------------------------*/
     private static GenerateActivityNotice(
-        factions: Dal.Types.ActivityCacheItem[]
+        factions: Dal.Types.ActivityCacheItem[],
+        activityNoticemessage: string
     ): RichEmbed {
         let embed = new RichEmbed()
             .setThumbnail('https://i.imgur.com/5L7T68j.png')
             .setTimestamp(new Date())
             .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
             .setColor(3447003)
-            .setDescription('An unusually high activity has been reported');
+            .setDescription(activityNoticemessage);
 
         factions.forEach(faction => {
             embed.addField(faction.name, `${faction.playersCount} ${this.GetProperQuantifiedSubstantive('player', faction.playersCount)}`);
@@ -132,17 +133,19 @@ export class EmbedHelper {
 
     public static async UpdateActivityNotice(
         message: Message,
-        factions: Dal.Types.ActivityCacheItem[]
+        factions: Dal.Types.ActivityCacheItem[],
+        activityNoticemessage: string
     ): Promise<void> {
-        await message.edit(this.GenerateActivityNotice(factions));
+        await message.edit(this.GenerateActivityNotice(factions, activityNoticemessage));
     }
 
     public static async SendActivityNotice(
         emergencyChannel: TextChannel,
-        factions: Dal.Types.ActivityCacheItem[]
+        factions: Dal.Types.ActivityCacheItem[],
+        activityNoticemessage: string
     ): Promise<string> {
         let message = await emergencyChannel.send({
-            embed: this.GenerateActivityNotice(factions)
+            embed: this.GenerateActivityNotice(factions, activityNoticemessage)
         });
 
         return (<Message>message).id;

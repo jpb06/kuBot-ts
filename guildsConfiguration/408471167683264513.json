@@ -117,6 +117,9 @@
     "adminChannelName": "council-chamber",
     "emergencyChannelName": "emergency-channel",
     "activityNoticeMinPlayers": 3,
+    "activityNoticeMessages": [
+      "An unusually high activity has been reported"
+    ],
     "commandsPrefix": "!"
   }
 }
