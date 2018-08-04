@@ -201,7 +201,10 @@
     "emergencyChannelName": "emergency",
     "activityNoticeMinPlayers": 3,
     "activityNoticeMessages": [
-      "An unusually high activity has been reported"
+      "omae wa mou shindeiru",
+      "Weebs detected",
+      "Kill all the animu",
+      "There is some activity in Kusari!"
     ],
     "commandsPrefix": "!"
   }
