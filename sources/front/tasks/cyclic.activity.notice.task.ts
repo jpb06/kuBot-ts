@@ -21,7 +21,7 @@ export abstract class CyclicActivityNotice {
     ): Promise<void> {
         try {
             let rule = new Schedule.RecurrenceRule();
-            rule.minute = new Schedule.Range(0, 59, 5);
+            rule.minute = new Schedule.Range(0, 59, 30);
 
             this.job = Schedule.scheduleJob(rule, async () => {
                 this.onlinePlayers = await OnlinePlayersService.GetList();
