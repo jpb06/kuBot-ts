@@ -116,12 +116,13 @@ export class EmbedHelper {
     private static GenerateActivityNotice(
         factions: Dal.Types.ActivityCacheItem[],
         activityNoticemessage: string,
-        activityNoticeImageUrl: string
+        activityNoticeImageUrl: string,
+        activityNoticeFooterName: string
     ): RichEmbed {
         let embed = new RichEmbed()
             .setThumbnail(activityNoticeImageUrl)
             .setTimestamp(new Date())
-            .setFooter('kuBot', activityNoticeImageUrl)
+            .setFooter(activityNoticeFooterName, activityNoticeImageUrl)
             .setColor(3447003)
             .setDescription(activityNoticemessage);
 
@@ -136,19 +137,21 @@ export class EmbedHelper {
         message: Message,
         factions: Dal.Types.ActivityCacheItem[],
         activityNoticemessage: string,
-        activityNoticeImageUrl: string
+        activityNoticeImageUrl: string,
+        activityNoticeFooterName: string
     ): Promise<void> {
-        await message.edit(this.GenerateActivityNotice(factions, activityNoticemessage, activityNoticeImageUrl));
+        await message.edit(this.GenerateActivityNotice(factions, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName));
     }
 
     public static async SendActivityNotice(
         emergencyChannel: TextChannel,
         factions: Dal.Types.ActivityCacheItem[],
         activityNoticemessage: string,
-        activityNoticeImageUrl: string
+        activityNoticeImageUrl: string,
+        activityNoticeFooterName: string
     ): Promise<string> {
         let message = await emergencyChannel.send({
-            embed: this.GenerateActivityNotice(factions, activityNoticemessage, activityNoticeImageUrl)
+            embed: this.GenerateActivityNotice(factions, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName)
         });
 
         return (<Message>message).id;

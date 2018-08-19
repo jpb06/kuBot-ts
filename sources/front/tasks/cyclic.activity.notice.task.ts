@@ -52,7 +52,10 @@ export abstract class CyclicActivityNotice {
                                     let messageIndex = Math.floor((Math.random() * guildConfiguration.activityNoticeMessages.length));
                                     let message: string = guildConfiguration.activityNoticeMessages[messageIndex];
 
-                                    messageId = await this.ReportActivity(emergencyChannel, currentActivity, cachedActivity, message, guildConfiguration.messagesImage);
+                                    messageId = await this.ReportActivity(
+                                        emergencyChannel, currentActivity, cachedActivity,
+                                        message, guildConfiguration.messagesImage, guildConfiguration.messagesFooterName
+                                    );
                                 } else {
                                     console.log(`couldn't locate emergency for:${guildConfiguration.guildId}`);
                                     console.log(guild.channels);
@@ -162,7 +165,8 @@ export abstract class CyclicActivityNotice {
         currentActivity: Dal.Types.ActivityCacheItem[],
         cachedActivity: Dal.Types.GuildActivityCache | undefined,
         activityNoticemessage: string,
-        activityNoticeImageUrl: string
+        activityNoticeImageUrl: string,
+        activityNoticeFooterName: string
     ): Promise<string> {
         let messageId = '';
 
@@ -176,13 +180,13 @@ export abstract class CyclicActivityNotice {
             let message = messages.first();
 
             if (message.author.id === process.env['botId'] && message.id === cachedLastMessageId) {
-                await EmbedHelper.UpdateActivityNotice(message, currentActivity, activityNoticemessage, activityNoticeImageUrl);
+                await EmbedHelper.UpdateActivityNotice(message, currentActivity, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName);
                 messageId = message.id;
             }
         }
 
         if (messageId === '') {
-            messageId = await EmbedHelper.SendActivityNotice(emergencyChannel, currentActivity, activityNoticemessage, activityNoticeImageUrl);
+            messageId = await EmbedHelper.SendActivityNotice(emergencyChannel, currentActivity, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName);
         }
 
         return messageId;
