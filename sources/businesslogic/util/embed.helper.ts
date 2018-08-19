@@ -115,12 +115,14 @@ export class EmbedHelper {
        ---------------------------------------------------------------------------------------------------------------*/
     private static GenerateActivityNotice(
         factions: Dal.Types.ActivityCacheItem[],
-        activityNoticemessage: string
+        activityNoticemessage: string,
+        activityNoticeImageUrl: string,
+        activityNoticeFooterName: string
     ): RichEmbed {
         let embed = new RichEmbed()
-            .setThumbnail('https://i.imgur.com/5L7T68j.png')
+            .setThumbnail(activityNoticeImageUrl)
             .setTimestamp(new Date())
-            .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
+            .setFooter(activityNoticeFooterName, activityNoticeImageUrl)
             .setColor(3447003)
             .setDescription(activityNoticemessage);
 
@@ -134,18 +136,22 @@ export class EmbedHelper {
     public static async UpdateActivityNotice(
         message: Message,
         factions: Dal.Types.ActivityCacheItem[],
-        activityNoticemessage: string
+        activityNoticemessage: string,
+        activityNoticeImageUrl: string,
+        activityNoticeFooterName: string
     ): Promise<void> {
-        await message.edit(this.GenerateActivityNotice(factions, activityNoticemessage));
+        await message.edit(this.GenerateActivityNotice(factions, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName));
     }
 
     public static async SendActivityNotice(
         emergencyChannel: TextChannel,
         factions: Dal.Types.ActivityCacheItem[],
-        activityNoticemessage: string
+        activityNoticemessage: string,
+        activityNoticeImageUrl: string,
+        activityNoticeFooterName: string
     ): Promise<string> {
         let message = await emergencyChannel.send({
-            embed: this.GenerateActivityNotice(factions, activityNoticemessage)
+            embed: this.GenerateActivityNotice(factions, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName)
         });
 
         return (<Message>message).id;
