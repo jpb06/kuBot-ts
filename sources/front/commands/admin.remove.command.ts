@@ -5,6 +5,7 @@ import * as Dal from 'kubot-dal';
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
+import { StringHelper } from './../../businesslogic/util/string.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export async function AdminRemove(
@@ -23,6 +24,7 @@ export async function AdminRemove(
             if (args[0] === 'player' || args[0] === 'p') {
                 type = 'Players';
                 result = await Dal.Manipulation.PlayerWatchStore.remove(guildId, args[1]);
+                args[1] = StringHelper.NegateNonEscapeBackslash(args[1]);
             } 
 
             if (result) {
