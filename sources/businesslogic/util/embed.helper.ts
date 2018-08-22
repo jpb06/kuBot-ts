@@ -2,6 +2,7 @@
 import * as Dal from 'kubot-dal';
 
 import { ScannedFaction, ScannedRegion } from './../../types/business.types';
+import { StringHelper } from './string.helper';
 
 export class EmbedHelper {
     private static channel: TextChannel;
@@ -181,7 +182,7 @@ export class EmbedHelper {
             if (region.watchedPlayers.length > 0) {
                 watch = '';
                 region.watchedPlayers.forEach(player => {
-                    watch += `${player.name}`;
+                    watch += `${ StringHelper.NegateNonEscapeBackslash(player.name) }`;
 
                     if (player.comment)
                         watch += ` - ${player.comment}`;
