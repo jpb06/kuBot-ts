@@ -92,6 +92,9 @@
     <TypeScriptCompile Include="sources\businesslogic\util\promisify.rebinder.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="sources\businesslogic\util\string.helper.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="sources\configuration\pivate.settings.mapping.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
