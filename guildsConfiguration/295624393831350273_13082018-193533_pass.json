@@ -1,16 +1,7 @@
 {
     "factions": [{
-            "identifier": "CR",
-            "name": "Crayter Republic",
-            "tags": [
-                "=CR=",
-				"CFV-"
-            ],
-            "alwaysDisplay": true
-        },
-		{
             "identifier": "gauls",
-            "name": "Gallic Crown forces",
+            "name": "Gallic Crown Forces",
             "tags": [
                 "MRG|",
 				"RNS-",
@@ -40,19 +31,10 @@
             "alwaysDisplay": false
         },
 		{
-            "identifier": "aux",
-            "name": "Auxesia",
-            "tags": [
-                "A/)-"
-            ],
-            "alwaysDisplay": false
-        },
-		{
             "identifier": "corsairs",
             "name": "Corsairs",
             "tags": [
                 "[TBH]",
-				"ApS|",
 				"CNS-",
 				"C::"
             ],
@@ -80,13 +62,9 @@
         },
 		{
             "identifier": "liberty",
-            "name": "Gallia-Liberty Front",
+            "name": "Liberty Front",
             "systems": [
-                "California",
-				"Ontario",
-				"Vespucci",
-				"Pennsylvania",
-				"Texas"
+                "California"
             ],
             "alwaysDisplay": false
         },
@@ -126,11 +104,11 @@
     "messagesImage": "https://cdn.discordapp.com/attachments/464133109747810325/475344410830176256/UuJsIzJ_1.png",
     "messagesFooterName": "For those we left behind!",
     "scanMainRegionName": "Sirius Sector",
-    "acknowledged": "Understood!",
+    "acknowledged": "Roger, Roger!",
     "mainChannelName": "oorp_general_chat",
     "adminChannelName": "quorum",
-    "emergencyChannelName": "oorp_emergency_chat",
-    "activityNoticeMinPlayers": 2,
+    "emergencyChannelName": "the_watchful_eye",
+    "activityNoticeMinPlayers": 3,
     "activityNoticeMessages": [
       "Yellow Alert! Potential threats sighted!"
     ],
