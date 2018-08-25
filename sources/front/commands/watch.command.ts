@@ -4,6 +4,7 @@ import * as Dal from 'kubot-dal';
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
+import { StringHelper } from './../../businesslogic/util/string.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export async function Watch(
@@ -25,7 +26,7 @@ export async function Watch(
                     playerFactionsDesc += faction.name + '\n';
                 });
 
-                EmbedHelper.SendFactionPlayerWatchError(validation.args.player, playerFactionsDesc);
+            EmbedHelper.SendFactionPlayerWatchError(StringHelper.NegateNonEscapeBackslash(validation.args.player), playerFactionsDesc);
             } else {
                 await Dal.Manipulation.PlayerWatchStore.set(guildId, validation.args.player, {
                     guildId: guildId,
@@ -33,7 +34,7 @@ export async function Watch(
                     comment: validation.args.comment
                 });
 
-                EmbedHelper.SendWatchResponse(validation.args.player);
+                EmbedHelper.SendWatchResponse(StringHelper.NegateNonEscapeBackslash(validation.args.player));
             }
         }
     } catch (error) {

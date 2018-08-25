@@ -4,6 +4,7 @@ import * as Dal from 'kubot-dal';
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
+import { StringHelper } from './../../businesslogic/util/string.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
 
 export abstract class ShowCommand {
@@ -40,7 +41,7 @@ export abstract class ShowCommand {
 
         let description = '';
         watchedPlayers.forEach(player => {
-            description += '- **' + player.name + '**';
+            description += '- **' + StringHelper.NegateNonEscapeBackslash(player.name) + '**';
             if (player.comment) description += ' - ' + player.comment;
                 description += '\n';
         });
@@ -61,7 +62,7 @@ export abstract class ShowCommand {
                 description += '\tTags: ';
 
                 faction.tags.forEach(tag => {
-                    description += `**${tag}**, `;
+                    description += `**${ StringHelper.NegateNonEscapeBackslash(tag) }**, `;
                 });
                 description = description.slice(0, -2) + '\n\n';
             });
