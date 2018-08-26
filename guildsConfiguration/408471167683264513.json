@@ -1,113 +1,104 @@
 {
-    "factions": [{
-            "identifier": "ApS",
-            "name": "Apostatas",
-            "tags": [
-                "ApS|"
-            ],
-            "alwaysDisplay": true
-        },
-        {
-            "identifier": "tbh",
-            "name": "The Brotherhood",
-            "tags": [
-                "[TBH]"
-            ],
-            "alwaysDisplay": true
-        },
-        {
-            "identifier": "custodi",
-            "name": "Custodi",
-            "tags": [
-                "C::"
-            ],
-            "alwaysDisplay": true
-        },
-        {
-            "identifier": "scra",
-            "name": "Sirius Coalition Revolutionary Army",
-            "tags": [
-                "SCRA|"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "GMG",
-            "name": "Gas Miner Guild",
-            "tags": [
-                "GMG|",
-                "GMG-"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "BD",
-            "name": "Blood Dragons",
-            "tags": [
-                "BD|"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "outcasts",
-            "name": "Outcasts",
-            "tags": [
-                "(C~",
-                "MNS-"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "knf",
-            "name": "Kusari Naval Forces",
-            "tags": [
-                "[KNF]",
-                "KDS-"
-            ],
-            "alwaysDisplay": false
-        }
-    ],
-    "regions": [{
-            "identifier": "corsair",
-            "name": "Corsairs space",
-            "systems": [
-                "Omicron Gamma",
-                "Omicron Omega",
-                "Omicron Xi",
-                "Omega-55",
-                "Cayman",
-                "Omicron Theta",
-                "Omicron Kappa",
-                "Omega-41",
-                "Omega-47",
-                "Omicron Delta",
-                "Omicron Chi"
-            ],
-            "alwaysDisplay": true
-        },
-        {
-            "identifier": "home",
-            "name": "Home",
-            "systems": [
-                "Sigma-17",
-                "Sigma-19",
-                "Sigma-13",
-                "Sigma-21",
-                "Omicron Theta",
-                "Omicron Sigma"
-            ],
-            "alwaysDisplay": true
-        },
-        {
-            "identifier": "Mining-cryos",
-            "name": "Cryo organisms business",
-            "systems": [
-                "Omicron Beta",
-                "Omicron Epsilon"
-            ],
-            "alwaysDisplay": false
-        }
-    ],
+  "factions": [
+    {
+      "name": "Apostatas",
+      "tags": [
+        "ApS|"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "The Brotherhood",
+      "tags": [
+        "[TBH]"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Custodi",
+      "tags": [
+        "C::"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Sirius Coalition Revolutionary Army",
+      "tags": [
+        "SCRA|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Gas Miner Guild",
+      "tags": [
+        "GMG|",
+        "GMG-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Blood Dragons",
+      "tags": [
+        "BD|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Outcasts",
+      "tags": [
+        "(C~",
+        "MNS-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Kusari Naval Forces",
+      "tags": [
+        "[KNF]",
+        "KDS-"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
+  "regions": [
+    {
+      "name": "Corsairs space",
+      "systems": [
+        "Omicron Gamma",
+        "Omicron Omega",
+        "Omicron Xi",
+        "Omega-55",
+        "Cayman",
+        "Omicron Theta",
+        "Omicron Kappa",
+        "Omega-41",
+        "Omega-47",
+        "Omicron Delta",
+        "Omicron Chi"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Home",
+      "systems": [
+        "Sigma-17",
+        "Sigma-19",
+        "Sigma-13",
+        "Sigma-21",
+        "Omicron Theta",
+        "Omicron Sigma"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Cryo organisms business",
+      "systems": [
+        "Omicron Beta",
+        "Omicron Epsilon"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
   "guildSettings": {
     "messagesImage": "https://i.imgur.com/30rX1oo.jpg",
     "messagesFooterName": "Apostatas",

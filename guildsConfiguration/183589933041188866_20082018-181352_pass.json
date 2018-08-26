@@ -1,114 +1,105 @@
 {
-    "factions": [
-        {
-            "identifier": "council",
-            "name": "The Council",
-            "tags": [
-                "[C]-",
-                "CLN-",
-                "GTB|"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "grn",
-            "name": "Gallic Royal Navy",
-            "tags": [
-                "MRG|",
-                "RNS",
-                "GRN",
-                "[MRG]",
-                "Gallia"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "grp",
-            "name": "Gallic Royal Police",
-            "tags": [
-                "PRG|",
-                "GRP",
-                "(GRP)"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "gri",
-            "name": "Gallic Royal Intelligence",
-            "tags": [
-                "GRI|"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "gaulcorps",
-            "name": "Gallic Corporations",
-            "tags": [
-                "EFL|",
-                "IDF",
-                "GMS",
-                "[GMS]"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "lanehackers",
-            "name": "Lane Hackers",
-            "tags": [
-                "LH~",
-                "Nicole.Hunter",
-                "Mr.Yoshida",
-                "Yoshida",
-                "Felicity.Willing",
-                "Ms.Willing",
-                "Mr.Thackeray",
-                "Thackeray",
-                "Mr.Blackfriar",
-                "Blackfriar"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "outcasts",
-            "name": "Outcasts",
-            "tags": [
-                "NC-",
-                "AD|",
-                "MNS",
-                "S]~",
-                "(C~",
-                "[212th]"
-            ],
-            "alwaysDisplay": false
-        }
-    ],
-    "regions": [
-        {
-            "identifier": "gallia",
-            "name": "Gallia",
-            "systems": [
-                "Champagne",
-                "Burgundy",
-                "Picardy",
-                "Provence",
-                "Ile-de-France",
-                "Dauphine",
-                "Lorraine"
-            ],
-            "alwaysDisplay": false
-        },
-        {
-            "identifier": "taus",
-            "name": "Tau Region",
-            "systems": [
-                "Roussillon",
-                "Orkney",
-                "Tau-31",
-                "Tau-53"
-            ],
-            "alwaysDisplay": false
-        }
-    ],
+  "factions": [
+    {
+      "name": "The Council",
+      "tags": [
+        "[C]-",
+        "CLN-",
+        "GTB|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Gallic Royal Navy",
+      "tags": [
+        "MRG|",
+        "RNS",
+        "GRN",
+        "[MRG]",
+        "Gallia"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Gallic Royal Police",
+      "tags": [
+        "PRG|",
+        "GRP",
+        "(GRP)"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Gallic Royal Intelligence",
+      "tags": [
+        "GRI|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Gallic Corporations",
+      "tags": [
+        "EFL|",
+        "IDF",
+        "GMS",
+        "[GMS]"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Lane Hackers",
+      "tags": [
+        "LH~",
+        "Nicole.Hunter",
+        "Mr.Yoshida",
+        "Yoshida",
+        "Felicity.Willing",
+        "Ms.Willing",
+        "Mr.Thackeray",
+        "Thackeray",
+        "Mr.Blackfriar",
+        "Blackfriar"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Outcasts",
+      "tags": [
+        "NC-",
+        "AD|",
+        "MNS",
+        "S]~",
+        "(C~",
+        "[212th]"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
+  "regions": [
+    {
+      "name": "Gallia",
+      "systems": [
+        "Champagne",
+        "Burgundy",
+        "Picardy",
+        "Provence",
+        "Ile-de-France",
+        "Dauphine",
+        "Lorraine"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Tau Region",
+      "systems": [
+        "Roussillon",
+        "Orkney",
+        "Tau-31",
+        "Tau-53"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
   "guildSettings": {
     "messagesImage": "http://discoverygc.com/wiki/images/d/d6/Council_Logo.png",
     "messagesFooterName": "Council High Command",
