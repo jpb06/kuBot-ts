@@ -87,7 +87,8 @@
         "Dauphine",
         "Lorraine"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     },
     {
       "name": "Tau Region",
@@ -97,7 +98,8 @@
         "Tau-31",
         "Tau-53"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     }
   ],
   "guildSettings": {

@@ -105,7 +105,8 @@
         "Puerto Rico",
         "Kansas"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Kusari border",
@@ -113,7 +114,8 @@
         "Kepler",
         "Galileo"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     },
     {
       "name": "Bretonia Border",
@@ -123,7 +125,8 @@
         "Cortez",
         "Inverness"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     },
     {
       "name": "Rheinland border",
@@ -131,7 +134,8 @@
         "Bering",
         "Hudson"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     }
   ],
   "guildSettings": {

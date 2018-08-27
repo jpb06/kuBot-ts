@@ -94,7 +94,8 @@
         "Omega-47",
         "Omicron-omega"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Bretonia",
@@ -108,7 +109,8 @@
         "Newcastle",
         "Edinburgh"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Independent Worlds",
@@ -119,7 +121,8 @@
         "Drake",
         "Coronado"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Taus",
@@ -132,7 +135,8 @@
         "Orkney",
         "Baffin"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     }
   ],
   "guildSettings": {

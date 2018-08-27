@@ -76,7 +76,8 @@
         "Omicron Delta",
         "Omicron Chi"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Home",
@@ -88,7 +89,8 @@
         "Omicron Theta",
         "Omicron Sigma"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Cryo organisms business",
@@ -96,7 +98,8 @@
         "Omicron Beta",
         "Omicron Epsilon"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     }
   ],
   "guildSettings": {

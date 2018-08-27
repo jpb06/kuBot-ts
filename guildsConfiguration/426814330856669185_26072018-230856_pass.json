@@ -105,7 +105,8 @@
       "systems": [
         "Bering"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Surrounding systems",
@@ -115,7 +116,8 @@
         "Hamburg",
         "Texas"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     },
     {
       "name": "Liberty",
@@ -132,7 +134,8 @@
         "Kansas",
         "Texas"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     }
   ],
   "guildSettings": {

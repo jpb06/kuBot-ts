@@ -45,7 +45,8 @@
         "Tau-44",
         "Coronado"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Independent Worlds - Border Space",
@@ -54,14 +55,16 @@
         "Magellan",
         "Baffin"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Liberty Front",
       "systems": [
         "California"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     },
     {
       "name": "House Bretonia",
@@ -71,7 +74,8 @@
         "Newcastle",
         "Leeds"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     },
     {
       "name": "Tau Front",
@@ -81,7 +85,8 @@
         "Tau-23",
         "Tau-37"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
       "name": "Crayter Omicron Front",
@@ -89,7 +94,8 @@
         "Omicron Tau",
         "Omicron Alpha"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     }
   ],
   "guildSettings": {
