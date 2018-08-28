@@ -80,6 +80,7 @@ export abstract class ShowCommand {
             .forEach(region => {
                 description += `- **${region.name}**\n`;
                 if (region.alwaysDisplay) description += '\tAlways displayed\n';
+                if (region.showPlayers) description += '\tDisplays everyone\n';
                 description += '\tSystems: ';
 
                 region.systems.forEach(system => {
