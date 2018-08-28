@@ -77,7 +77,8 @@ export abstract class GuildConfigurationService {
             guildId: guildId,
             name: region.name,
             systems: region.systems,
-            alwaysDisplay: region.alwaysDisplay ? region.alwaysDisplay : false
+            alwaysDisplay: region.alwaysDisplay ? region.alwaysDisplay : false,
+            showPlayers: region.showPlayers? region.showPlayers : false
         })));
 
         parsed.guildSettings.guildId = guildId;
