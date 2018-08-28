@@ -1,105 +1,103 @@
 {
-    "factions": [{
-            "identifier": "gauls",
-            "name": "Gallic Crown Forces",
-            "tags": [
-                "MRG|",
-				"RNS-",
-				"GRI|"
-            ],
-            "alwaysDisplay": true
-        },
-		{
-            "identifier": "outcasts",
-            "name": "Outcasts",
-            "tags": [
-                "MNS-",
-				"NO-",
-				"(C~",
-				"NC-",
-				"AD|",
-				"S~"
-            ],
-            "alwaysDisplay": true
-        },
-		{
-            "identifier": "core",
-            "name": "The Core",
-            "tags": [
-                "Core|"
-            ],
-            "alwaysDisplay": false
-        },
-		{
-            "identifier": "corsairs",
-            "name": "Corsairs",
-            "tags": [
-                "[TBH]",
-				"CNS-",
-				"C::"
-            ],
-            "alwaysDisplay": false
-        }
-    ],
-    "regions": [{
-            "identifier": "home",
-            "name": "Home",
-            "systems": [
-                "Tau-44",
-                "Coronado"
-            ],
-            "alwaysDisplay": true
-        },
-		{
-            "identifier": "influencezone",
-            "name": "Independent Worlds - Border Space",
-            "systems": [
-                "Cortez",
-                "Magellan",
-				"Baffin"
-            ],
-            "alwaysDisplay": true
-        },
-		{
-            "identifier": "liberty",
-            "name": "Liberty Front",
-            "systems": [
-                "California"
-            ],
-            "alwaysDisplay": false
-        },
-		{
-            "identifier": "bretonia",
-            "name": "House Bretonia",
-            "systems": [
-                "Manchester",
-				"New London",
-				"Newcastle",
-				"Leeds"
-            ],
-            "alwaysDisplay": false
-        },
-		{
-            "identifier": "taus",
-            "name": "Tau Front",
-            "systems": [
-                "Tau-29",
-				"Tau-31",
-				"Tau-23",
-				"Tau-37"
-            ],
-            "alwaysDisplay": true
-        },
-		{
-            "identifier": "outcastspace",
-            "name": "Crayter Omicron Front",
-            "systems": [
-                "Omicron Tau",
-				"Omicron Alpha"
-            ],
-            "alwaysDisplay": false
-        }
-    ],
+  "factions": [
+    {
+      "name": "Gallic Crown Forces",
+      "tags": [
+        "MRG|",
+        "RNS-",
+        "GRI|"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Outcasts",
+      "tags": [
+        "MNS-",
+        "NO-",
+        "(C~",
+        "NC-",
+        "AD|",
+        "S~"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "The Core",
+      "tags": [
+        "Core|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Corsairs",
+      "tags": [
+        "[TBH]",
+        "CNS-",
+        "C::"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
+  "regions": [
+    {
+      "name": "Home",
+      "systems": [
+        "Tau-44",
+        "Coronado"
+      ],
+      "alwaysDisplay": true,
+      "showPlayers": false
+    },
+    {
+      "name": "Independent Worlds - Border Space",
+      "systems": [
+        "Cortez",
+        "Magellan",
+        "Baffin"
+      ],
+      "alwaysDisplay": true,
+      "showPlayers": false
+    },
+    {
+      "name": "Liberty Front",
+      "systems": [
+        "California"
+      ],
+      "alwaysDisplay": false,
+      "showPlayers": false
+    },
+    {
+      "name": "House Bretonia",
+      "systems": [
+        "Manchester",
+        "New London",
+        "Newcastle",
+        "Leeds"
+      ],
+      "alwaysDisplay": false,
+      "showPlayers": false
+    },
+    {
+      "name": "Tau Front",
+      "systems": [
+        "Tau-29",
+        "Tau-31",
+        "Tau-23",
+        "Tau-37"
+      ],
+      "alwaysDisplay": true,
+      "showPlayers": false
+    },
+    {
+      "name": "Crayter Omicron Front",
+      "systems": [
+        "Omicron Tau",
+        "Omicron Alpha"
+      ],
+      "alwaysDisplay": false,
+      "showPlayers": false
+    }
+  ],
   "guildSettings": {
     "messagesImage": "https://cdn.discordapp.com/attachments/464133109747810325/475344410830176256/UuJsIzJ_1.png",
     "messagesFooterName": "For those we left behind!",

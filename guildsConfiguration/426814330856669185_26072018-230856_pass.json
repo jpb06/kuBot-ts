@@ -1,7 +1,6 @@
 {
   "factions": [
     {
-      "identifier": "harmony",
       "name": "Battlegroup Harmony",
       "tags": [
         "H|-",
@@ -10,7 +9,6 @@
       "alwaysDisplay": true
     },
     {
-      "identifier": "noms",
       "name": "Nomads",
       "tags": [
         "K'Hara",
@@ -21,7 +19,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "ln",
       "name": "Liberty Navy",
       "tags": [
         "[LN]",
@@ -32,7 +29,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "lanehackers",
       "name": "Lane Hackers",
       "tags": [
         "LH~"
@@ -40,7 +36,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "order",
       "name": "The Order",
       "tags": [
         "Order|"
@@ -48,7 +43,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "hellfire",
       "name": "Hellfire Legion",
       "tags": [
         "[HF]"
@@ -56,7 +50,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "ageira",
       "name": "Ageira Innovations",
       "tags": [
         "Ageira~"
@@ -64,7 +57,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "lr",
       "name": "Liberty Rogues",
       "tags": [
         "LR-"
@@ -72,7 +64,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "lpi",
       "name": "Liberty Police Incorporated",
       "tags": [
         "LPI-"
@@ -80,7 +71,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "lsf",
       "name": "Liberty Security Force",
       "tags": [
         "=LSF="
@@ -88,7 +78,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "xenos",
       "name": "Xenos",
       "tags": [
         "XA-"
@@ -96,7 +85,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "za",
       "name": "Zoner Marines",
       "tags": [
         "<ZA>"
@@ -104,7 +92,6 @@
       "alwaysDisplay": false
     },
     {
-      "identifier": "onioners",
       "name": "Unioners",
       "tags": [
         "UN|"
@@ -114,15 +101,14 @@
   ],
   "regions": [
     {
-      "identifier": "home",
       "name": "Bering",
       "systems": [
         "Bering"
       ],
-      "alwaysDisplay": true
+      "alwaysDisplay": true,
+      "showPlayers": false
     },
     {
-      "identifier": "sur-sys",
       "name": "Surrounding systems",
       "systems": [
         "Hudson",
@@ -130,11 +116,10 @@
         "Hamburg",
         "Texas"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     },
-
     {
-      "identifier": "liberty",
       "name": "Liberty",
       "systems": [
         "Alberta",
@@ -149,7 +134,8 @@
         "Kansas",
         "Texas"
       ],
-      "alwaysDisplay": false
+      "alwaysDisplay": false,
+      "showPlayers": false
     }
   ],
   "guildSettings": {
