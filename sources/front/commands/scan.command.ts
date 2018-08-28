@@ -6,6 +6,7 @@ import { OnlinePlayersService } from './../../businesslogic/services/online.play
 
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
+import { WatchedRegion } from 'kubot-dal/typings/types.export';
 
 export abstract class ScanCommand {
     public static async Process(
@@ -61,23 +62,42 @@ export abstract class ScanCommand {
             let regionPlayers = onlinePlayers.filter(player => region.systems.some(system => player.System === system));
             let regionwatchedPlayers: Dal.Types.WatchedPlayer[] = [];
 
-            watchedFactions.forEach(watchedFaction => {
-                let factionPlayersInRegion: Dal.Types.WatchedPlayer[] = regionPlayers
-                    .filter(player => watchedFaction.tags.some(tag => player.Name.includes(tag)))
+            if (region.showPlayers) {
+                
+                let regionPlayers = onlinePlayers
+                    .filter(player => region.systems.some(system => system === player.System))
                     .map(player => {
                         return {
-                            guildId: watchedFaction.guildId,
+                            guildId: region.guildId,
                             name: player.Name,
-                            comment: watchedFaction.name
+                            comment: ''
                         };
-                    });
+                    })
+                    .sort((a, b) => a.name.localeCompare(b.name));
 
-                regionwatchedPlayers.push(...factionPlayersInRegion);
-            });
+                regionwatchedPlayers.push(...regionPlayers);
 
-            let regionWatchedPlayers = watchedPlayers.filter(player => regionPlayers.some(regionPlayer => regionPlayer.Name === player.name));
+            } else {
 
-            regionwatchedPlayers.push(...regionWatchedPlayers);
+                watchedFactions.forEach(watchedFaction => {
+                    let factionPlayersInRegion: Dal.Types.WatchedPlayer[] = regionPlayers
+                        .filter(player => watchedFaction.tags.some(tag => player.Name.includes(tag)))
+                        .map(player => {
+                            return {
+                                guildId: watchedFaction.guildId,
+                                name: player.Name,
+                                comment: watchedFaction.name
+                            };
+                        });
+
+                    regionwatchedPlayers.push(...factionPlayersInRegion);
+                });
+
+                let regionWatchedPlayers = watchedPlayers.filter(player => regionPlayers.some(regionPlayer => regionPlayer.Name === player.name));
+
+                regionwatchedPlayers.push(...regionWatchedPlayers);
+
+            }
 
             if (regionPlayers.length > 0 || region.alwaysDisplay) {
                 regions.push({
