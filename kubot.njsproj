@@ -34,7 +34,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="sources\bot.ts" />
     <Content Include=".gitignore" />
-    <Content Include="guildsConfiguration\183589933041188866_20082018-181352_pass.json" />
+    <Content Include="guildsConfiguration\183589933041188866_25082018-173636_pass.json" />
     <Content Include="guildsConfiguration\295624393831350273_13082018-193533_pass.json" />
     <Content Include="guildsConfiguration\350303355014479874.json" />
     <Content Include="guildsConfiguration\354940463318564864.json" />
