@@ -1,0 +1,113 @@
+{
+    "factions": [
+        {
+            "name": "The Core",
+            "tags": [
+                "Core|",
+                "WV-"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "name": "Outcasts",
+            "tags": [
+                "(C~",
+                "MNS-"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+            "name": "Nomads",
+            "tags": [
+                "K'hara|",
+                "Vagrant",
+				"|Aoi"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+            "name": "The Order",
+            "tags": [
+                "Order|",
+                "EOG|"
+            ],
+            "alwaysDisplay": true
+        },
+		{
+            "name": "Corsario Empire",
+            "tags": [
+                "CNS-",
+                "[TBH]"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+            "name": "Coalition",
+            "tags": [
+                "CPW-"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+    "regions": [
+        {
+            "name": "Nomad Worlds",
+            "systems": [
+                "Omicron Iota",
+                "Omicron Psi",
+                "Omicron Major"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "name": "The Order controlled space",
+            "systems": [
+                "Omicron Mu",
+                "Omicron Epsilon"
+            ],
+            "alwaysDisplay": true
+        },
+		{
+            "name": "The Core controlled space",
+            "systems": [
+                "Omicron Rho"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+            "name": "Edge Worlds",
+            "systems": [
+                "Omicron Beta",
+				"Omicron Sigma",
+				"Omicron Minor",
+				"Omicron Delta",
+				"Omicron Lost",
+				"Omicron Kappa",
+				"Omicron Chi",
+				"Omicron Theta"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+            "name": "Kusari",
+            "systems": [
+                "Tohoku"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+    "guildSettings": {
+        "messagesImage": "https://cdn.discordapp.com/attachments/523782159627190272/531511806959550464/avatar_40652.png",
+        "messagesFooterName": "Ethereal Order Guard",
+        "scanMainRegionName": "Sirius Sector",
+        "acknowledged": "Understood!",
+        "mainChannelName": "emergency",
+        "adminChannelName": "hc",
+        "emergencyChannelName": "emergency",
+		"activityNoticeMinPlayers": 2,
+		"activityNoticeMessages": [
+			"activity detected!"
+		],
+		"commandsPrefix": "!"
+    }
+}

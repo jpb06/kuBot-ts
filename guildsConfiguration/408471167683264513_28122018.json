@@ -1,0 +1,97 @@
+{
+  "factions": [
+    {
+      "name": "The Brotherhood",
+      "tags": [
+        "[TBH]"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Custodi",
+      "tags": [
+        "C::"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Blood Dragons",
+      "tags": [
+        "BD|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Outcasts",
+      "tags": [
+        "(C~",
+        "MNS-", 
+		"L\\-"
+      ],
+      "alwaysDisplay": false
+    }
+  ],
+  "regions": [
+    {
+      "name": "Corsairs space",
+      "systems": [
+        "Omicron Gamma",
+        "Omicron Omega",
+        "Omicron Xi",
+        "Omega-55",
+        "Cayman",
+        "Omicron Kappa",
+        "Omega-41",
+        "Omega-47",
+        "Omicron Delta",
+        "Omicron Chi"
+      ],
+      "alwaysDisplay": true,
+      "showPlayers": false
+    },
+    {
+      "name": "Home",
+      "systems": [
+        "Sigma-17",
+        "Sigma-19",
+        "Sigma-13",
+        "Sigma-21",
+        "Omicron Theta",
+        "Omicron Sigma"
+      ],
+      "alwaysDisplay": true,
+      "showPlayers": false
+    },
+    {
+      "name": "Cryo organisms business",
+      "systems": [
+        "Omicron Beta",
+        "Omicron Epsilon"
+      ],
+      "alwaysDisplay": false,
+      "showPlayers": false
+    },
+	{
+      "name": "Knossos orbit",
+      "systems": [
+        "Planet Knossos"
+      ],
+      "alwaysDisplay": true,
+      "showPlayers": true
+    }
+  ],
+  "guildSettings": {
+    "messagesImage": "https://cdn.discordapp.com/attachments/409009836244598785/528270201829982208/30rX1oo.jpg",
+    "messagesFooterName": "Apostatas",
+    "scanMainRegionName": "Corsario Empire",
+    "acknowledged": "Muy bien",
+    "mainChannelName": "bot",
+    "adminChannelName": "council-chamber",
+    "emergencyChannelName": "emergency-channel",
+    "activityNoticeMinPlayers": 3,
+    "activityNoticeMessages": [
+      "An unusually high activity has been reported"
+    ],
+    "commandsPrefix": "!"
+  }
+}

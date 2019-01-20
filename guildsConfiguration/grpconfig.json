@@ -1,0 +1,152 @@
+{
+    "factions": [
+        {
+            "name": "The Council",
+            "tags": [
+                "[C]-",
+                "CLN-",
+                "GTB|",
+				"LaR|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "name": "Crayter Republic",
+            "tags": [
+                "=CR="
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "name": "Gallic Royal Navy",
+            "tags": [
+                "MRG|",
+                "RNS",
+                "GRN",
+                "[MRG]",
+                "|GRN|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "name": "Gallic Royal Police",
+            "tags": [
+                "PRG|",
+                "GRP|",
+                "(GRP)"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "name": "Gallic Royal Intelligence",
+            "tags": [
+                "GRI|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "name": "Gallic Corporations",
+            "tags": [
+                "EFL|",
+                "IDF",
+                "GMS",
+                "[GMS]"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "name": "Outcasts",
+            "tags": [
+                "NC-",
+                "AD|",
+                "MNS",
+                "S]~",
+                "(C~",
+                "L\\-",
+                "[212th]"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+            "name": "Maquis",
+            "tags": [
+                "MQS"
+            ],
+            "alwaysDisplay": false
+        },
+		{
+            "name": "Brigands",
+            "tags": [
+                "FB|"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+    "regions": [
+        {
+            "name": "House Gallia core systems",
+            "systems": [
+				"Picardy",
+				"Orleanais",
+				"Ile-de-France",
+				"Dauphine",
+				"Burgundy"
+            ],
+            "alwaysDisplay": true,
+            "showPlayers": false
+        },
+		{
+            "name": "Gallic borderworlds",
+            "systems": [
+				"Zurich",
+                "Champagne",
+				"Lorraine",
+				"Provence",
+				"Languedoc",
+				"Orkney"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "name": "Taus",
+            "systems": [
+                "Tau-29",
+				"Tau-31",
+				"Tau-23",
+				"Tau-37",
+				"Tau-53",
+				"Tau-44"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "name": "Bretonia",
+            "systems": [
+                "Leeds",
+                "Edinburgh",
+                "Newcastle"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        }
+    ],
+  "guildSettings": {
+    "messagesImage": "https://cdn.discordapp.com/attachments/529614245370003476/529615290569457664/pDbw9V8.png",
+    "messagesFooterName": "Gallic Royal Police",
+    "scanMainRegionName": "House Gallia sovereign space",
+    "acknowledged": "Oui !",
+    "mainChannelName": "dispatch-emergancychat",
+    "adminChannelName": "admin",
+    "emergencyChannelName": "dispatch-emergancychat",
+    "activityNoticeMinPlayers": 2,
+    "activityNoticeMessages": [
+      "Baguette detected",
+	  "Oh non, Le activity detected!",
+	  "Je vois des ennemis"
+    ],
+    "commandsPrefix": "!"
+
+  }
+}

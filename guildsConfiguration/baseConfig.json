@@ -1,0 +1,156 @@
+{
+  "factions": [
+    {
+      "name": "Liberty Navy",
+      "tags": [
+        "[LN]",
+        "LNS-",
+        "5th|"
+      ],
+      "alwaysDisplay": true
+    },
+    {
+      "name": "Battlegroup Harmony",
+      "tags": [
+        "H|-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Lane Hackers",
+      "tags": [
+        "LH~"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Deep Space Solutions",
+      "tags": [
+        "|=DSS=|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "The Order",
+      "tags": [
+        "Order|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Hellfire Legion",
+      "tags": [
+        "[HF]"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Interspace Commerce",
+      "tags": [
+        "IC|"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Gallic Royal Navy",
+      "tags": [
+        "MRG|",
+        "RNS-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Ageira Innovations",
+      "tags": [
+        "Ageira~"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Liberty Rogues",
+      "tags": [
+        "LR-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Liberty Police Incorporated",
+      "tags": [
+        "LPI-"
+      ],
+      "alwaysDisplay": false
+    },
+    {
+      "name": "Liberty Security Force",
+      "tags": [
+        "=LSF="
+      ],
+      "alwaysDisplay": false
+    }
+  ],
+  "regions": [
+    {
+      "name": "Liberty",
+      "systems": [
+        "Alberta",
+        "Colorado",
+        "Alaska",
+        "Ontario",
+        "New York",
+        "Virginia",
+        "New Hampshire",
+        "California",
+        "Pennsylvania",
+        "Texas",
+        "Puerto Rico",
+        "Kansas"
+      ],
+      "alwaysDisplay": true,
+      "showPlayers": false
+    },
+    {
+      "name": "Kusari border",
+      "systems": [
+        "Kepler",
+        "Galileo"
+      ],
+      "alwaysDisplay": false,
+      "showPlayers": false
+    },
+    {
+      "name": "Bretonia Border",
+      "systems": [
+        "Vespucci",
+        "Magellan",
+        "Cortez",
+        "Inverness"
+      ],
+      "alwaysDisplay": false,
+      "showPlayers": false
+    },
+    {
+      "name": "Rheinland border",
+      "systems": [
+        "Bering",
+        "Hudson"
+      ],
+      "alwaysDisplay": false,
+      "showPlayers": false
+    }
+  ],
+  "guildSettings": {
+    "messagesImage": "https://i.imgur.com/Oa566E7.png",
+    "messagesFooterName": "Liberty Navy Admiralty",
+    "scanMainRegionName": "House Liberty",
+    "acknowledged": "Aye aye!",
+    "mainChannelName": "bot",
+    "adminChannelName": "admin",
+    "emergencyChannelName": "emergency",
+    "activityNoticeMinPlayers": 3,
+    "activityNoticeMessages": [
+      "An unusually high activity has been reported"
+    ],
+    "commandsPrefix": "!"
+
+  }
+}

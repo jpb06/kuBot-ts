@@ -1,0 +1,298 @@
+{
+    "factions": [
+        {
+            "identifier": "council",
+            "name": "The Council",
+            "tags": [
+                "[C]-",
+                "CLN-",
+                "GTB|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "cr",
+            "name": "Crayter Republic",
+            "tags": [
+                "=CR="
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "grn",
+            "name": "Gallic Royal Navy",
+            "tags": [
+                "MRG|",
+                "RNS",
+                "GRN",
+                "[MRG]",
+                "|GRN|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "grp",
+            "name": "Gallic Royal Police",
+            "tags": [
+                "PRG|",
+                "GRP",
+                "(GRP)"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "gri",
+            "name": "Gallic Royal Intelligence",
+            "tags": [
+                "GRI|"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "gaulcorps",
+            "name": "Gallic Corporations",
+            "tags": [
+                "EFL|",
+                "IDF",
+                "GMS",
+                "[GMS]"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "lanehackers",
+            "name": "Lane Hackers",
+            "tags": [
+                "LH~",
+                "Nicole.Hunter",
+                "Mr.Yoshida",
+                "Yoshida",
+                "Felicity.Willing",
+                "Ms.Willing",
+                "Mr.Thackeray",
+                "Thackeray",
+                "Mr.Blackfriar",
+                "Blackfriar"
+            ],
+            "alwaysDisplay": false
+        },
+        {
+            "identifier": "outcasts",
+            "name": "Outcasts",
+            "tags": [
+                "NC-",
+                "AD|",
+                "MNS",
+                "S]~",
+                "(C~",
+                "L\\-",
+                "[212th]"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+    "regions": [
+        {
+            "identifier": "chm",
+            "name": "Champagne",
+            "systems": [
+                "Champagne"
+            ],
+            "alwaysDisplay": true,
+            "showPlayers": true
+        },
+        {
+            "identifier": "brg",
+            "name": "Burgundy",
+            "systems": [
+                "Burgundy"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": true
+        },
+        {
+            "identifier": "lor",
+            "name": "Lorraine",
+            "systems": [
+                "Lyonnais"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "pic",
+            "name": "Picardy",
+            "systems": [
+                "Picardy"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": true
+        },
+        {
+            "identifier": "pro",
+            "name": "Provence",
+            "systems": [
+                "Provence"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": true
+        },
+        {
+            "identifier": "idf",
+            "name": "Ile-de-France",
+            "systems": [
+                "Ile-de-France"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "dph",
+            "name": "Dauphine",
+            "systems": [
+                "Dauphine"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "lng",
+            "name": "Languedoc",
+            "systems": [
+                "Languedoc"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "orl",
+            "name": "Orleanais",
+            "systems": [
+                "Orleanais"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "rou",
+            "name": "Roussillon",
+            "systems": [
+                "Roussillon"
+            ],
+            "alwaysDisplay": true,
+            "showPlayers": true
+        },
+        {
+            "identifier": "ork",
+            "name": "Orkney",
+            "systems": [
+                "Orkney"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "t29",
+            "name": "Tau-29",
+            "systems": [
+                "Tau-29"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "t31",
+            "name": "Tau-31",
+            "systems": [
+                "Tau-31"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "baf",
+            "name": "Baffin",
+            "systems": [
+                "Baffin"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "t23",
+            "name": "Tau-23",
+            "systems": [
+                "Tau-23"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "t37",
+            "name": "Tau-37",
+            "systems": [
+                "Tau-37"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "t44",
+            "name": "Tau-44",
+            "systems": [
+                "Tau-44"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": true
+        },
+        {
+            "identifier": "t53",
+            "name": "Tau-53",
+            "systems": [
+                "Rishiri"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        },
+        {
+            "identifier": "edn",
+            "name": "Edinburgh",
+            "systems": [
+                "Edinburgh"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": true
+        },
+        {
+            "identifier": "bretonia",
+            "name": "Bretonia",
+            "systems": [
+                "New London",
+                "Leeds",
+                "Edinburgh",
+                "Newcastle",
+                "Manchester",
+                "Cambridge",
+                "Poole",
+                "Dublin"
+            ],
+            "alwaysDisplay": false,
+            "showPlayers": false
+        }
+    ],
+  "guildSettings": {
+    "messagesImage": "http://discoverygc.com/wiki/images/d/d6/Council_Logo.png",
+    "messagesFooterName": "Council High Command",
+    "scanMainRegionName": "our space",
+    "acknowledged": "Oui !",
+    "mainChannelName": "kubot",
+    "adminChannelName": "kubotadmin",
+    "emergencyChannelName": "kubot",
+    "activityNoticeMinPlayers": 3,
+    "activityNoticeMessages": [
+      "Ils sont ici encore !"
+    ],
+    "commandsPrefix": "!"
+
+  }
+}

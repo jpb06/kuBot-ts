@@ -1,0 +1,140 @@
+{
+    "factions": [
+        {
+            "identifier": "GRN",
+            "name": "Gallic Royal Navy",
+            "tags": [
+                "MRG|",
+                "RNS-",
+                "GRN|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "GRP",
+            "name": "Gallic Royal Police",
+            "tags": [
+                "GRP|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "GRI",
+            "name": "Gallic Royal Intelligence",
+            "tags": [
+                "GRI|",
+				"GRI-"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "GMS",
+            "name": "Gallic Metal Service",
+            "tags": [
+                "GMS|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "EFL",
+            "name": "EFL Oil and Machinery",
+            "tags": [
+                "EFL|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "IDF",
+            "name": "Ile-de-France Shipping",
+            "tags": [
+                "IDF|"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "Council",
+            "name": "The Council",
+            "tags": [
+                "[C]-"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "UN",
+            "name": "Union Corse",
+            "tags": [
+                "[UC]"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "GB",
+            "name": "Gallic Brigands",
+            "tags": [
+                "FB|"
+            ],
+            "alwaysDisplay": true
+        }
+    ],
+    "regions": [
+        {
+            "identifier": "Gallia",
+            "name": "Gallia",
+            "systems": [
+                "Ill-de-France",
+                "Burgundy",
+                "Dauphine",
+                "Orleanais",
+                "Picardy"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "Gallic Borders",
+            "name": "Gallic Borders",
+            "systems": [
+                "Zurich",
+                "Champagne",
+				"Lorraine",
+				"Languedoc",
+				"Provence"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "Bretonia Borders",
+            "name": "Bretonia Borders",
+            "systems": [
+                "Orkney",
+                "Tau-31"
+            ],
+            "alwaysDisplay": true
+        },
+        {
+            "identifier": "Bretonia",
+            "name": "Bretonia",
+            "systems": [
+                "Leeds",
+                "New London",
+				"Edinburgh",
+				"Newcastle",
+				"Dublin"
+            ],
+            "alwaysDisplay": false
+        }
+    ],
+    "guildSettings": {
+        "messagesImage": "https://i.imgur.com/PAvVktK.png",
+        "messagesFooterName": "Maquis Leadership",
+        "scanMainRegionName": "House Gallia",
+        "acknowledged": "Aye aye!",
+        "mainChannelName": "bot",
+        "adminChannelName": "admin",
+        "emergencyChannelName": "emergency",
+		"activityNoticeMinPlayers": 2,
+		"activityNoticeMessages": [
+			"activity detected!"
+		],
+		"commandsPrefix": "!"
+    }
+}
