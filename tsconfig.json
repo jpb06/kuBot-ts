@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es6",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./dist/js",
     "strictNullChecks": true,
     "noImplicitAny": true,
     "noEmitOnError": true,
