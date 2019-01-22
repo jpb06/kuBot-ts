@@ -1,6 +1,7 @@
 ﻿import { Message, TextChannel } from 'discord.js';
 
 import { AdminRemove } from './../../front/commands/admin.remove.command';
+import { AdminRequestCredentials } from './../../front/commands/admin.request.credentials';
 import { HelpCommand } from './../../front/commands/help.command';
 import { Quoting } from './../../front/commands/quote.command';
 import { ScanCommand } from './../../front/commands/scan.command';
@@ -58,6 +59,10 @@ export abstract class MessageEvent {
                 /* ------------------------------------------------------------------------------------------- 
                 Admin */
                 if (textChannel.name === guildSettings.adminChannelName) {
+                    if (command === 'config') {
+                        await AdminRequestCredentials(message.guild.id, guildSettings.commandsPrefix);
+                        return;
+                    }
                     if (command === 'remove') { /* remove command | !remove <target> <term> */
                         let args = messageChunks.splice(1);
                         await AdminRemove(args, message.guild.id, guildSettings.commandsPrefix);

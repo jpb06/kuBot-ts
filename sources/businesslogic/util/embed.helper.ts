@@ -175,7 +175,7 @@ export class EmbedHelper {
             factionsDescription += `**${faction.name}** : ${faction.playersCount}\n`;
         });
 
-        embed.addField('Factions', factionsDescription);
+        embed.addField('Factions', factionsDescription.length === 0 ? 'Nobody is online J:' : factionsDescription);
 
         regions.forEach(region => {
             let watch = '~';
@@ -344,6 +344,33 @@ export class EmbedHelper {
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle('Request failure')
                 .setDescription(`${term} isn't defined in ${type} watch list`)
+        });
+    }
+    /* ---------------------------------------------------------------------------------------------------------------
+       Remove admin command
+       ---------------------------------------------------------------------------------------------------------------*/
+    public static SendAdminCredentials(
+        login: string,
+        password: string
+    ): void {
+        this.channel.send({
+            embed: this.GenerateGeneric()
+                .setColor(3447003)
+                .setAuthor(this.authorName, this.authorAvatarUrl)
+                .setTitle('kuBot configuration website')
+                .setURL('https://kubot.cf')
+                .setDescription(`You can find your credentials below:\n\n**Login** : ${login}\n**Password**: ${password}`)
+        });
+    }
+    public static SendAdminCredentialsAlreadyCreated(
+        date:string
+    ): void {
+        this.channel.send({
+            embed: this.GenerateGeneric()
+                .setColor(10684167)
+                .setAuthor(this.authorName, this.authorAvatarUrl)
+                .setTitle('Credentials already generated')
+                .setDescription(`You generated credentials on ${date}. Can't find them back in channel history?\nCredentials generation is limited to one operation per week.`)
         });
     }
     /* ---------------------------------------------------------------------------------------------------------------

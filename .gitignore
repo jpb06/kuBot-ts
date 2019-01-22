@@ -290,3 +290,8 @@ __pycache__/
 # Custom kubot project
 dist
 sources/configuration/private.config.local.ts
+/pscp.exe
+/sources/configuration/prod.config.json
+/sources/configuration/dev.config.json
+/sources/configuration/current.config.json
+/build-logic/private/private.config.js
