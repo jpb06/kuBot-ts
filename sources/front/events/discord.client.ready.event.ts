@@ -11,7 +11,7 @@ export abstract class ClientReadyEvent {
         client: Client
     ): Promise<void> {
         try {
-            await client.user.setActivity('Sirius Sector', { type: 'WATCHING' });
+            await client.user?.setActivity('Sirius Sector', { type: 'WATCHING' });
 
             await GuildConfigurationService.Initialize(client);
 

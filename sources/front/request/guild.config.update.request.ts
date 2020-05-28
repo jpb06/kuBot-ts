@@ -1,6 +1,5 @@
 ﻿import { Message, TextChannel } from 'discord.js';
-import * as fs from 'fs';
-import { promisify } from 'util';
+import * as fs from 'fs-extra';
 import * as moment from 'moment';
 
 import { FilesHelper } from './../../businesslogic/util/files.helper';
@@ -15,21 +14,21 @@ export abstract class GuildConfigUpdateRequest {
         message: Message
     ): Promise<void> {
         try {
-            let attachment = message.attachments.first();
+            const attachment = message.attachments.first();
+            if (!attachment || !attachment.name) return;
 
-            let fileExtension = attachment.filename.substr(attachment.filename.lastIndexOf('.') + 1);
+            const fileExtension = attachment.name.substr(attachment.name.lastIndexOf('.') + 1);
             if (fileExtension === 'json') {
-                let now = moment().format('DDMMYYYY-HHmmss');
-                let folder = './guildsConfiguration';
-                let channel = <TextChannel>message.channel;
-                let tempFilePath = `${folder}/${channel.guild.id}_${now}.json`;
+                const now = moment().format('DDMMYYYY-HHmmss');
+                const folder = './guildsConfiguration';
+                const channel = message.channel as TextChannel;
+                const tempFilePath = `${folder}/${channel.guild.id}_${now}.json`;
 
                 await FilesHelper.Save(attachment.url, tempFilePath);
 
-                const readFile = promisify(fs.readFile);
-                let data = (await readFile(tempFilePath, 'utf8')).toString();
+                const data = (await fs.readFile(tempFilePath, 'utf8')).toString();
 
-                let updated = await GuildConfigurationService.UpdateFromJson(channel.guild.id, channel.guild.channels.array(), data);
+                const updated = await GuildConfigurationService.UpdateFromJson(channel.guild.id, channel.guild.channels.cache.array(), data);
                 if (updated) {
                     await FilesHelper.Rename(tempFilePath, `${folder}/${channel.guild.id}_${now}_pass.json`);
                     EmbedHelper.SendGuildSettingsInitCompleted();

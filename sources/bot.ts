@@ -11,7 +11,7 @@ import { PrivateSettings } from './configuration/pivate.settings.mapping';
 PrivateSettings.AddToProcess();
 
 const client = new Discord.Client({
-    disableEveryone: true
+    disableMentions: "everyone"
 });
 
 client.on('ready', async () => {
@@ -24,7 +24,7 @@ client.on('guildDelete', async (guild) => {
     await GuildDeleteEvent.React(guild);
 });
 client.on('message', async (message) => {
-    await MessageEvent.React(message, client.user.username, client.user.avatarURL);
+    await MessageEvent.React(message, client.user as Discord.ClientUser);
 });
 client.on('error', async (error) => {
     await GlobalErrorEvent.React(error);

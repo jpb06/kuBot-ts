@@ -1,4 +1,4 @@
-﻿import { RichEmbed, TextChannel, Message } from 'discord.js';
+﻿import { MessageEmbed, TextChannel, Message } from 'discord.js';
 import * as Dal from 'kubot-dal';
 
 import { ScannedFaction, ScannedRegion } from './../../types/business.types';
@@ -24,8 +24,8 @@ export class EmbedHelper {
     /* ---------------------------------------------------------------------------------------------------------------
        Generic
        ---------------------------------------------------------------------------------------------------------------*/
-    private static GenerateGeneric(): RichEmbed {
-        let embed = new RichEmbed()
+    private static GenerateGeneric(): MessageEmbed {
+        const embed = new MessageEmbed()
             .setThumbnail(this.guildSettings.messagesImage)
             .setTimestamp(new Date())
             .setFooter(this.guildSettings.messagesFooterName, this.guildSettings.messagesImage);
@@ -49,7 +49,7 @@ export class EmbedHelper {
 
     public static Error(): void {
         this.channel.send({
-            embed: new RichEmbed()
+            embed: new MessageEmbed()
                 .setThumbnail('https://i.imgur.com/5L7T68j.png')
                 .setTimestamp(new Date())
                 .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
@@ -60,26 +60,26 @@ export class EmbedHelper {
     }
 
     public static CommandsDescription(
-        embed: RichEmbed,
+        embed: MessageEmbed,
         commandsPrefix: string
-    ): RichEmbed {
+    ): MessageEmbed {
         embed
-            .addField(commandsPrefix+'help', 'Displays the available commands list.\n')
-            .addField(commandsPrefix+'scan', 'Scans Sirius sector.\n')
-            .addField(commandsPrefix+'watch', 'Adds a player to the watch list.\n')
-            .addField(commandsPrefix+'show', 'Displays a watch list.\n')
-            .addField(commandsPrefix+'quote', 'Quotes one and only one message using its identifier.\n')
-            .addField(commandsPrefix+'quotetext', 'Quotes a text.\n')
-            .addField(commandsPrefix+'embed', 'Creates an embed using a title and a content message.\n');
+            .addField(commandsPrefix + 'help', 'Displays the available commands list.\n')
+            .addField(commandsPrefix + 'scan', 'Scans Sirius sector.\n')
+            .addField(commandsPrefix + 'watch', 'Adds a player to the watch list.\n')
+            .addField(commandsPrefix + 'show', 'Displays a watch list.\n')
+            .addField(commandsPrefix + 'quote', 'Quotes one and only one message using its identifier.\n')
+            .addField(commandsPrefix + 'quotetext', 'Quotes a text.\n')
+            .addField(commandsPrefix + 'embed', 'Creates an embed using a title and a content message.\n');
 
         return embed;
     }
 
     public static CommandsDescriptionAdmin(
-        embed: RichEmbed,
+        embed: MessageEmbed,
         commandsPrefix: string
-    ): RichEmbed {
-        embed.addField(commandsPrefix+'remove', 'Removes a player or a faction from watch lists\n')
+    ): MessageEmbed {
+        embed.addField(commandsPrefix + 'remove', 'Removes a player or a faction from watch lists\n')
 
         return embed;
     }
@@ -90,7 +90,7 @@ export class EmbedHelper {
         errors: string
     ): void {
         this.channel.send({
-            embed: new RichEmbed()
+            embed: new MessageEmbed()
                 .setThumbnail('https://i.imgur.com/5L7T68j.png')
                 .setTimestamp(new Date())
                 .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
@@ -102,7 +102,7 @@ export class EmbedHelper {
 
     public static SendGuildSettingsInitCompleted(): void {
         this.channel.send({
-            embed: new RichEmbed()
+            embed: new MessageEmbed()
                 .setThumbnail('https://i.imgur.com/5L7T68j.png')
                 .setTimestamp(new Date())
                 .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
@@ -119,8 +119,8 @@ export class EmbedHelper {
         activityNoticemessage: string,
         activityNoticeImageUrl: string,
         activityNoticeFooterName: string
-    ): RichEmbed {
-        let embed = new RichEmbed()
+    ): MessageEmbed {
+        const embed = new MessageEmbed()
             .setThumbnail(activityNoticeImageUrl)
             .setTimestamp(new Date())
             .setFooter(activityNoticeFooterName, activityNoticeImageUrl)
@@ -151,11 +151,11 @@ export class EmbedHelper {
         activityNoticeImageUrl: string,
         activityNoticeFooterName: string
     ): Promise<string> {
-        let message = await emergencyChannel.send({
+        const message = await emergencyChannel.send({
             embed: this.GenerateActivityNotice(factions, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName)
         });
 
-        return (<Message>message).id;
+        return message.id;
     }
     /* ---------------------------------------------------------------------------------------------------------------
        Scan command
@@ -164,8 +164,8 @@ export class EmbedHelper {
         playersCount: number,
         factions: ScannedFaction[],
         regions: ScannedRegion[]
-    ) : void {
-        let embed = this.GenerateGeneric()
+    ): void {
+        const embed = this.GenerateGeneric()
             .setColor(3447003)
             .setTitle(`**${playersCount} ${this.GetProperQuantifiedSubstantive('player', playersCount)} online**\n\n`)
             .setDescription(`Scanning ${this.guildSettings.scanMainRegionName}...`);
@@ -182,7 +182,7 @@ export class EmbedHelper {
             if (region.watchedPlayers.length > 0) {
                 watch = '';
                 region.watchedPlayers.forEach(player => {
-                    watch += `${ StringHelper.NegateNonEscapeBackslash(player.name) }`;
+                    watch += `${StringHelper.NegateNonEscapeBackslash(player.name)}`;
 
                     if (player.comment)
                         watch += ` - ${player.comment}`;
@@ -206,8 +206,8 @@ export class EmbedHelper {
         quoteSendDate: Date,
         quoteAuthor: string,
         quoteContent: string
-    ) : RichEmbed {
-        let embed = new RichEmbed()
+    ): MessageEmbed {
+        const embed = new MessageEmbed()
             .setTimestamp(quoteSendDate)
             .setFooter(`Quote requested by ${user}`, 'https://i.imgur.com/5L7T68j.png')
             .setColor(0x2e9c3f)
@@ -221,7 +221,7 @@ export class EmbedHelper {
         quoteSendDate: Date,
         quoteAuthor: string,
         quoteContent: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateQuote(user, quoteSendDate, quoteAuthor, quoteContent)
         });
@@ -232,8 +232,8 @@ export class EmbedHelper {
     private static GenerateQuoteText(
         user: string,
         quoteContent: string
-    ) : RichEmbed {
-        let embed = new RichEmbed()
+    ): MessageEmbed {
+        const embed = new MessageEmbed()
             .setTimestamp(new Date())
             .setFooter('kuBot', 'https://i.imgur.com/5L7T68j.png')
             .setColor(0x2e9c3f)
@@ -245,7 +245,7 @@ export class EmbedHelper {
     public static SendQuoteText(
         user: string,
         quoteContent: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateQuoteText(user, quoteContent)
         });
@@ -257,8 +257,8 @@ export class EmbedHelper {
         user: string,
         title: string,
         content: string
-    ) : RichEmbed {
-        let embed = new RichEmbed()
+    ): MessageEmbed {
+        const embed = new MessageEmbed()
             .setTimestamp(new Date())
             .setFooter(`${user}`, 'https://i.imgur.com/5L7T68j.png')
             .setColor(0x2e9c3f)
@@ -271,7 +271,7 @@ export class EmbedHelper {
         user: string,
         title: string,
         content: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateEmbed(user, title, content)
         });
@@ -282,7 +282,7 @@ export class EmbedHelper {
     public static SendFactionPlayerWatchError(
         name: string,
         factions: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateGeneric()
                 .setColor(10684167)
@@ -294,10 +294,10 @@ export class EmbedHelper {
 
     public static SendWatchResponse(
         name: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateGeneric()
-            .setColor(3447003)
+                .setColor(3447003)
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle(`${this.guildSettings.acknowledged}`)
                 .setDescription(`${name} added to the watch list`)
@@ -310,12 +310,12 @@ export class EmbedHelper {
         count: number,
         description: string,
         type: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateGeneric()
-            .setColor(3447003)
-            .setTitle(`**${count} ${type} in watch list**\n\n`)
-            .setDescription(description)
+                .setColor(3447003)
+                .setTitle(`**${count} ${type} in watch list**\n\n`)
+                .setDescription(description)
         });
     }
     /* ---------------------------------------------------------------------------------------------------------------
@@ -324,20 +324,20 @@ export class EmbedHelper {
     public static SendRemoveResponse(
         term: string,
         type: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateGeneric()
-            .setColor(3447003)
+                .setColor(3447003)
                 .setAuthor(this.authorName, this.authorAvatarUrl)
                 .setTitle(`${this.guildSettings.acknowledged}`)
-            .setDescription(`${term} was removed from ${type} watch list`)
+                .setDescription(`${term} was removed from ${type} watch list`)
         });
     }
 
     public static SendRemovalFailure(
         term: string,
         type: string
-    ) : void {
+    ): void {
         this.channel.send({
             embed: this.GenerateGeneric()
                 .setColor(10684167)
@@ -363,7 +363,7 @@ export class EmbedHelper {
         });
     }
     public static SendAdminCredentialsAlreadyCreated(
-        date:string
+        date: string
     ): void {
         this.channel.send({
             embed: this.GenerateGeneric()
@@ -402,7 +402,7 @@ export class EmbedHelper {
         name: string,
         quantity: number
     ): string {
-        if (quantity == 0 || quantity > 1) {
+        if (quantity === 0 || quantity > 1) {
             return name + 's';
         } else {
             return name;

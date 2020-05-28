@@ -1,5 +1,4 @@
 ﻿import { Client, GuildChannel } from 'discord.js';
-import { promisify } from 'util';
 
 import * as Dal from 'kubot-dal';
 
@@ -14,10 +13,10 @@ export abstract class GuildConfigurationService {
     ): Promise<void> {
         this.guildsSettings = [];
 
-        let persistedParams = await Dal.Manipulation.GuildsStore.getAll();
+        const persistedParams = await Dal.Manipulation.GuildsStore.getAll();
 
-        client.guilds.forEach(async (guild) => {
-            let persistedGuildParams = <Dal.Types.GuildConfiguration>persistedParams.find(g => g.guildId === guild.id);
+        client.guilds.cache.forEach(async (guild) => {
+            const persistedGuildParams = persistedParams.find(g => g.guildId === guild.id) as Dal.Types.GuildConfiguration;
 
             if (persistedGuildParams === undefined) {
                 throw new Error(`Couldn't find settings for guild ${guild.id}`);
@@ -46,19 +45,19 @@ export abstract class GuildConfigurationService {
         json: string
     ): Promise<boolean> {
 
-        let parsed: any = null;
+        let parsed;
         try {
             parsed = JSON.parse(json);
         } catch (parsingError) {
-            let error = new Error(`Failed to parse JSON:\n${parsingError.message}`);
+            const error = new Error(`Failed to parse JSON:\n${parsingError.message}`);
             error.name = 'Custom';
             throw error;
         }
 
-        let validationErrors = GuildConfigurationValidator.VerifyGuildConfig(parsed);
+        const validationErrors = GuildConfigurationValidator.VerifyGuildConfig(parsed);
 
         if (validationErrors.length > 0) {
-            let error = new Error(validationErrors);
+            const error = new Error(validationErrors);
             error.name = 'Custom';
             throw error;
         }
@@ -84,7 +83,7 @@ export abstract class GuildConfigurationService {
         parsed.guildSettings.guildId = guildId;
         await Dal.Manipulation.GuildsStore.set(parsed.guildSettings);
 
-        let settingsIndex = this.guildsSettings.findIndex(el => el.guildId === guildId);
+        const settingsIndex = this.guildsSettings.findIndex(el => el.guildId === guildId);
 
         this.guildsSettings[settingsIndex] = {
             guildId: guildId,
@@ -114,15 +113,15 @@ export abstract class GuildConfigurationService {
         channels: GuildChannel[]
     ): void {
 
-        let channel = channels.find(channel => channel.name === name);
+        const channel = channels.find(channel => channel.name === name);
 
         if (channel === undefined) {
-            let error = new Error(`Channel ${name} doesn't exist in this guild.`);
+            const error = new Error(`Channel ${name} doesn't exist in this guild.`);
             error.name = 'Custom';
             throw error;
         }
         if (channel.type !== 'text') {
-            let error = new Error(`Channel ${name} is not a text channel.`);
+            const error = new Error(`Channel ${name} is not a text channel.`);
             error.name = 'Custom';
             throw error;
         }

@@ -1,4 +1,4 @@
-﻿import { Client, TextChannel, GuildChannel } from 'discord.js';
+﻿import { Client, TextChannel } from 'discord.js';
 import * as Schedule from 'node-schedule';
 import * as Dal from 'kubot-dal';
 
@@ -20,7 +20,7 @@ export abstract class CyclicActivityNotice {
         client: Client
     ): Promise<void> {
         try {
-            let rule = new Schedule.RecurrenceRule();
+            const rule = new Schedule.RecurrenceRule();
             rule.minute = new Schedule.Range(0, 59, 30);
 
             this.job = Schedule.scheduleJob(rule, async () => {
@@ -28,29 +28,29 @@ export abstract class CyclicActivityNotice {
                 this.watchedFactions = await Dal.Manipulation.FactionWatchStore.getAll();
                 this.watchedRegions = await Dal.Manipulation.RegionWatchStore.getAll();
                 this.watchedPlayers = await Dal.Manipulation.PlayerWatchStore.getAll();
-                let activityCache = await Dal.Manipulation.ActivityCacheStore.getAll();
+                const activityCache = await Dal.Manipulation.ActivityCacheStore.getAll();
 
-                let updatedCache: Dal.Types.GuildActivityCache[] = [];
+                const updatedCache: Dal.Types.GuildActivityCache[] = [];
 
                 await this.AsyncForEach(GuildConfigurationService.guildsSettings, async (guildConfiguration) => {
                     let messageId = '';
 
-                    let currentActivity = this.BuildCurrentActivity(guildConfiguration.guildId);
+                    const currentActivity = this.BuildCurrentActivity(guildConfiguration.guildId);
 
-                    let playersCount = currentActivity.map(el => el.playersCount).reduce((a, b) => a + b, 0);
+                    const playersCount = currentActivity.map(el => el.playersCount).reduce((a, b) => a + b, 0);
                     if (playersCount >= guildConfiguration.activityNoticeMinPlayers) {
 
-                        let cachedActivity = activityCache.find(cache => cache.guildId === guildConfiguration.guildId);
-                        let similar = await this.CompareActivity(cachedActivity, currentActivity);
+                        const cachedActivity = activityCache.find(cache => cache.guildId === guildConfiguration.guildId);
+                        const similar = await this.CompareActivity(cachedActivity, currentActivity);
 
 
                         if (currentActivity.length > 0 && !similar) {
-                            let guild = client.guilds.find(guild => guild.id === guildConfiguration.guildId);
+                            const guild = client.guilds.cache.find(guild => guild.id === guildConfiguration.guildId);
                             if (guild !== undefined) {
-                                let emergencyChannel: GuildChannel = guild.channels.find(channel => channel.name === guildConfiguration.emergencyChannelName && channel.type === 'text');
+                                const emergencyChannel = guild.channels.cache.find(channel => channel.name === guildConfiguration.emergencyChannelName && channel.type === 'text');
                                 if (emergencyChannel !== undefined && emergencyChannel instanceof TextChannel) {
-                                    let messageIndex = Math.floor((Math.random() * guildConfiguration.activityNoticeMessages.length));
-                                    let message: string = guildConfiguration.activityNoticeMessages[messageIndex];
+                                    const messageIndex = Math.floor((Math.random() * guildConfiguration.activityNoticeMessages.length));
+                                    const message = guildConfiguration.activityNoticeMessages[messageIndex];
 
                                     messageId = await this.ReportActivity(
                                         emergencyChannel, currentActivity, cachedActivity,
@@ -58,7 +58,7 @@ export abstract class CyclicActivityNotice {
                                     );
                                 } else {
                                     console.log(`couldn't locate emergency for:${guildConfiguration.guildId}`);
-                                    console.log(guild.channels);
+                                    //console.log(guild.channels);
                                 }
                             }
                         }
@@ -97,9 +97,9 @@ export abstract class CyclicActivityNotice {
         guildId: string
     ): Dal.Types.ActivityCacheItem[] {
 
-        let activity: Dal.Types.ActivityCacheItem[] = [];
+        const activity: Dal.Types.ActivityCacheItem[] = [];
 
-        let guildWatchedFactions = this.watchedFactions
+        const guildWatchedFactions = this.watchedFactions
             .filter(faction => faction.guildId === guildId)
             .sort((a, b) => {
                 if (a.name < b.name) return -1;
@@ -107,12 +107,12 @@ export abstract class CyclicActivityNotice {
                 return 0;
             });
 
-        let guildWatchedRegions = this.watchedRegions.filter(region => region.guildId === guildId);
-        let systems = ([] as string[]).concat(...guildWatchedRegions.map(region => region.systems));
+        const guildWatchedRegions = this.watchedRegions.filter(region => region.guildId === guildId);
+        const systems = ([] as string[]).concat(...guildWatchedRegions.map(region => region.systems));
 
         guildWatchedFactions.forEach(faction => {
 
-            let factionOnlinePlayers = this.onlinePlayers.filter(player =>
+            const factionOnlinePlayers = this.onlinePlayers.filter(player =>
                 faction.tags.some(tag => player.Name.includes(tag)) &&
                 systems.some(el => el === player.System)
             );
@@ -125,8 +125,8 @@ export abstract class CyclicActivityNotice {
             }
         });
 
-        let guildWatchedPlayers = this.watchedPlayers.filter(player => player.guildId === guildId).map(player => player.name);
-        let onlineWatchedPlayers = this.onlinePlayers.filter(player =>
+        const guildWatchedPlayers = this.watchedPlayers.filter(player => player.guildId === guildId).map(player => player.name);
+        const onlineWatchedPlayers = this.onlinePlayers.filter(player =>
             systems.some(el => el === player.System) &&
             guildWatchedPlayers.some(watchedPlayer => watchedPlayer === player.Name)
         );
@@ -149,8 +149,8 @@ export abstract class CyclicActivityNotice {
         if (activityInCache.cache.length !== activityFetched.length) return false;
 
         for (let index = 0; index < activityInCache.cache.length; index++) {
-            let cachedFaction = activityInCache.cache[index];
-            let fetchedFaction = activityFetched[index];
+            const cachedFaction = activityInCache.cache[index];
+            const fetchedFaction = activityFetched[index];
 
             if (fetchedFaction.name !== cachedFaction.name ||
                 fetchedFaction.playersCount !== cachedFaction.playersCount)
@@ -170,23 +170,18 @@ export abstract class CyclicActivityNotice {
     ): Promise<string> {
         let messageId = '';
 
-        let cachedLastMessageId = cachedActivity === undefined ? '-1' : (<Dal.Types.GuildActivityCache>cachedActivity).lastMessageId;
+        const cachedLastMessageId = cachedActivity === undefined ? '-1' : cachedActivity.lastMessageId;
 
-        let messages = await emergencyChannel.fetchMessages({
-            limit: 1
-        });
-
-        if (messages.size > 0) {
-            let message = messages.first();
-
+        const message = emergencyChannel.lastMessage;
+        if (message) {
             if (message.author.id === process.env['botId'] && message.id === cachedLastMessageId) {
                 await EmbedHelper.UpdateActivityNotice(message, currentActivity, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName);
                 messageId = message.id;
             }
-        }
 
-        if (messageId === '') {
-            messageId = await EmbedHelper.SendActivityNotice(emergencyChannel, currentActivity, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName);
+            if (messageId === '') {
+                messageId = await EmbedHelper.SendActivityNotice(emergencyChannel, currentActivity, activityNoticemessage, activityNoticeImageUrl, activityNoticeFooterName);
+            }
         }
 
         return messageId;

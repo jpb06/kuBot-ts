@@ -1,9 +1,14 @@
-﻿import { Client, Message, TextChannel } from 'discord.js';
+﻿import { Message } from 'discord.js';
 
 import { ArgumentsValidation } from './../../businesslogic/commands/arguments.validation';
 import { CommandsDescription } from './../../businesslogic/commands/commands.description';
 import { EmbedHelper } from './../../businesslogic/util/embed.helper';
 import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper';
+
+interface Acc {
+    quote?: any;
+    val: Array<string>;
+}
 
 export abstract class Quoting {
 
@@ -13,17 +18,17 @@ export abstract class Quoting {
         commandsPrefix: string
     ): Promise<void> {
         try {
-            let errors = ArgumentsValidation.CheckQuoteMessageArgs(args);
+            const errors = ArgumentsValidation.CheckQuoteMessageArgs(args);
 
             if (errors.length > 0) {
                 EmbedHelper.SendValidationError(CommandsDescription.QuoteUsage(commandsPrefix), errors);
             } else {
                 if (message.channel.type === 'text') {
-                    let messageToQuote = await message.channel.fetchMessage(args[0]);
+                    const matchingMessages = await message.channel.awaitMessages(m => m.id === args[0]);
+                    const messageToQuote = matchingMessages.first();
+                    if (!messageToQuote || !messageToQuote.author.bot) return;
 
-                    if (!messageToQuote.author.bot) {
-                        EmbedHelper.SendQuote(message.author.username, messageToQuote.createdAt, messageToQuote.author.username, messageToQuote.content);
-                    }
+                    EmbedHelper.SendQuote(message.author.username, messageToQuote.createdAt, messageToQuote.author.username, messageToQuote.content);
                 }
             }
         } catch (error) {
@@ -38,7 +43,7 @@ export abstract class Quoting {
         commandsPrefix: string
     ): Promise<void> {
         try {
-            let errors = ArgumentsValidation.CheckQuoteTextArgs(text);
+            const errors = ArgumentsValidation.CheckQuoteTextArgs(text);
 
             if (errors.length > 0) {
                 EmbedHelper.SendValidationError(CommandsDescription.QuoteTextUsage(commandsPrefix), errors);
@@ -58,7 +63,7 @@ export abstract class Quoting {
     ): Promise<void> {
         try {
 
-            let content: string[] = args.split('').reduce((accumulator: Acc, currentValue) => {
+            const content: string[] = args.split('').reduce((accumulator: Acc, currentValue) => {
                 if (currentValue === '"') {
                     accumulator.quote ^= 1;
                 } else if (!accumulator.quote && currentValue === ' ') {
@@ -71,7 +76,7 @@ export abstract class Quoting {
                 val: ['']
             }).val;
 
-            let errors = ArgumentsValidation.CheckEmbedArgs(content);
+            const errors = ArgumentsValidation.CheckEmbedArgs(content);
 
             if (errors.length > 0) {
                 EmbedHelper.SendValidationError(CommandsDescription.EmbedUsage(commandsPrefix), errors);
@@ -83,9 +88,4 @@ export abstract class Quoting {
             EmbedHelper.Error();
         }
     }
-}
-
-interface Acc {
-    quote: any,
-    val: Array<string>
 }
