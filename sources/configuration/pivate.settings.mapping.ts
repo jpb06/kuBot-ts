@@ -9,10 +9,12 @@ export abstract class PrivateSettings {
         process.env['discogcAuthPostData'] = PrivateConfig.discogcAuthPostData;
         process.env['discogcAccountUserId'] = PrivateConfig.discogcAccountUserId;
         process.env['discogcSessionId'] = PrivateConfig.discogcSessionId;
-        Dal.Configuration.Setup(
-            PrivateConfig.mongodbUrl,
-            PrivateConfig.mongodbBase,
-            PrivateConfig.dbUser,
-            PrivateConfig.dbPassword);
+        Dal.Configuration.Setup({
+            srvIPAddress: PrivateConfig.srvIpAddress,
+            mongodbPort: PrivateConfig.srvPort,
+            mainDb: PrivateConfig.mongodbBase,
+            mainDbUsername: PrivateConfig.dbUser,
+            mainDbPassword: PrivateConfig.dbPassword
+        });
     }
 }

@@ -1,4 +1,4 @@
-﻿import { Message, TextChannel } from 'discord.js';
+﻿import { Message, TextChannel, ClientUser } from 'discord.js';
 
 import { AdminRemove } from './../../front/commands/admin.remove.command';
 import { AdminRequestCredentials } from './../../front/commands/admin.request.credentials';
@@ -17,22 +17,22 @@ import { ErrorsLogging } from './../../businesslogic/util/errors.logging.helper'
 export abstract class MessageEvent {
     public static async React(
         message: Message,
-        botUsername: string,
-        botAvatarUrl: string
+        user: ClientUser
     ): Promise<void> {
         try {
-            if (message.author.bot || message.channel.type !== 'text') return; // not replying to others bots; only messages in text channels should be treated
+            // not replying to others bots; only messages in text channels should be treated
+            if (message.author.bot || message.channel.type !== 'text' || message.guild === null) return;
 
-            let guildSettings = GuildConfigurationService.guildsSettings.find(guildSettings => guildSettings.guildId === message.guild.id);
+            const guildSettings = GuildConfigurationService.guildsSettings.find(guildSettings => guildSettings.guildId === message.guild?.id);
             if (guildSettings === undefined) return;
 
-            let textChannel = <TextChannel>message.channel;
-            EmbedHelper.Setup(textChannel, guildSettings, botUsername, botAvatarUrl);
+            const textChannel = message.channel as TextChannel;
+            EmbedHelper.Setup(textChannel, guildSettings, user.username, user.avatarURL() as string);
 
             if (message.content.startsWith(guildSettings.commandsPrefix)) {
-                let messageChunks = message.content.slice(guildSettings.commandsPrefix.length).trim().split(/ +/g);
-                let command = messageChunks[0].toLowerCase();
-                
+                const messageChunks = message.content.slice(guildSettings.commandsPrefix.length).trim().split(/ +/g);
+                const command = messageChunks[0].toLowerCase();
+
                 /* ------------------------------------------------------------------------------------------- 
                 Default + Admin */
                 if (textChannel.name === guildSettings.mainChannelName || textChannel.name === guildSettings.adminChannelName) {
@@ -45,12 +45,12 @@ export abstract class MessageEvent {
                         return;
                     }
                     if (command === 'watch') { /* watch command | !watch <name> <comment> */
-                        let args = messageChunks.splice(1);
+                        const args = messageChunks.splice(1);
                         await Watch(args, message.guild.id, guildSettings.commandsPrefix);
                         return;
                     }
                     if (command === 'show') { /* show command | !show <term> */
-                        let args = messageChunks.splice(1).join('');
+                        const args = messageChunks.splice(1).join('');
                         await ShowCommand.Process(args, message.guild.id, guildSettings.commandsPrefix);
                         return;
                     }
@@ -64,7 +64,7 @@ export abstract class MessageEvent {
                         return;
                     }
                     if (command === 'remove') { /* remove command | !remove <target> <term> */
-                        let args = messageChunks.splice(1);
+                        const args = messageChunks.splice(1);
                         await AdminRemove(args, message.guild.id, guildSettings.commandsPrefix);
                         return;
                     }
@@ -77,19 +77,19 @@ export abstract class MessageEvent {
                 /* -------------------------------------------------------------------------------------------
                 Every channel */
                 if (command === 'quote' || command === 'q') { /* quote command | !quote <identifier> */
-                    let args = messageChunks.splice(1);
+                    const args = messageChunks.splice(1);
                     await Quoting.ProcessMessage(args, message, guildSettings.commandsPrefix);
                     await message.delete();
                     return;
                 }
                 if (command === 'quotetext' || command === 'qt') { /*  quotetext command | !quotetext '<text>' */
-                    let text = messageChunks.splice(1).join(' ');
+                    const text = messageChunks.splice(1).join(' ');
                     await Quoting.ProcessText(text, message.author.username, guildSettings.commandsPrefix);
                     await message.delete();
                     return;
                 }
                 if (command === 'embed' || command === 'e') { /*  embed command | !embed '<title>' '<text>' */
-                    let args = messageChunks.splice(1).join(' ');
+                    const args = messageChunks.splice(1).join(' ');
 
                     await Quoting.ProcessEmbed(args, message.author.username, guildSettings.commandsPrefix);
                     await message.delete();
